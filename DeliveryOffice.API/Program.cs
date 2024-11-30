@@ -1,4 +1,7 @@
-namespace AutoService.API;
+using DeliveryOffice.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
+namespace DeliveryOffice.API;
 
 public static class Program
 {
@@ -7,7 +10,11 @@ public static class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
+        builder.Services.AddDbContext<DeliveryOfficeDbContext>(
+            options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(DeliveryOfficeDbContext)));
+            });
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
