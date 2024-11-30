@@ -18,7 +18,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories\DeliveryOffice.DataAccess.Repositories.csproj" />
       <ProjectReference Include="..\DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj" />
+      <ProjectReference Include="..\DeliveryOffice.Services\DeliveryOffice.Services.csproj" />
     </ItemGroup>
 
 </Project>
