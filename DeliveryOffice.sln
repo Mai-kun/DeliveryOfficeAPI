@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.Services", "DeliveryOffice.Services\DeliveryOffice.Services.csproj", "{C886F93E-AAE0-4CA7-8506-2B7F6F712EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.Services.Models", "DeliveryOffice.Services.Models\DeliveryOffice.Services.Models.csproj", "{B73B9845-A9D7-4238-B86E-8DADDC8428C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.Services.Contracts", "DeliveryOffice.Services.Contracts\DeliveryOffice.Services.Contracts.csproj", "{B73B9845-A9D7-4238-B86E-8DADDC8428C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

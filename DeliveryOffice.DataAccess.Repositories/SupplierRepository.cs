@@ -40,9 +40,16 @@ public class SupplierRepository : ISupplierRepository
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Supplier supplier)
+    public async Task<bool> DeleteAsync(Guid id)
     {
+        var supplier = await GetByIdAsync(id);
+        if (supplier is null)
+        {
+            return false;
+        }
+
         dbContext.Suppliers.Remove(supplier);
         await dbContext.SaveChangesAsync();
+        return true;
     }
 }

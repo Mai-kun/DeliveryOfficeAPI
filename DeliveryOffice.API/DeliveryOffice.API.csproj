@@ -1,26 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.20"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.20"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <Content Update="appsettings.Development.json">
-        <DependentUpon>appsettings.json</DependentUpon>
-      </Content>
-    </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <DependentUpon>appsettings.json</DependentUpon>
+    </Content>
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories\DeliveryOffice.DataAccess.Repositories.csproj" />
-      <ProjectReference Include="..\DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj" />
-      <ProjectReference Include="..\DeliveryOffice.Services\DeliveryOffice.Services.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories\DeliveryOffice.DataAccess.Repositories.csproj"/>
+    <ProjectReference Include="..\DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj"/>
+    <ProjectReference Include="..\DeliveryOffice.Services\DeliveryOffice.Services.csproj"/>
+  </ItemGroup>
 
 </Project>

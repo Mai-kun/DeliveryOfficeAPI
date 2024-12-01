@@ -1,8 +1,8 @@
 ﻿using DeliveryOffice.Core.Abstractions.Repositories;
 using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Models;
-using DeliveryOffice.Services.Models.Abstractions;
-using DeliveryOffice.Services.Models.Models.RequestModels;
+using DeliveryOffice.Services.Contracts;
+using DeliveryOffice.Services.Contracts.Abstractions;
+using DeliveryOffice.Services.Contracts.Models.RequestModels;
 
 namespace DeliveryOffice.Services;
 
@@ -26,23 +26,33 @@ public class SuppliersService : ISuppliersService
         return await suppliersRepository.GetByIdAsync(supplierId);
     }
 
-    async Task ISuppliersService.AddSupplierAsync(SupplierRequest supplierModel)
+    async Task ISuppliersService.AddSupplierAsync(CreateSupplierRequest supplierRequest)
     {
-        var supplier = new Supplier
-        {
-            Name = supplierModel.Name,
-            Address = supplierModel.Address,
-        };
+        var supplier = new Supplier { Name = supplierRequest.Name, Address = supplierRequest.Address, };
         await suppliersRepository.AddAsync(supplier);
     }
 
-    Task ISuppliersService.UpdateSupplierAsync(Supplier supplier)
+    async Task<bool> ISuppliersService.UpdateSupplierAsync(Guid id, UpdateSupplierRequest supplierRequest)
     {
-        return suppliersRepository.UpdateAsync(supplier);
+        var supplier = await suppliersRepository.GetByIdAsync(id);
+        if (supplier is null)
+        {
+            return false;
+        }
+
+        var newSupplier = new Supplier
+        {
+            Id = supplier.Id,
+            Name = supplierRequest.Name ?? supplier.Name,
+            Address = supplierRequest.Address ?? supplier.Address,
+        };
+
+        await suppliersRepository.UpdateAsync(newSupplier);
+        return true;
     }
 
-    Task ISuppliersService.DeleteSupplierAsync(Supplier supplier)
+    async Task<bool> ISuppliersService.DeleteSupplierAsync(Guid id)
     {
-        return suppliersRepository.DeleteAsync(supplier);
+        return await suppliersRepository.DeleteAsync(id);
     }
 }
