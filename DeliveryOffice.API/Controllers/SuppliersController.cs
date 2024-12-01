@@ -30,9 +30,11 @@ public class SuppliersController : ControllerBase
     }
 
     /// <summary>
-    ///     Получение поставщика по его индентивикатору
+    ///     Получение поставщика по его индентификатору
     /// </summary>
     [HttpGet("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetSupplierById(Guid id)
     {
         var supplier = await suppliersService.GetSupplierByIdAsync(id);
@@ -59,6 +61,8 @@ public class SuppliersController : ControllerBase
     ///     Обновление данных существующего поставщика
     /// </summary>
     [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> UpdateSupplier(Guid id, UpdateSupplierRequest supplierRequest)
     {
         var result = await suppliersService.UpdateSupplierAsync(id, supplierRequest);
@@ -74,6 +78,8 @@ public class SuppliersController : ControllerBase
     ///     Удаление поставщика
     /// </summary>
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> DeleteSupplier(Guid id)
     {
         var result = await suppliersService.DeleteSupplierAsync(id);

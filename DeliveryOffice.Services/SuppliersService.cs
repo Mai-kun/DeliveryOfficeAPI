@@ -1,6 +1,5 @@
 ﻿using DeliveryOffice.Core.Abstractions.Repositories;
 using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Contracts;
 using DeliveryOffice.Services.Contracts.Abstractions;
 using DeliveryOffice.Services.Contracts.Models.RequestModels;
 
@@ -42,9 +41,7 @@ public class SuppliersService : ISuppliersService
 
         var newSupplier = new Supplier
         {
-            Id = supplier.Id,
-            Name = supplierRequest.Name ?? supplier.Name,
-            Address = supplierRequest.Address ?? supplier.Address,
+            Id = supplier.Id, Name = supplierRequest.Name ?? supplier.Name, Address = supplierRequest.Address ?? supplier.Address,
         };
 
         await suppliersRepository.UpdateAsync(newSupplier);

@@ -1,5 +1,4 @@
-﻿using DeliveryOffice.Core.Abstractions;
-using DeliveryOffice.Core.Abstractions.Repositories;
+﻿using DeliveryOffice.Core.Abstractions.Repositories;
 using DeliveryOffice.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,35 +13,37 @@ public class SupplierRepository : ISupplierRepository
         this.dbContext = dbContext;
     }
 
-    public async Task<List<Supplier>> GetAllAsync()
+    async Task<List<Supplier>> ISupplierRepository.GetAllAsync()
     {
         return await dbContext.Suppliers
             .AsNoTracking()
             .ToListAsync();
     }
 
-    public async Task<Supplier?> GetByIdAsync(Guid id)
+    async Task<Supplier?> ISupplierRepository.GetByIdAsync(Guid id)
     {
         return await dbContext.Suppliers
             .AsNoTracking()
             .FirstOrDefaultAsync(s => s.Id == id);
     }
 
-    public async Task AddAsync(Supplier supplier)
+    async Task ISupplierRepository.AddAsync(Supplier supplier)
     {
         await dbContext.AddAsync(supplier);
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(Supplier supplier)
+    async Task ISupplierRepository.UpdateAsync(Supplier supplier)
     {
         dbContext.Suppliers.Update(supplier);
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    async Task<bool> ISupplierRepository.DeleteAsync(Guid id)
     {
-        var supplier = await GetByIdAsync(id);
+        var supplier = await dbContext.Suppliers
+            .AsNoTracking()
+            .FirstOrDefaultAsync(s => s.Id == id);
         if (supplier is null)
         {
             return false;

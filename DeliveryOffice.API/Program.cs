@@ -18,14 +18,12 @@ public static class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddDependence();
 
-        // TODO: Take out services
         // TODO: Add automapper (id need)
         // TODO: Use soft-delete
         // TODO: Use audit
 
-        builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
-        builder.Services.AddScoped<ISuppliersService, SuppliersService>();
         builder.Services.AddDbContext<DeliveryOfficeDbContext>(
             options =>
             {
