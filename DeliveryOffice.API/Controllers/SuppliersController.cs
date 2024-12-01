@@ -1,4 +1,5 @@
-﻿using DeliveryOffice.Services.Contracts.Abstractions;
+﻿using DeliveryOffice.Core.Models;
+using DeliveryOffice.Services.Contracts.Abstractions;
 using DeliveryOffice.Services.Contracts.Models.RequestModels;
 using DeliveryOffice.Services.Contracts.Models.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
@@ -7,16 +8,13 @@ namespace DeliveryOffice.API.Controllers;
 
 [ApiController]
 [Route("Api/[controller]")]
-[ApiExplorerSettings(GroupName = "Управление поставщиками")]
+[ApiExplorerSettings(GroupName = $"{nameof(Supplier)}")]
 public class SuppliersController : ControllerBase
 {
-    private readonly ILogger<SuppliersController> logger;
     private readonly ISuppliersService suppliersService;
 
-    public SuppliersController(ILogger<SuppliersController> logger,
-        ISuppliersService suppliersService)
+    public SuppliersController(ISuppliersService suppliersService)
     {
-        this.logger = logger;
         this.suppliersService = suppliersService;
     }
 
