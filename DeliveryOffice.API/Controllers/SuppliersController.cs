@@ -1,4 +1,5 @@
-﻿using DeliveryOffice.Core.Models;
+﻿using AutoMapper;
+using DeliveryOffice.Core.Models;
 using DeliveryOffice.Services.Contracts.Abstractions;
 using DeliveryOffice.Services.Contracts.Models.RequestModels;
 using DeliveryOffice.Services.Contracts.Models.ResponseModels;
@@ -12,10 +13,12 @@ namespace DeliveryOffice.API.Controllers;
 public class SuppliersController : ControllerBase
 {
     private readonly ISuppliersService suppliersService;
+    private readonly IMapper mapper;
 
-    public SuppliersController(ISuppliersService suppliersService)
+    public SuppliersController(ISuppliersService suppliersService, IMapper mapper)
     {
         this.suppliersService = suppliersService;
+        this.mapper = mapper;
     }
 
     /// <summary>
@@ -25,7 +28,7 @@ public class SuppliersController : ControllerBase
     public async Task<IActionResult> GetAllSuppliers()
     {
         var suppliers = await suppliersService.GetAllSuppliersAsync();
-        var response = suppliers.Select(x => new SupplierResponse(x.Id, x.Name, x.Address));
+        var response = mapper.Map<IEnumerable<SupplierDto>>(suppliers);
         return Ok(response);
     }
 
@@ -34,16 +37,16 @@ public class SuppliersController : ControllerBase
     /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetSupplierById(Guid id)
     {
         var supplier = await suppliersService.GetSupplierByIdAsync(id);
         if (supplier is null)
         {
-            return NoContent();
+            return NotFound("Supplier not found");
         }
 
-        var response = new SupplierResponse(supplier.Id, supplier.Name, supplier.Address);
+        var response = mapper.Map<SupplierDto>(supplier);
         return Ok(response);
     }
 
@@ -62,13 +65,13 @@ public class SuppliersController : ControllerBase
     /// </summary>
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateSupplier(Guid id, UpdateSupplierRequest supplierRequest)
     {
         var result = await suppliersService.UpdateSupplierAsync(id, supplierRequest);
         if (result is false)
         {
-            return NoContent();
+            return NotFound("Supplier not found");
         }
 
         return Ok();
@@ -79,13 +82,13 @@ public class SuppliersController : ControllerBase
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteSupplier(Guid id)
     {
         var result = await suppliersService.DeleteSupplierAsync(id);
         if (result is false)
         {
-            return NoContent();
+            return NotFound("Supplier not found");
         }
 
         return Ok();

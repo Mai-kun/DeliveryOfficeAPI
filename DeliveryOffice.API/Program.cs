@@ -20,10 +20,6 @@ public static class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddDependence();
 
-        // TODO: Add automapper (id need)
-        // TODO: Use soft-delete
-        // TODO: Use audit
-
         builder.Services.AddDbContext<DeliveryOfficeDbContext>(
             options =>
             {

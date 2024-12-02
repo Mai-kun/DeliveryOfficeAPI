@@ -16,41 +16,42 @@ public class SupplierRepository : ISupplierRepository
     async Task<List<Supplier>> ISupplierRepository.GetAllAsync()
     {
         return await dbContext.Suppliers
-            .AsNoTracking()
-            .ToListAsync();
+                              .AsNoTracking()
+                              .IgnoreAutoIncludes()
+                              .Include(s => s.Bills)
+                              .ToListAsync();
     }
 
     async Task<Supplier?> ISupplierRepository.GetByIdAsync(Guid id)
     {
         return await dbContext.Suppliers
-            .AsNoTracking()
-            .FirstOrDefaultAsync(s => s.Id == id);
+                              .AsNoTracking()
+                              .IgnoreAutoIncludes()
+                              .Include(s => s.Bills)
+                              .FirstOrDefaultAsync(s => s.Id == id);
     }
 
     async Task ISupplierRepository.AddAsync(Supplier supplier)
     {
+        supplier.Id = Guid.NewGuid();
+        supplier.CreatedAt = DateTime.Now;
         await dbContext.AddAsync(supplier);
         await dbContext.SaveChangesAsync();
     }
 
     async Task ISupplierRepository.UpdateAsync(Supplier supplier)
     {
+        supplier.ModifiedAt = DateTime.Now;
         dbContext.Suppliers.Update(supplier);
         await dbContext.SaveChangesAsync();
     }
 
     async Task<bool> ISupplierRepository.DeleteAsync(Guid id)
     {
-        var supplier = await dbContext.Suppliers
-            .AsNoTracking()
-            .FirstOrDefaultAsync(s => s.Id == id);
-        if (supplier is null)
-        {
-            return false;
-        }
-
-        dbContext.Suppliers.Remove(supplier);
-        await dbContext.SaveChangesAsync();
-        return true;
+        var result = await dbContext.Suppliers
+                                    .Where(s => s.Id == id)
+                                    .ExecuteUpdateAsync(p =>
+                                        p.SetProperty(s => s.IsDeleted, true));
+        return result > 0;
     }
 }

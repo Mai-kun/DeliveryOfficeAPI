@@ -11,5 +11,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<ISupplierRepository, SupplierRepository>();
         services.AddScoped<ISuppliersService, SuppliersService>();
+
+        services.AddAutoMapper(typeof(AutoMapperProfile));
     }
 }
