@@ -1,22 +1,33 @@
-﻿namespace DeliveryOffice.Core.Models;
+﻿using DeliveryOffice.Core.Abstractions.EntityRules;
+
+namespace DeliveryOffice.Core.Models;
 
 /// <summary>
-/// Покупатель
+///     Покупатель
 /// </summary>
-public class Buyer
+public class Buyer : IAuditable, ISoftDelete
 {
     /// <summary>
-    /// Идентификатор покупателя
+    ///     Идентификатор покупателя
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// Имя покупателя
+    ///     Имя покупателя
     /// </summary>
     public required string Name { get; set; }
 
     /// <summary>
-    /// Список счетов покупателя
+    ///     Список счетов покупателя
     /// </summary>
     public List<Bill> Bills { get; set; } = [];
+
+    /// <inheritdoc />
+    public DateTime CreatedAt { get; set; }
+
+    /// <inheritdoc />
+    public DateTime? ModifiedAt { get; set; }
+
+    /// <inheritdoc />
+    public bool IsDeleted { get; set; }
 }

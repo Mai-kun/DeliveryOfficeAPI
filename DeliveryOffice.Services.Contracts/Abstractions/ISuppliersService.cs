@@ -11,7 +11,7 @@ public interface ISuppliersService
     /// <summary>
     ///     Возвращает список всех поставщиков
     /// </summary>
-    Task<List<Supplier>> GetAllSuppliersAsync();
+    Task<IEnumerable<Supplier>> GetAllSuppliersAsync();
 
     /// <summary>
     ///     Возвращает поставщика по его ID

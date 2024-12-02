@@ -10,7 +10,6 @@ public class BillConfiguration : IEntityTypeConfiguration<Bill>
     {
         builder.ToTable("Bills");
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
         builder.Property(x => x.Date).HasColumnType("date");
         builder.Property(x => x.Warehouse).IsRequired();

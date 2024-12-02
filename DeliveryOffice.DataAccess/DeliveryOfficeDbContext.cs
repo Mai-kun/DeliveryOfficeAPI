@@ -8,7 +8,7 @@ public class DeliveryOfficeDbContext : DbContext
 {
     /// <remarks>
     ///     dotnet tool install --global dotnet-ef
-    ///     dotnet ef migrations add InitialCreate --project DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj
+    ///     dotnet ef migrations add Init --project DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj
     ///     dotnet ef database update --project DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj
     /// </remarks>
     public DeliveryOfficeDbContext(DbContextOptions<DeliveryOfficeDbContext> options)
@@ -16,8 +16,10 @@ public class DeliveryOfficeDbContext : DbContext
     {
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) =>
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ConfigurationAnchor).Assembly);
+    }
 
     public DbSet<Bill> Bills { get; set; } = null!;
     public DbSet<Buyer> Buyers { get; set; } = null!;
