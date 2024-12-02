@@ -18,13 +18,13 @@ public class SuppliersService : ISuppliersService
 
     async Task<IEnumerable<Supplier>> ISuppliersService.GetAllSuppliersAsync()
     {
-        var result = await suppliersRepository.GetAllAsync();
+        var result = await suppliersRepository.GetAllWithBillsAsync();
         return result.Where(s => s.IsDeleted == false);
     }
 
     async Task<Supplier?> ISuppliersService.GetSupplierByIdAsync(Guid supplierId)
     {
-        var result = await suppliersRepository.GetByIdAsync(supplierId);
+        var result = await suppliersRepository.GetByIdWithBillsAsync(supplierId);
         return result is null || result.IsDeleted
             ? null
             : result;
@@ -38,7 +38,7 @@ public class SuppliersService : ISuppliersService
 
     async Task<bool> ISuppliersService.UpdateSupplierAsync(Guid id, UpdateSupplierRequest supplierRequest)
     {
-        var supplier = await suppliersRepository.GetByIdAsync(id);
+        var supplier = await suppliersRepository.GetByIdWithBillsAsync(id);
         if (supplier is null || supplier.IsDeleted)
             return false;
 
