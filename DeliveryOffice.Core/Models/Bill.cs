@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Core.Abstractions.EntityRules;
+﻿using DeliveryOffice.Core.Abstractions.EntityRules;
 
 namespace DeliveryOffice.Core.Models;
 
@@ -66,6 +65,5 @@ public class Bill : IAuditable, ISoftDelete
     public DateTime? ModifiedAt { get; set; }
 
     /// <inheritdoc />
-    [JsonIgnore]
     public bool IsDeleted { get; set; }
 }

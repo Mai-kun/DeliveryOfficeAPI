@@ -2,7 +2,6 @@
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.Services.Contracts.Abstractions;
 using DeliveryOffice.Services.Contracts.Models.RequestModels;
-using DeliveryOffice.Services.Contracts.Models.ResponseModels;
 
 namespace DeliveryOffice.Services;
 
@@ -16,15 +15,15 @@ public class SuppliersService : ISuppliersService
         this.suppliersRepository = suppliersRepository;
     }
 
-    async Task<IEnumerable<Supplier>> ISuppliersService.GetAllSuppliersAsync()
+    async Task<IEnumerable<Supplier>> ISuppliersService.GetAllSuppliersAsync(CancellationToken cancellationToken)
     {
-        var result = await suppliersRepository.GetAllWithBillsAsync();
+        var result = await suppliersRepository.GetAllWithBillsAsync(cancellationToken);
         return result.Where(s => s.IsDeleted == false);
     }
 
-    async Task<Supplier?> ISuppliersService.GetSupplierByIdAsync(Guid supplierId)
+    async Task<Supplier?> ISuppliersService.GetSupplierByIdAsync(Guid supplierId, CancellationToken cancellationToken)
     {
-        var result = await suppliersRepository.GetByIdWithBillsAsync(supplierId);
+        var result = await suppliersRepository.GetByIdWithBillsAsync(supplierId, cancellationToken);
         return result is null || result.IsDeleted
             ? null
             : result;
@@ -36,9 +35,11 @@ public class SuppliersService : ISuppliersService
         await suppliersRepository.AddAsync(supplier);
     }
 
-    async Task<bool> ISuppliersService.UpdateSupplierAsync(Guid id, UpdateSupplierRequest supplierRequest)
+    async Task<bool> ISuppliersService.UpdateSupplierAsync(
+        Guid id, UpdateSupplierRequest supplierRequest, CancellationToken cancellationToken
+    )
     {
-        var supplier = await suppliersRepository.GetByIdWithBillsAsync(id);
+        var supplier = await suppliersRepository.GetByIdWithBillsAsync(id, cancellationToken);
         if (supplier is null || supplier.IsDeleted)
             return false;
 

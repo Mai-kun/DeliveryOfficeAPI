@@ -10,12 +10,12 @@ public interface ISupplierRepository
     /// <summary>
     ///     Возвращает список всех поставщиков
     /// </summary>
-    Task<List<Supplier>> GetAllWithBillsAsync();
+    Task<List<Supplier>> GetAllWithBillsAsync(CancellationToken cancellationToken);
 
     /// <summary>
     ///     Возвращает поставщика по его ID
     /// </summary>
-    Task<Supplier?> GetByIdWithBillsAsync(Guid id);
+    Task<Supplier?> GetByIdWithBillsAsync(Guid id, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Добавляет нового поставщика

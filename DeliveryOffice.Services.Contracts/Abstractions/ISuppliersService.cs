@@ -11,12 +11,12 @@ public interface ISuppliersService
     /// <summary>
     ///     Возвращает список всех поставщиков
     /// </summary>
-    Task<IEnumerable<Supplier>> GetAllSuppliersAsync();
+    Task<IEnumerable<Supplier>> GetAllSuppliersAsync(CancellationToken cancellationToken);
 
     /// <summary>
     ///     Возвращает поставщика по его ID
     /// </summary>
-    Task<Supplier?> GetSupplierByIdAsync(Guid supplierId);
+    Task<Supplier?> GetSupplierByIdAsync(Guid supplierId, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Добавляет нового поставщика
@@ -26,7 +26,7 @@ public interface ISuppliersService
     /// <summary>
     ///     Обновляет существующего поставщика
     /// </summary>
-    Task<bool> UpdateSupplierAsync(Guid id, UpdateSupplierRequest supplierRequest);
+    Task<bool> UpdateSupplierAsync(Guid id, UpdateSupplierRequest supplierRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Удаляет поставщика

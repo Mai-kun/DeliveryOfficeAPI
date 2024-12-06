@@ -13,22 +13,22 @@ public class SupplierRepository : ISupplierRepository
         this.dbContext = dbContext;
     }
 
-    async Task<List<Supplier>> ISupplierRepository.GetAllWithBillsAsync()
+    async Task<List<Supplier>> ISupplierRepository.GetAllWithBillsAsync(CancellationToken cancellationToken)
     {
         return await dbContext.Suppliers
                               .AsNoTracking()
                               .IgnoreAutoIncludes()
                               .Include(s => s.Bills.Where(b => b.IsDeleted == false))
-                              .ToListAsync();
+                              .ToListAsync(cancellationToken);
     }
 
-    async Task<Supplier?> ISupplierRepository.GetByIdWithBillsAsync(Guid id)
+    async Task<Supplier?> ISupplierRepository.GetByIdWithBillsAsync(Guid id, CancellationToken cancellationToken)
     {
         return await dbContext.Suppliers
                               .AsNoTracking()
                               .IgnoreAutoIncludes()
                               .Include(s => s.Bills.Where(b => b.IsDeleted == false))
-                              .FirstOrDefaultAsync(s => s.Id == id);
+                              .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
     }
 
     async Task ISupplierRepository.AddAsync(Supplier supplier)
