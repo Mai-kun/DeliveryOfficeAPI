@@ -16,25 +16,23 @@ public class SupplierRepository : ISupplierRepository
     async Task<List<Supplier>> ISupplierRepository.GetAllWithBillsAsync(CancellationToken cancellationToken)
     {
         return await dbContext.Suppliers
-                              .AsNoTracking()
-                              .IgnoreAutoIncludes()
-                              .Include(s => s.Bills.Where(b => b.IsDeleted == false))
-                              .ToListAsync(cancellationToken);
+            .AsNoTracking()
+            .IgnoreAutoIncludes()
+            .Include(s => s.Bills)
+            .ToListAsync(cancellationToken);
     }
 
     async Task<Supplier?> ISupplierRepository.GetByIdWithBillsAsync(Guid id, CancellationToken cancellationToken)
     {
         return await dbContext.Suppliers
-                              .AsNoTracking()
-                              .IgnoreAutoIncludes()
-                              .Include(s => s.Bills.Where(b => b.IsDeleted == false))
-                              .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
+            .AsNoTracking()
+            .IgnoreAutoIncludes()
+            .Include(s => s.Bills)
+            .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
     }
 
     async Task ISupplierRepository.AddAsync(Supplier supplier)
     {
-        supplier.Id = Guid.NewGuid();
-        supplier.CreatedAt = DateTime.Now;
         await dbContext.AddAsync(supplier);
         await dbContext.SaveChangesAsync();
     }
@@ -46,12 +44,11 @@ public class SupplierRepository : ISupplierRepository
         await dbContext.SaveChangesAsync();
     }
 
-    async Task<bool> ISupplierRepository.DeleteAsync(Guid id)
+    async Task ISupplierRepository.DeleteAsync(Guid id)
     {
         var result = await dbContext.Suppliers
-                                    .Where(s => s.Id == id)
-                                    .ExecuteUpdateAsync(p =>
-                                        p.SetProperty(s => s.IsDeleted, true));
-        return result > 0;
+            .Where(s => s.Id == id)
+            .ExecuteUpdateAsync(p =>
+                p.SetProperty(s => s.IsDeleted, true));
     }
 }

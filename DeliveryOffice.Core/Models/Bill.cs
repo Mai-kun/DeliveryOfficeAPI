@@ -7,12 +7,12 @@ namespace DeliveryOffice.Core.Models;
 /// </summary>
 public class Bill : IAuditable, ISoftDelete
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; } = Guid.NewGuid();
 
     /// <summary>
     ///     Дата накладной
     /// </summary>
-    public DateOnly Date { get; set; }
+    public DateTime Date { get; set; }
 
     /// <summary>
     ///     Склад, где хранятся товары
@@ -32,7 +32,7 @@ public class Bill : IAuditable, ISoftDelete
     /// <summary>
     ///     Список товаров в накладной
     /// </summary>
-    public List<Product> Products { get; set; } = [];
+    public List<Product> Products { get; set; }
 
     /// <summary>
     ///     Идентификатор покупателя
@@ -57,7 +57,7 @@ public class Bill : IAuditable, ISoftDelete
     /// <summary>
     ///     Дата создания
     /// </summary>
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     /// <summary>
     ///     Дата изменения

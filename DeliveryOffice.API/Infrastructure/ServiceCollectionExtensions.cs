@@ -1,7 +1,7 @@
 ﻿using DeliveryOffice.Core.Abstractions.Repositories;
+using DeliveryOffice.Core.Abstractions.Services;
 using DeliveryOffice.DataAccess.Repositories;
 using DeliveryOffice.Services;
-using DeliveryOffice.Services.Contracts.Abstractions;
 
 namespace DeliveryOffice.API.Infrastructure;
 

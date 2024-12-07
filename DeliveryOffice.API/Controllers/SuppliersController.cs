@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using DeliveryOffice.Core.Abstractions.Services;
 using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Contracts.Abstractions;
-using DeliveryOffice.Services.Contracts.Models.RequestModels;
-using DeliveryOffice.Services.Contracts.Models.ResponseModels;
+using DeliveryOffice.Core.RequestModels;
+using DeliveryOffice.Core.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryOffice.API.Controllers;
@@ -25,28 +25,23 @@ public class SuppliersController : ControllerBase
     ///     Получение всех поставщиков
     /// </summary>
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAllSuppliers(CancellationToken cancellationToken)
     {
         var suppliers = await suppliersService.GetAllSuppliersAsync(cancellationToken);
-        var response = mapper.Map<IEnumerable<SupplierDto>>(suppliers);
-        return Ok(response);
+        var result = mapper.Map<List<SupplierResponse>>(suppliers);
+        return Ok(result);
     }
 
     /// <summary>
     ///     Получение поставщика по его индентификатору
     /// </summary>
     [HttpGet("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(SupplierResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetSupplierById(Guid id, CancellationToken cancellationToken)
     {
         var supplier = await suppliersService.GetSupplierByIdAsync(id, cancellationToken);
-        if (supplier is null)
-        {
-            return NotFound("Supplier not found");
-        }
-
-        var response = mapper.Map<SupplierDto>(supplier);
+        var response = mapper.Map<SupplierResponse>(supplier);
         return Ok(response);
     }
 
@@ -61,21 +56,17 @@ public class SuppliersController : ControllerBase
     }
 
     /// <summary>
-    ///     Обновление данных существующего поставщика
+    ///     Обновление данных поставщика
     /// </summary>
-    [HttpPut("{id}")]
+    [HttpPut("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateSupplier(
-        Guid id, UpdateSupplierRequest supplierRequest, CancellationToken cancellationToken
+        [FromRoute] Guid id,
+        [FromBody] SupplierRequest supplierRequest, CancellationToken cancellationToken
     )
     {
-        var result = await suppliersService.UpdateSupplierAsync(id, supplierRequest, cancellationToken);
-        if (result is false)
-        {
-            return NotFound("Supplier not found");
-        }
-
+        supplierRequest.Id = id;
+        await suppliersService.UpdateSupplierAsync(supplierRequest, cancellationToken);
         return Ok();
     }
 
@@ -84,15 +75,9 @@ public class SuppliersController : ControllerBase
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteSupplier(Guid id)
     {
-        var result = await suppliersService.DeleteSupplierAsync(id);
-        if (result is false)
-        {
-            return NotFound("Supplier not found");
-        }
-
+        await suppliersService.DeleteSupplierAsync(id);
         return Ok();
     }
 }

@@ -1,3 +1,5 @@
 ﻿namespace DeliveryOffice.Core.Configurations;
 
-public class ConfigurationAnchor;
+public class ConfigurationAnchor
+{
+};

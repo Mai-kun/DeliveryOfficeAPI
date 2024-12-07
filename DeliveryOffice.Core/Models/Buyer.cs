@@ -10,7 +10,7 @@ public class Buyer : IAuditable, ISoftDelete
     /// <summary>
     ///     Идентификатор покупателя
     /// </summary>
-    public Guid Id { get; set; }
+    public Guid Id { get; } = Guid.NewGuid();
 
     /// <summary>
     ///     Имя покупателя
@@ -20,10 +20,10 @@ public class Buyer : IAuditable, ISoftDelete
     /// <summary>
     ///     Список счетов покупателя
     /// </summary>
-    public List<Bill> Bills { get; set; } = [];
+    public List<Bill> Bills { get; set; }
 
     /// <inheritdoc />
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     /// <inheritdoc />
     public DateTime? ModifiedAt { get; set; }

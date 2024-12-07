@@ -21,8 +21,8 @@ public class DeliveryOfficeDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ConfigurationAnchor).Assembly);
     }
 
-    public DbSet<Bill> Bills { get; set; } = null!;
-    public DbSet<Buyer> Buyers { get; set; } = null!;
-    public DbSet<Product> Products { get; set; } = null!;
-    public DbSet<Supplier> Suppliers { get; set; } = null!;
+    public DbSet<Bill> Bills { get; init; }
+    public DbSet<Buyer> Buyers { get; init; }
+    public DbSet<Product> Products { get; init; }
+    public DbSet<Supplier> Suppliers { get; init; }
 }

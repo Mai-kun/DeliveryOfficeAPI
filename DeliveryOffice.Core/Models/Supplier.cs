@@ -7,7 +7,7 @@ namespace DeliveryOffice.Core.Models;
 /// </summary>
 public class Supplier : IAuditable, ISoftDelete
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>
     ///     Наименование поставщика (компании)
@@ -22,10 +22,10 @@ public class Supplier : IAuditable, ISoftDelete
     /// <summary>
     ///     Список счетов поставщика
     /// </summary>
-    public List<Bill> Bills { get; set; } = [];
+    public List<Bill> Bills { get; set; }
 
     /// <inheritdoc />
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     /// <inheritdoc />
     public DateTime? ModifiedAt { get; set; }

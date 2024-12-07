@@ -1,13 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj" />
+        <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj" />
     </ItemGroup>
-
+    
 </Project>

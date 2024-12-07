@@ -30,5 +30,5 @@ public interface ISupplierRepository
     /// <summary>
     ///     Удаляет поставщика
     /// </summary>
-    Task<bool> DeleteAsync(Guid id);
+    Task DeleteAsync(Guid id);
 }
