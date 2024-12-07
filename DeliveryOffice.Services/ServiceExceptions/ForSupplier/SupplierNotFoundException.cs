@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DeliveryOffice.Core.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 
+/// <summary>
+///     Ошибка отсутствия <see cref="Supplier" />
+/// </summary>
 public class SupplierNotFoundException : SupplierException
 {
     public override int StatusCode => StatusCodes.Status404NotFound;

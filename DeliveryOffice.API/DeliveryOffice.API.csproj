@@ -12,6 +12,7 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.20"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
         <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="FluentValidation" Version="11.11.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -27,7 +28,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Validators\" />
+      <Compile Update="Infrastructure\IValidatorService.cs">
+        <DependentUpon>ApiValidatorService.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
     
 </Project>

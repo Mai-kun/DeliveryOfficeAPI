@@ -5,6 +5,7 @@ using DeliveryOffice.Core.ResponseModels;
 
 namespace DeliveryOffice.API.Infrastructure;
 
+/// <inheritdoc />
 public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()

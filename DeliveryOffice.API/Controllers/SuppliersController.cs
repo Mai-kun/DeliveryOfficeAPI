@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DeliveryOffice.API.Infrastructure;
 using DeliveryOffice.Core.Abstractions.Services;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.Core.RequestModels;
@@ -13,12 +14,14 @@ namespace DeliveryOffice.API.Controllers;
 public class SuppliersController : ControllerBase
 {
     private readonly ISuppliersService suppliersService;
+    private readonly IValidatorService validatorService;
     private readonly IMapper mapper;
 
-    public SuppliersController(ISuppliersService suppliersService, IMapper mapper)
+    public SuppliersController(ISuppliersService suppliersService, IMapper mapper, IValidatorService validatorService)
     {
         this.suppliersService = suppliersService;
         this.mapper = mapper;
+        this.validatorService = validatorService;
     }
 
     /// <summary>
@@ -51,6 +54,7 @@ public class SuppliersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddSupplier(CreateSupplierRequest supplierRequest)
     {
+        validatorService.Validate(supplierRequest);
         await suppliersService.AddSupplierAsync(supplierRequest);
         return Ok();
     }
@@ -66,6 +70,7 @@ public class SuppliersController : ControllerBase
     )
     {
         supplierRequest.Id = id;
+        validatorService.Validate(supplierRequest);
         await suppliersService.UpdateSupplierAsync(supplierRequest, cancellationToken);
         return Ok();
     }

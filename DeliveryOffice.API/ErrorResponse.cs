@@ -3,15 +3,15 @@
 /// <summary>
 ///     Класс для представления ошибки в ответе
 /// </summary>
-public class ErrorResponse
+public class ErrorResponse<T>
 {
     /// <summary>
-    ///     Сообщение об ошибке
+    ///     Сообщение(я) об ошибке
     /// </summary>
-    public string Message { get; set; } = string.Empty;
+    public T Message { get; init; }
 
     /// <summary>
     ///     Код статуса HTTP
     /// </summary>
-    public int StatusCode { get; set; }
+    public int StatusCode { get; init; }
 }

@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DeliveryOffice.Core.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 
-public abstract class SupplierException : Exception
+/// <summary>
+///     Базовая реализация ошибок для <see cref="Supplier" />
+/// </summary>
+public class SupplierException : Exception
 {
     public virtual int StatusCode => StatusCodes.Status400BadRequest;
 
