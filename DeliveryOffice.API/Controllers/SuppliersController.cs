@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DeliveryOffice.API.Controllers;
 
 [ApiController]
-[Route("Api/[controller]")]
+[Route("api/[controller]")]
 [ApiExplorerSettings(GroupName = $"{nameof(Supplier)}")]
 public class SuppliersController : ControllerBase
 {

@@ -22,7 +22,7 @@ public class Supplier : IAuditable, ISoftDelete
     /// <summary>
     ///     Список счетов поставщика
     /// </summary>
-    public List<Bill> Bills { get; set; }
+    public List<Bill> Bills { get; set; } = new();
 
     /// <inheritdoc />
     public DateTime CreatedAt { get; set; } = DateTime.Now;

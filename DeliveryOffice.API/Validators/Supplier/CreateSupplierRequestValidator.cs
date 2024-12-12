@@ -6,7 +6,7 @@ namespace DeliveryOffice.API.Validators.Supplier;
 /// <summary>
 ///     Содержит правила валидации для модели <see cref="CreateSupplierRequest" />
 /// </summary>
-public class CreateSupplierRequestValidator : AbstractValidator<SupplierRequest>
+public class CreateSupplierRequestValidator : AbstractValidator<CreateSupplierRequest>
 {
     public CreateSupplierRequestValidator()
     {
@@ -18,6 +18,7 @@ public class CreateSupplierRequestValidator : AbstractValidator<SupplierRequest>
 
         RuleFor(supplier => supplier.Address)
             .NotEmpty()
+            .NotNull()
             .WithMessage("Address is required.");
     }
 }

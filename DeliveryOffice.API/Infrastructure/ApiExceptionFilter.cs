@@ -1,4 +1,5 @@
 ﻿using DeliveryOffice.Services.ServiceExceptions;
+using DeliveryOffice.Services.ServiceExceptions.ForProduct;
 using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -18,6 +19,9 @@ public class ApiExceptionFilter : IExceptionFilter
             SupplierException exception => new ObjectResult(
                 new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
 
+            ProductException exception => new ObjectResult(
+                new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
+
             ModelValidationException exception => new ObjectResult(
                 new ErrorResponse<Dictionary<string, string>>
                 {
@@ -28,7 +32,7 @@ public class ApiExceptionFilter : IExceptionFilter
             _ => new ObjectResult(
                 new ErrorResponse<string>
                 {
-                    Message = "An unknown error occurred.", StatusCode = StatusCodes.Status400BadRequest,
+                    Message = context.Exception.Message, StatusCode = StatusCodes.Status400BadRequest,
                 }),
         };
 

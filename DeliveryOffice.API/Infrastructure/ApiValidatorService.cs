@@ -1,4 +1,6 @@
-﻿using DeliveryOffice.API.Validators.Supplier;
+﻿using DeliveryOffice.API.Validators.Product;
+using DeliveryOffice.API.Validators.Supplier;
+using DeliveryOffice.Core.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions;
 using FluentValidation;
 
@@ -11,8 +13,10 @@ public class ApiValidatorService : IValidatorService
 
     public ApiValidatorService()
     {
-        validators.Add(typeof(CreateSupplierRequestValidator), new CreateSupplierRequestValidator());
-        validators.Add(typeof(SupplierRequestValidator), new SupplierRequestValidator());
+        validators.Add(typeof(CreateSupplierRequest), new CreateSupplierRequestValidator());
+        validators.Add(typeof(SupplierRequest), new SupplierRequestValidator());
+        validators.Add(typeof(ProductRequest), new ProductRequestValidator());
+        validators.Add(typeof(CreateProductRequest), new CreateProductRequestValidator());
     }
 
     void IValidatorService.Validate<TModel>(TModel model)

@@ -10,10 +10,19 @@ public class SupplierRequestValidator : AbstractValidator<SupplierRequest>
 {
     public SupplierRequestValidator()
     {
-        RuleFor(supplierRequest => supplierRequest.Id)
+        RuleFor(supplier => supplier.Id)
             .NotEmpty()
             .WithMessage("Id is required.");
 
-        Include(new CreateSupplierRequestValidator());
+        RuleFor(supplier => supplier.Name)
+            .NotEmpty()
+            .NotNull()
+            .MaximumLength(255)
+            .WithMessage("Name is required and must not exceed 255 characters.");
+
+        RuleFor(supplier => supplier.Address)
+            .NotEmpty()
+            .NotNull()
+            .WithMessage("Address is required.");
     }
 }

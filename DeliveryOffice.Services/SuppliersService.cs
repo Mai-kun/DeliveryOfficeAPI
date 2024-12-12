@@ -22,12 +22,13 @@ public class SuppliersService : ISuppliersService
     async Task<List<Supplier>> ISuppliersService.GetAllSuppliersAsync(CancellationToken cancellationToken)
     {
         var result = await suppliersRepository.GetAllWithBillsAsync(cancellationToken);
-        foreach (var supplier in result)
+        var filteredResult = result.Where(s => s.IsDeleted == false).ToList();
+        foreach (var supplier in filteredResult)
             supplier.Bills = supplier.Bills
                 .Where(b => b.IsDeleted == false)
                 .ToList();
 
-        return result;
+        return filteredResult;
     }
 
     async Task<Supplier> ISuppliersService.GetSupplierByIdAsync(Guid supplierId, CancellationToken cancellationToken)

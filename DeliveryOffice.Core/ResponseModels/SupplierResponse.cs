@@ -1,4 +1,6 @@
-﻿namespace DeliveryOffice.Core.ResponseModels;
+﻿using DeliveryOffice.Core.Models;
+
+namespace DeliveryOffice.Core.ResponseModels;
 
 /// <summary>
 ///     Модель ответа для объекта <see cref="Supplier" />

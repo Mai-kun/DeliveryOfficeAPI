@@ -1,12 +1,17 @@
-﻿using DeliveryOffice.Core.Abstractions.EntityRules;
+﻿using System.Text.Json.Serialization;
+using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.Core.Models;
+namespace DeliveryOffice.Core.RequestModels;
 
 /// <summary>
-///     Товар
+///     Модель запроса для объекта <see cref="Product" />
 /// </summary>
-public class Product : IAuditable, ISoftDelete
+public class ProductRequest
 {
+    /// <summary>
+    ///     Идентификатор продукта
+    /// </summary>
+    [JsonIgnore]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>
@@ -28,18 +33,4 @@ public class Product : IAuditable, ISoftDelete
     ///     Цена товара
     /// </summary>
     public decimal Price { get; set; }
-
-    /// <summary>
-    ///     Список счетов
-    /// </summary>
-    public List<Bill> Bills { get; set; } = new();
-
-    /// <inheritdoc />
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    /// <inheritdoc />
-    public DateTime? ModifiedAt { get; set; }
-
-    /// <inheritdoc />
-    public bool IsDeleted { get; set; }
 }

@@ -33,7 +33,7 @@ public class SupplierRepository : ISupplierRepository
 
     async Task ISupplierRepository.AddAsync(Supplier supplier)
     {
-        await dbContext.AddAsync(supplier);
+        await dbContext.Suppliers.AddAsync(supplier);
         await dbContext.SaveChangesAsync();
     }
 
