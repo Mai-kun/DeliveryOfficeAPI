@@ -1,8 +1,5 @@
-using DeliveryOffice.Core.Abstractions.Repositories;
+using DeliveryOffice.API.Infrastructure;
 using DeliveryOffice.DataAccess;
-using DeliveryOffice.DataAccess.Repositories;
-using DeliveryOffice.Services;
-using DeliveryOffice.Services.Models.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
 namespace DeliveryOffice.API;
@@ -14,12 +11,11 @@ public static class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        builder.Services.AddControllers();
+        builder.Services.AddControllers(options => options.Filters.Add<ApiExceptionFilter>());
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddDependence();
 
-        builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
-        builder.Services.AddScoped<ISuppliersService, SuppliersService>();
         builder.Services.AddDbContext<DeliveryOfficeDbContext>(
             options =>
             {

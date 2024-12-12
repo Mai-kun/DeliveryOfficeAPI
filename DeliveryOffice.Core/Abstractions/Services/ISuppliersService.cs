@@ -1,7 +1,7 @@
 ﻿using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Models.Models.RequestModels;
+using DeliveryOffice.Core.RequestModels;
 
-namespace DeliveryOffice.Services.Models.Abstractions;
+namespace DeliveryOffice.Core.Abstractions.Services;
 
 /// <summary>
 ///     Предоставляет функционал для работы с поставщиками
@@ -11,25 +11,25 @@ public interface ISuppliersService
     /// <summary>
     ///     Возвращает список всех поставщиков
     /// </summary>
-    Task<List<Supplier>> GetAllSuppliersAsync();
+    Task<List<Supplier>> GetAllSuppliersAsync(CancellationToken cancellationToken);
 
     /// <summary>
     ///     Возвращает поставщика по его ID
     /// </summary>
-    Task<Supplier?> GetSupplierByIdAsync(Guid supplierId);
+    Task<Supplier> GetSupplierByIdAsync(Guid supplierId, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Добавляет нового поставщика
     /// </summary>
-    Task AddSupplierAsync(SupplierRequest supplierModel);
+    Task AddSupplierAsync(CreateSupplierRequest supplierModel);
 
     /// <summary>
     ///     Обновляет существующего поставщика
     /// </summary>
-    Task UpdateSupplierAsync(Supplier supplier);
+    Task UpdateSupplierAsync(SupplierRequest supplierRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Удаляет поставщика
     /// </summary>
-    Task DeleteSupplierAsync(Supplier supplier);
+    Task DeleteSupplierAsync(Guid id);
 }

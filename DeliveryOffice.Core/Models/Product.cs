@@ -1,31 +1,45 @@
-﻿namespace DeliveryOffice.Core.Models;
+﻿using DeliveryOffice.Core.Abstractions.EntityRules;
+
+namespace DeliveryOffice.Core.Models;
 
 /// <summary>
-/// Товар
+///     Товар
 /// </summary>
-public class Product
+public class Product : IAuditable, ISoftDelete
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     /// <summary>
-    /// Наименование товара
+    ///     Наименование товара
     /// </summary>
     public string Name { get; set; }
 
     /// <summary>
-    /// Количество товара
+    ///     Количество товара
     /// </summary>
     public int Quantity { get; set; }
 
     /// <summary>
-    /// Единица измерения товара
+    ///     Единица измерения товара
     /// </summary>
     public string Unit { get; set; }
 
     /// <summary>
-    /// Цена товара
+    ///     Цена товара
     /// </summary>
     public decimal Price { get; set; }
 
-    public List<Bill> Bills { get; set; } = [];
+    /// <summary>
+    ///     Список счетов
+    /// </summary>
+    public List<Bill> Bills { get; set; } = new();
+
+    /// <inheritdoc />
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    /// <inheritdoc />
+    public DateTime? ModifiedAt { get; set; }
+
+    /// <inheritdoc />
+    public bool IsDeleted { get; set; }
 }

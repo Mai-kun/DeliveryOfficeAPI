@@ -1,45 +1,88 @@
-﻿using DeliveryOffice.Services.Models;
-using DeliveryOffice.Services.Models.Abstractions;
-using DeliveryOffice.Services.Models.Models.RequestModels;
-using DeliveryOffice.Services.Models.Models.ResponseModels;
+﻿using AutoMapper;
+using DeliveryOffice.API.Infrastructure;
+using DeliveryOffice.Core.Abstractions.Services;
+using DeliveryOffice.Core.Models;
+using DeliveryOffice.Core.RequestModels;
+using DeliveryOffice.Core.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryOffice.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[ApiExplorerSettings(GroupName = $"{nameof(Supplier)}")]
 public class SuppliersController : ControllerBase
 {
-    private readonly ILogger<BillController> logger;
     private readonly ISuppliersService suppliersService;
+    private readonly IValidatorService validatorService;
+    private readonly IMapper mapper;
 
-    public SuppliersController(ILogger<BillController> logger,
-        ISuppliersService suppliersService)
+    public SuppliersController(ISuppliersService suppliersService, IMapper mapper, IValidatorService validatorService)
     {
-        this.logger = logger;
         this.suppliersService = suppliersService;
+        this.mapper = mapper;
+        this.validatorService = validatorService;
     }
 
+    /// <summary>
+    ///     Получение всех поставщиков
+    /// </summary>
     [HttpGet]
-    public async Task<ActionResult<List<SupplierResponse>>> GetAllSuppliers()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllSuppliers(CancellationToken cancellationToken)
     {
-        var suppliers = await suppliersService.GetAllSuppliersAsync();
-        var response = suppliers.Select(x => new { x.Id, x.Name, x.Address, });
+        var suppliers = await suppliersService.GetAllSuppliersAsync(cancellationToken);
+        var result = mapper.Map<List<SupplierResponse>>(suppliers);
+        return Ok(result);
+    }
+
+    /// <summary>
+    ///     Получение поставщика по его индентификатору
+    /// </summary>
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(SupplierResponse), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetSupplierById(Guid id, CancellationToken cancellationToken)
+    {
+        var supplier = await suppliersService.GetSupplierByIdAsync(id, cancellationToken);
+        var response = mapper.Map<SupplierResponse>(supplier);
         return Ok(response);
     }
 
-    // [HttpGet]
-    // public async Task<ActionResult<SupplierResponse>> GetSupplierById(int id)
-    // {
-    //     // TODO: SuppliersController - GetSupplierById;
-    //     return null;
-    // }
-
+    /// <summary>
+    ///     Добавление нового поставщика
+    /// </summary>
     [HttpPost]
-    [Route("Create")]
-    public async Task<ActionResult> Add(SupplierRequest supplierRequest)
+    public async Task<IActionResult> AddSupplier(CreateSupplierRequest supplierRequest)
     {
+        validatorService.Validate(supplierRequest);
         await suppliersService.AddSupplierAsync(supplierRequest);
+        return Ok();
+    }
+
+    /// <summary>
+    ///     Обновление данных поставщика
+    /// </summary>
+    [HttpPut("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> UpdateSupplier(
+        [FromRoute] Guid id,
+        [FromBody] SupplierRequest supplierRequest, CancellationToken cancellationToken
+    )
+    {
+        supplierRequest.Id = id;
+        validatorService.Validate(supplierRequest);
+        await suppliersService.UpdateSupplierAsync(supplierRequest, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    ///     Удаление поставщика
+    /// </summary>
+    [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> DeleteSupplier(Guid id)
+    {
+        await suppliersService.DeleteSupplierAsync(id);
         return Ok();
     }
 }

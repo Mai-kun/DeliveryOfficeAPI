@@ -8,7 +8,8 @@ public class DeliveryOfficeContextFactory : IDesignTimeDbContextFactory<Delivery
     public DeliveryOfficeDbContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<DeliveryOfficeDbContext>();
-        optionsBuilder.UseSqlServer("Server=.;Database=DeliveryOfficeDB;Trusted_Connection=True;TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer(
+            "Server=.;Database=DeliveryOfficeDB;Trusted_Connection=True;TrustServerCertificate=True");
 
         return new DeliveryOfficeDbContext(optionsBuilder.Options);
     }
