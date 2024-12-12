@@ -8,6 +8,7 @@ using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 
 namespace DeliveryOffice.Services;
 
+/// <inheritdoc />
 public class ProductsService : IProductsService
 {
     private readonly IProductRepository productRepository;
