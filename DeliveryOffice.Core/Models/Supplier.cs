@@ -5,9 +5,10 @@ namespace DeliveryOffice.Core.Models;
 /// <summary>
 ///     Поставщик
 /// </summary>
-public class Supplier : IAuditable, ISoftDelete
+public class Supplier : IEntityWithId, IAuditable, ISoftDelete
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    /// <inheritdoc />
+    public Guid Id { get; set; }
 
     /// <summary>
     ///     Наименование поставщика (компании)

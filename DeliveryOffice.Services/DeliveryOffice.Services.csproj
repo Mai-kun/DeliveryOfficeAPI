@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj" />
+        <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj" />
     </ItemGroup>
 
     <ItemGroup>

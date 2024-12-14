@@ -5,12 +5,10 @@ namespace DeliveryOffice.Core.Models;
 /// <summary>
 ///     Покупатель
 /// </summary>
-public class Buyer : IAuditable, ISoftDelete
+public class Buyer : IEntityWithId, IAuditable, ISoftDelete
 {
-    /// <summary>
-    ///     Идентификатор покупателя
-    /// </summary>
-    public Guid Id { get; } = Guid.NewGuid();
+    /// <inheritdoc />
+    public Guid Id { get; set; }
 
     /// <summary>
     ///     Имя покупателя

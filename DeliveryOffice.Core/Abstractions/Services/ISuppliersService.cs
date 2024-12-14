@@ -21,7 +21,7 @@ public interface ISuppliersService
     /// <summary>
     ///     Добавляет нового поставщика
     /// </summary>
-    Task AddSupplierAsync(CreateSupplierRequest supplierModel);
+    Task AddSupplier(CreateSupplierRequest supplierModel, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующего поставщика
@@ -31,5 +31,5 @@ public interface ISuppliersService
     /// <summary>
     ///     Удаляет поставщика
     /// </summary>
-    Task DeleteSupplierAsync(Guid id);
+    Task DeleteSupplierAsync(Guid id, CancellationToken cancellationToken);
 }

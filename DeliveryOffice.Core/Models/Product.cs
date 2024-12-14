@@ -5,9 +5,12 @@ namespace DeliveryOffice.Core.Models;
 /// <summary>
 ///     Товар
 /// </summary>
-public class Product : IAuditable, ISoftDelete
+public class Product : IEntityWithId, IAuditable, ISoftDelete
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    /// <summary>
+    ///     Индектификатор
+    /// </summary>
+    public Guid Id { get; set; }
 
     /// <summary>
     ///     Наименование товара

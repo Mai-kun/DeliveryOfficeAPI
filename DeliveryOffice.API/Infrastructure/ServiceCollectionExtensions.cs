@@ -1,7 +1,8 @@
-﻿using DeliveryOffice.API.Common.Abstractions;
-using DeliveryOffice.Core.Abstractions.Repositories;
+﻿using DeliveryOffice.API.Common;
+using DeliveryOffice.API.Common.Abstractions;
 using DeliveryOffice.Core.Abstractions.Services;
 using DeliveryOffice.DataAccess.Repositories;
+using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 using DeliveryOffice.Services;
 
 namespace DeliveryOffice.API.Infrastructure;
@@ -16,9 +17,12 @@ public static class ServiceCollectionExtensions
     /// </summary>
     public static void AddDependence(this IServiceCollection services)
     {
-        services.AddScoped<ISupplierRepository, SupplierRepository>();
+        services.AddScoped<ISupplierReaderRepository, SupplierReaderRepository>();
+        services.AddScoped<ISupplierWriterRepository, SupplierWriteRepository>();
         services.AddScoped<ISuppliersService, SuppliersService>();
-        services.AddScoped<IProductRepository, ProductRepository>();
+        
+        services.AddScoped<IProductReaderRepository, ProductReaderRepository>();
+        services.AddScoped<IProductWriterRepository, ProductWriterRepository>();
         services.AddScoped<IProductsService, ProductsService>();
 
         services.AddAutoMapper(typeof(AutoMapperProfile));

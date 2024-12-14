@@ -1,4 +1,6 @@
-namespace DeliveryOffice.API.Common.Abstractions
+using DeliveryOffice.API.Common.Abstractions;
+
+namespace DeliveryOffice.API.Common
 {
     public class DateTimeProvider : IDateTimeProvider
     {

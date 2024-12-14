@@ -1,4 +1,4 @@
-﻿namespace DeliveryOffice.API;
+﻿namespace DeliveryOffice.API.Common;
 
 /// <summary>
 ///     Класс для представления ошибки в ответе
