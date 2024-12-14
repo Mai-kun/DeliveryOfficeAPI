@@ -12,7 +12,7 @@ public class Bill : IAuditable, ISoftDelete
     /// <summary>
     ///     Дата накладной
     /// </summary>
-    public DateTime Date { get; set; }
+    public DateTimeOffset Date { get; set; }
 
     /// <summary>
     ///     Склад, где хранятся товары
@@ -57,12 +57,12 @@ public class Bill : IAuditable, ISoftDelete
     /// <summary>
     ///     Дата создания
     /// </summary>
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTimeOffset CreatedAt { get; set; }
 
     /// <summary>
     ///     Дата изменения
     /// </summary>
-    public DateTime? ModifiedAt { get; set; }
+    public DateTimeOffset? ModifiedAt { get; set; }
 
     /// <inheritdoc />
     public bool IsDeleted { get; set; }

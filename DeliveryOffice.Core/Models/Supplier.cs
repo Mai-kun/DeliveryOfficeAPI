@@ -25,10 +25,10 @@ public class Supplier : IAuditable, ISoftDelete
     public List<Bill> Bills { get; set; } = new();
 
     /// <inheritdoc />
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTimeOffset CreatedAt { get; set; }
 
     /// <inheritdoc />
-    public DateTime? ModifiedAt { get; set; }
+    public DateTimeOffset? ModifiedAt { get; set; }
 
     /// <inheritdoc />
     public bool IsDeleted { get; set; }

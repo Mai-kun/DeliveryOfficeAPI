@@ -1,7 +1,7 @@
-﻿using DeliveryOffice.API.Validators.Product;
-using DeliveryOffice.API.Validators.Supplier;
-using DeliveryOffice.Core.RequestModels;
+﻿using DeliveryOffice.Core.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions;
+using DeliveryOffice.Services.Validators.Product;
+using DeliveryOffice.Services.Validators.Supplier;
 using FluentValidation;
 
 namespace DeliveryOffice.API.Infrastructure;

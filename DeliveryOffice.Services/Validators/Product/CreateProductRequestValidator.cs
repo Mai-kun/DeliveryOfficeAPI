@@ -1,7 +1,7 @@
 ﻿using DeliveryOffice.Core.RequestModels;
 using FluentValidation;
 
-namespace DeliveryOffice.API.Validators.Product;
+namespace DeliveryOffice.Services.Validators.Product;
 
 /// <summary>
 ///     Содержит правила валидации для модели <see cref="CreateProductRequest" />

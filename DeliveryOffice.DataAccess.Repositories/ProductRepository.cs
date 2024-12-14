@@ -1,4 +1,5 @@
-﻿using DeliveryOffice.Core.Abstractions.Repositories;
+﻿using DeliveryOffice.API.Common.Abstractions;
+using DeliveryOffice.Core.Abstractions.Repositories;
 using DeliveryOffice.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,10 +8,12 @@ namespace DeliveryOffice.DataAccess.Repositories;
 public class ProductRepository : IProductRepository
 {
     private readonly DeliveryOfficeDbContext dbContext;
+    private readonly DateTimeProvider dateTimeProvider;
 
-    public ProductRepository(DeliveryOfficeDbContext dbContext)
+    public ProductRepository(DeliveryOfficeDbContext dbContext, DateTimeProvider dateTimeProvider)
     {
         this.dbContext = dbContext;
+        this.dateTimeProvider = dateTimeProvider;
     }
 
     async Task<List<Product>> IProductRepository.GetAllAsync(CancellationToken cancellationToken)
@@ -29,13 +32,14 @@ public class ProductRepository : IProductRepository
 
     async Task IProductRepository.AddAsync(Product product)
     {
+        product.CreatedAt = dateTimeProvider.UtcNow;
         await dbContext.Products.AddAsync(product);
         await dbContext.SaveChangesAsync();
     }
 
     Task IProductRepository.UpdateAsync(Product product)
     {
-        product.ModifiedAt = DateTime.Now;
+        product.ModifiedAt = dateTimeProvider.Now;
         dbContext.Products.Update(product);
         return dbContext.SaveChangesAsync();
     }

@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\DeliveryOffice.API.Common\DeliveryOffice.API.Common.csproj" />
         <ProjectReference Include="..\DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj" />
     </ItemGroup>
     

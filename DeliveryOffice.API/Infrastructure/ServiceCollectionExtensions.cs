@@ -1,4 +1,5 @@
-﻿using DeliveryOffice.Core.Abstractions.Repositories;
+﻿using DeliveryOffice.API.Common.Abstractions;
+using DeliveryOffice.Core.Abstractions.Repositories;
 using DeliveryOffice.Core.Abstractions.Services;
 using DeliveryOffice.DataAccess.Repositories;
 using DeliveryOffice.Services;
@@ -21,7 +22,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IProductsService, ProductsService>();
 
         services.AddAutoMapper(typeof(AutoMapperProfile));
-
         services.AddScoped<IValidatorService, ApiValidatorService>();
+        services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
     }
 }
