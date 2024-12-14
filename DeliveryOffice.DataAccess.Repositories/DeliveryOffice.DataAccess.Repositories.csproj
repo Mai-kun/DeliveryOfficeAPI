@@ -10,8 +10,10 @@
         <ProjectReference Include="..\DeliveryOffice.API.Common\DeliveryOffice.API.Common.csproj" />
         <ProjectReference Include="..\DeliveryOffice.DataAccess.Abstractions\DeliveryOffice.DataAccess.Abstractions.csproj" />
         <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj" />
-        <ProjectReference Include="..\DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj" />
-        <ProjectReference Include="..\DeliveryOffice.Services\DeliveryOffice.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
     </ItemGroup>
     
 </Project>

@@ -3,102 +3,80 @@ using DeliveryOffice.Services.Validators.Supplier;
 using FluentValidation.TestHelper;
 using Xunit;
 
-namespace DeliveryOffice.Services.Tests.Validators
+namespace DeliveryOffice.Services.Tests.Validators;
+
+/// <summary>
+///     РўРµСЃС‚С‹ РґР»СЏ <see cref="CreateSupplierRequestValidator" />
+/// </summary>
+public class CreateSupplierRequestValidatorTests
 {
+    private readonly CreateSupplierRequestValidator validator = new();
+
     /// <summary>
-    /// Тесты для <see cref="CreateSupplierRequestValidator"/>
+    ///     РџРѕР»СѓС‡РµРЅРёРµ РѕС€РёР±РєРё РїСЂРё РїСЂРµРІС‹С€РµРЅРёРё РѕРіСЂР°РЅРёС‡РµРЅРёСЏ СЃС‚СЂРѕРєРё
     /// </summary>
-    public class CreateSupplierRequestValidatorTests
+    [Fact]
+    public void ShouldHaveValidationErrorForMaximumLength()
     {
-        private readonly CreateSupplierRequestValidator validator;
+        // Arrange
+        var model = new CreateSupplierRequest { Name = new string('*', 300), };
 
-        public CreateSupplierRequestValidatorTests()
-        {
-            validator = new CreateSupplierRequestValidator();
-        }
+        //Act
+        var result = validator.TestValidate(model);
 
-        /// <summary>
-        /// Проверяет наличие ошибок при превышении максимальной длины
-        /// </summary>
-        [Fact]
-        public void ShouldHaveValidationErrorForMaximumLength()
-        {
-            // Arrange
-            var model = new CreateSupplierRequest
-            {
-                Name= new string('*', 300),
-            };
+        //Assert
+        result.ShouldHaveValidationErrorFor(member => member.Name);
+        result.ShouldHaveValidationErrorFor(member => member.Address);
+    }
 
-            //Act
-            var result = validator.TestValidate(model);
+    /// <summary>
+    ///     РџРѕР»СѓС‡РµРЅРёРµ РѕС€РёР±РєРё РїСЂРё СЂР°Р±РѕС‚Рµ СЃ null
+    /// </summary>
+    [Fact]
+    public void ShouldHaveValidationErrorForNull()
+    {
+        // Arrange
+        var model = new CreateSupplierRequest { Name = null, Address = null, };
 
-            //Assert
-            result.ShouldHaveValidationErrorFor(model => model.Name);
-            result.ShouldHaveValidationErrorFor(model => model.Address);
-        }
+        //Act
+        var result = validator.TestValidate(model);
 
-        /// <summary>
-        /// Проверяет наличие ошибок при null
-        /// </summary>
-        [Fact]
-        public void ShouldHaveValidationErrorForNull()
-        {
-            // Arrange
-            var model = new CreateSupplierRequest
-            {
-                Name = null,
-                Address = null,
-            };
+        //Assert
+        result.ShouldHaveValidationErrorFor(member => member.Name);
+        result.ShouldHaveValidationErrorFor(member => member.Address);
+    }
 
-            //Act
-            var result = validator.TestValidate(model);
+    /// <summary>
+    ///     РџРѕР»СѓС‡РµРЅРёРµ РѕС€РёР±РєРё РїСЂРё РїСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРё
+    /// </summary>
+    [Fact]
+    public void ShouldHaveValidationErrorForEmpty()
+    {
+        // Arrange
+        var model = new CreateSupplierRequest { Name = string.Empty, Address = string.Empty, };
 
-            //Assert
-            result.ShouldHaveValidationErrorFor(model => model.Name);
-            result.ShouldHaveValidationErrorFor(model => model.Address);
-        }
+        //Act
+        var result = validator.TestValidate(model);
 
-        /// <summary>
-        /// Проверяет наличие ошибок при пустых данных
-        /// </summary>
-        [Fact]
-        public void ShouldHaveValidationErrorForEmpty()
-        {
-            // Arrange
-            var model = new CreateSupplierRequest
-            {
-                Name = string.Empty,
-                Address = string.Empty,
-            };
+        //Assert
+        result.ShouldHaveValidationErrorFor(member => member.Name);
+        result.ShouldHaveValidationErrorFor(member => member.Address);
+    }
 
-            //Act
-            var result = validator.TestValidate(model);
+    /// <summary>
+    ///     РћС‚СЃСѓС‚СЃС‚РІРёРµ РѕС€РёР±РєРё РїСЂРё РєРѕСЂСЂРµРєС‚РЅС‹С… РґР°РЅРЅС‹С…
+    /// </summary>
+    [Fact]
+    public void ShouldHaveNoErrors()
+    {
+        // Arrange
+        var model = new CreateSupplierRequest { Name = "name", Address = "address", };
 
-            //Assert
-            result.ShouldHaveValidationErrorFor(model => model.Name);
-            result.ShouldHaveValidationErrorFor(model => model.Address);
-        }
+        //Act
+        var result = validator.TestValidate(model);
 
-        /// <summary>
-        /// Проверяет отсутствие ошибок
-        /// </summary>
-
-        [Fact]
-        public void ShouldHaveNoErrors()
-        {
-            // Arrange
-            var model = new CreateSupplierRequest
-            {
-                Name = "name",
-                Address = "address",
-            };
-
-            //Act
-            var result = validator.TestValidate(model);
-
-            //Assert
-            result.ShouldNotHaveValidationErrorFor(model => model.Name);
-            result.ShouldNotHaveValidationErrorFor(model => model.Address);
-        }
+        //Assert
+        result.ShouldNotHaveValidationErrorFor(member => member.Name);
+        result.ShouldNotHaveValidationErrorFor(member => member.Address);
     }
 }
