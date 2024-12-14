@@ -1,28 +1,28 @@
 ```SQL
 INSERT INTO Suppliers (Id, Name, Address, CreatedAt, ModifiedAt, IsDeleted)
 VALUES 
-(NEWID(), 'Поставщик А', 'ул. Рыночная, 123', GETDATE(), NULL, 0),
-(NEWID(), 'Поставщик Б', 'пр. Центральный, 456', GETDATE(), NULL, 0),
-(NEWID(), 'Поставщик В', 'Индустриальный парк, 789', GETDATE(), NULL, 0),
-(NEWID(), 'Поставщик Г', 'ул. Складская, 321', GETDATE(), NULL, 0),
-(NEWID(), 'Поставщик Д', 'ул. Загородная, 654', GETDATE(), NULL, 0);
-
+(NEWID(), 'Supplier A', 'Market Street, 123', GETDATE(), NULL, 0),
+(NEWID(), 'Supplier B', 'Central Avenue, 456', GETDATE(), NULL, 0),
+(NEWID(), 'Supplier C', 'Industrial Park, 789', GETDATE(), NULL, 0),
+(NEWID(), 'Supplier D', 'Warehouse Street, 321', GETDATE(), NULL, 0),
+(NEWID(), 'Supplier E', 'Outskirts Street, 654', GETDATE(), NULL, 0)
+GO
 INSERT INTO Buyers (Id, Name, CreatedAt, ModifiedAt, IsDeleted)
 VALUES 
-(NEWID(), 'Покупатель 1', GETDATE(), NULL, 0),
-(NEWID(), 'Покупатель 2', GETDATE(), NULL, 0),
-(NEWID(), 'Покупатель 3', GETDATE(), NULL, 0),
-(NEWID(), 'Покупатель 4', GETDATE(), NULL, 0),
-(NEWID(), 'Покупатель 5', GETDATE(), NULL, 0);
-
+(NEWID(), 'Buyer 1', GETDATE(), NULL, 0),
+(NEWID(), 'Buyer 2', GETDATE(), NULL, 0),
+(NEWID(), 'Buyer 3', GETDATE(), NULL, 0),
+(NEWID(), 'Buyer 4', GETDATE(), NULL, 0),
+(NEWID(), 'Buyer 5', GETDATE(), NULL, 0);
+GO
 INSERT INTO Products (Id, Name, Quantity, Unit, Price, CreatedAt, ModifiedAt, IsDeleted)
 VALUES 
-(NEWID(), 'Товар А', 100, 'шт', 15.99, GETDATE(), NULL, 0),
-(NEWID(), 'Товар Б', 200, 'шт', 25.49, GETDATE(), NULL, 0),
-(NEWID(), 'Товар В', 300, 'шт', 35.00, GETDATE(), NULL, 0),
-(NEWID(), 'Товар Г', 150, 'шт', 10.75, GETDATE(), NULL, 0),
-(NEWID(), 'Товар Д', 250, 'шт', 5.50, GETDATE(), NULL, 0);
-
+(NEWID(), 'Product A', 100, 'pcs', 15.99, GETDATE(), NULL, 0),
+(NEWID(), 'Product B', 200, 'pcs', 25.49, GETDATE(), NULL, 0),
+(NEWID(), 'Product C', 300, 'pcs', 35.00, GETDATE(), NULL, 0),
+(NEWID(), 'Product D', 150, 'pcs', 10.75, GETDATE(), NULL, 0),
+(NEWID(), 'Product E', 250, 'pcs', 5.50, GETDATE(), NULL, 0);
+GO
 DECLARE @Supplier1 UNIQUEIDENTIFIER = (SELECT Id FROM Suppliers ORDER BY Id OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Supplier2 UNIQUEIDENTIFIER = (SELECT Id FROM Suppliers ORDER BY Id OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Supplier3 UNIQUEIDENTIFIER = (SELECT Id FROM Suppliers ORDER BY Id OFFSET 2 ROWS FETCH NEXT 1 ROWS ONLY);
@@ -32,15 +32,14 @@ DECLARE @Buyer1 UNIQUEIDENTIFIER = (SELECT Id FROM Buyers ORDER BY Id OFFSET 0 R
 DECLARE @Buyer2 UNIQUEIDENTIFIER = (SELECT Id FROM Buyers ORDER BY Id OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Buyer3 UNIQUEIDENTIFIER = (SELECT Id FROM Buyers ORDER BY Id OFFSET 2 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Buyer4 UNIQUEIDENTIFIER = (SELECT Id FROM Buyers ORDER BY Id OFFSET 3 ROWS FETCH NEXT 1 ROWS ONLY);
-
 INSERT INTO Bills (Id, Date, Warehouse, TotalAmount, IsPaid, BuyerId, SupplierId, CreatedAt, ModifiedAt, IsDeleted)
 VALUES 
-(NEWID(), GETDATE(), 'Склад А', 500.00, 1, @Buyer1, @Supplier1, GETDATE(), NULL, 0),
-(NEWID(), GETDATE(), 'Склад Б', 100.00, 0, @Buyer2, @Supplier2, GETDATE(), NULL, 0),
-(NEWID(), GETDATE(), 'Склад В', 750.00, 1, @Buyer3, @Supplier3, GETDATE(), NULL, 0),
-(NEWID(), GETDATE(), 'Склад Г', 300.00, 0, @Buyer4, @Supplier4, GETDATE(), NULL, 0),
-(NEWID(), GETDATE(), 'Склад Д', 200.00, 1, @Buyer4, @Supplier5, GETDATE(), NULL, 0);
-
+(NEWID(), GETDATE(), 'Warehouse А', 500.00, 1, @Buyer1, @Supplier1, GETDATE(), NULL, 0),
+(NEWID(), GETDATE(), 'Warehouse Б', 100.00, 0, @Buyer2, @Supplier2, GETDATE(), NULL, 0),
+(NEWID(), GETDATE(), 'Warehouse В', 750.00, 1, @Buyer3, @Supplier3, GETDATE(), NULL, 0),
+(NEWID(), GETDATE(), 'Warehouse Г', 300.00, 0, @Buyer4, @Supplier4, GETDATE(), NULL, 0),
+(NEWID(), GETDATE(), 'Warehouse Д', 200.00, 1, @Buyer4, @Supplier5, GETDATE(), NULL, 0);
+GO
 DECLARE @Bill1 UNIQUEIDENTIFIER = (SELECT Id FROM Bills ORDER BY Id OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Bill2 UNIQUEIDENTIFIER = (SELECT Id FROM Bills ORDER BY Id OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Bill3 UNIQUEIDENTIFIER = (SELECT Id FROM Bills ORDER BY Id OFFSET 2 ROWS FETCH NEXT 1 ROWS ONLY);
@@ -51,7 +50,6 @@ DECLARE @Product2 UNIQUEIDENTIFIER = (SELECT Id FROM Products ORDER BY Id OFFSET
 DECLARE @Product3 UNIQUEIDENTIFIER = (SELECT Id FROM Products ORDER BY Id OFFSET 2 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Product4 UNIQUEIDENTIFIER = (SELECT Id FROM Products ORDER BY Id OFFSET 3 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Product5 UNIQUEIDENTIFIER = (SELECT Id FROM Products ORDER BY Id OFFSET 4 ROWS FETCH NEXT 1 ROWS ONLY);
-
 INSERT INTO BillProduct (BillsId, ProductsId)
 VALUES 
 (@Bill1, @Product1),
@@ -62,4 +60,5 @@ VALUES
 (@Bill3, @Product3),
 (@Bill4, @Product1),
 (@Bill5, @Product5)
+
 ```
