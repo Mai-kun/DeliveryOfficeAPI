@@ -7,6 +7,7 @@ namespace DeliveryOffice.DataAccess;
 public class DeliveryOfficeDbContext : DbContext
 {
     /// <remarks>
+    ///     dotnet tool install --global dotnet-ef --version 7.*
     ///     dotnet tool install --global dotnet-ef
     ///     dotnet ef migrations add Init --project DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj
     ///     dotnet ef database update --project DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj

@@ -8,9 +8,9 @@ namespace DeliveryOffice.DataAccess.Repositories;
 public class SupplierRepository : ISupplierRepository
 {
     private readonly DeliveryOfficeDbContext dbContext;
-    private readonly DateTimeProvider dateTimeProvider;
+    private readonly IDateTimeProvider dateTimeProvider;
 
-    public SupplierRepository(DeliveryOfficeDbContext dbContext, DateTimeProvider dateTimeProvider)
+    public SupplierRepository(DeliveryOfficeDbContext dbContext, IDateTimeProvider dateTimeProvider)
     {
         this.dbContext = dbContext;
         this.dateTimeProvider = dateTimeProvider;
