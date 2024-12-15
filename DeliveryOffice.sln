@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.Repositories.Abstractions", "DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj", "{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.Services.Abstractions", "DeliveryOffice.Services.Abstractions\DeliveryOffice.Services.Abstractions.csproj", "{CC215735-F773-4203-9A7B-CC10F5CC5ECD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC215735-F773-4203-9A7B-CC10F5CC5ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC215735-F773-4203-9A7B-CC10F5CC5ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC215735-F773-4203-9A7B-CC10F5CC5ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC215735-F773-4203-9A7B-CC10F5CC5ECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

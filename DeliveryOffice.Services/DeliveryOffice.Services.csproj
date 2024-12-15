@@ -1,27 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj" />
-        <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj"/>
+    <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj"/>
+    <ProjectReference Include="..\DeliveryOffice.Services.Abstractions\DeliveryOffice.Services.Abstractions.csproj"/>
+  </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="AutoMapper" Version="13.0.1" />
-      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-			<PackageReference Include="FluentValidation" Version="11.11.0"/>
-		</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
+    <PackageReference Include="FluentValidation" Version="11.11.0"/>
+  </ItemGroup>
 
-    <ItemGroup>
-      <Compile Update="ServiceExceptions\Supplier\SupplierNotFoundException.cs">
-        <DependentUpon>SupplierException.cs</DependentUpon>
-      </Compile>
-      <Compile Update="ServiceExceptions\ForSupplier\SupplierNotFoundException.cs" />
-    </ItemGroup>
-    
 </Project>

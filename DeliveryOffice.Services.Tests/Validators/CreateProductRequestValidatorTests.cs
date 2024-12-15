@@ -1,4 +1,4 @@
-﻿using DeliveryOffice.Core.RequestModels;
+﻿using DeliveryOffice.API.Models.RequestModels;
 using DeliveryOffice.Services.Validators.Product;
 using FluentValidation.TestHelper;
 using Xunit;

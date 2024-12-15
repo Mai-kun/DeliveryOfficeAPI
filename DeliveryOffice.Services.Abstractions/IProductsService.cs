@@ -1,7 +1,7 @@
-﻿using DeliveryOffice.Core.Models;
-using DeliveryOffice.Core.RequestModels;
+﻿using DeliveryOffice.API.Models.RequestModels;
+using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.Core.Abstractions.Services;
+namespace DeliveryOffice.Services.Abstractions;
 
 /// <summary>
 ///     Предоставляет функционал для работы с продуктами

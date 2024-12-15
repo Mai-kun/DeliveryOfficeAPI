@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using DeliveryOffice.API.Infrastructure;
-using DeliveryOffice.Core.Abstractions.Services;
+using DeliveryOffice.API.Models.RequestModels;
+using DeliveryOffice.API.Models.ResponseModels;
 using DeliveryOffice.Core.Models;
-using DeliveryOffice.Core.RequestModels;
-using DeliveryOffice.Core.ResponseModels;
+using DeliveryOffice.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryOffice.API.Controllers;
