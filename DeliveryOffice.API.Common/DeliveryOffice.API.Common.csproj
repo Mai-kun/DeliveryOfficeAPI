@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Abstractions\DateTimeProvider.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="DateTimeProvider.cs" />
-  </ItemGroup>
-
 </Project>

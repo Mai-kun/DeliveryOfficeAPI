@@ -1,6 +1,6 @@
 ﻿using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.Core.RequestModels;
+namespace DeliveryOffice.API.Models.RequestModels;
 
 /// <summary>
 ///     Модель запроса создания для объекта <see cref="Supplier" />

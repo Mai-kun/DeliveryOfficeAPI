@@ -1,4 +1,4 @@
-﻿namespace DeliveryOffice.Core.Abstractions.EntityRules;
+﻿namespace DeliveryOffice.Core.Abstractions;
 
 /// <summary>
 ///     Предоставляет контракт для моделей с индентиыикатором

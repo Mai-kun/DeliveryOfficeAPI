@@ -1,4 +1,4 @@
-﻿using DeliveryOffice.Core.Abstractions.EntityRules;
+﻿using DeliveryOffice.Core.Abstractions;
 
 namespace DeliveryOffice.DataAccess.Repositories;
 

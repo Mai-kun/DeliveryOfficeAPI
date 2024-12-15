@@ -1,17 +1,15 @@
-﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Core.Models;
+﻿using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.Core.RequestModels;
+namespace DeliveryOffice.API.Models.ResponseModels;
 
 /// <summary>
-///     Модель запроса для объекта <see cref="Supplier" />
+///     Модель ответа для объекта <see cref="Supplier" />
 /// </summary>
-public class SupplierRequest
+public class SupplierResponse
 {
     /// <summary>
     ///     Идентификатор поставщика
     /// </summary>
-    [JsonIgnore]
     public Guid Id { get; set; }
 
     /// <summary>
@@ -23,4 +21,9 @@ public class SupplierRequest
     ///     Адрес поставщика
     /// </summary>
     public string Address { get; set; }
+
+    /// <summary>
+    ///     Идентификаторы чеков поставщика
+    /// </summary>
+    public List<Guid> Bills { get; set; }
 }

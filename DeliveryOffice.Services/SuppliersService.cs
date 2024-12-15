@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using DeliveryOffice.Core.Abstractions.Services;
+using DeliveryOffice.API.Models.RequestModels;
 using DeliveryOffice.Core.Models;
-using DeliveryOffice.Core.RequestModels;
 using DeliveryOffice.DataAccess.Abstractions;
 using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
+using DeliveryOffice.Services.Abstractions;
 using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 
 namespace DeliveryOffice.Services;

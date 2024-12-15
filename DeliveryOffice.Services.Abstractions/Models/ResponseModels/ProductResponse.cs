@@ -1,18 +1,16 @@
-﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Core.Models;
+﻿using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.Core.RequestModels;
+namespace DeliveryOffice.API.Models.ResponseModels;
 
 /// <summary>
-///     Модель запроса для объекта <see cref="Product" />
+///     Модель ответа для объекта <see cref="Product" />
 /// </summary>
-public class ProductRequest
+public class ProductResponse
 {
     /// <summary>
     ///     Идентификатор продукта
     /// </summary>
-    [JsonIgnore]
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid Id { get; set; }
 
     /// <summary>
     ///     Наименование товара

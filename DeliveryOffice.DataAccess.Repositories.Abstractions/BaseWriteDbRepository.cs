@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using DeliveryOffice.API.Common.Abstractions;
-using DeliveryOffice.Core.Abstractions.EntityRules;
+using DeliveryOffice.Core.Abstractions;
 using DeliveryOffice.DataAccess.Abstractions;
 
 namespace DeliveryOffice.DataAccess.Repositories.Abstractions;

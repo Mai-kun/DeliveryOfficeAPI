@@ -1,4 +1,4 @@
-﻿using DeliveryOffice.Core.RequestModels;
+﻿using DeliveryOffice.API.Models.RequestModels;
 using FluentValidation;
 
 namespace DeliveryOffice.Services.Validators.Product;

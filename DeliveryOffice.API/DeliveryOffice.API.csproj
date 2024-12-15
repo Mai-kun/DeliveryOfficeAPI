@@ -26,11 +26,5 @@
         <ProjectReference Include="..\DeliveryOffice.DataAccess\DeliveryOffice.DataAccess.csproj" />
         <ProjectReference Include="..\DeliveryOffice.Services\DeliveryOffice.Services.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Infrastructure\IValidatorService.cs">
-        <DependentUpon>ApiValidatorService.cs</DependentUpon>
-      </Compile>
-    </ItemGroup>
     
 </Project>
