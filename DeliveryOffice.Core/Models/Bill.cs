@@ -5,9 +5,10 @@ namespace DeliveryOffice.Core.Models;
 /// <summary>
 ///     Накладная
 /// </summary>
-public class Bill : IAuditable, ISoftDelete
+public class Bill : IEntityWithId, IAuditable, ISoftDelete
 {
-    public Guid Id { get; } = Guid.NewGuid();
+    /// <inheritdoc />
+    public Guid Id { get; set; }
 
     /// <summary>
     ///     Дата накладной

@@ -52,10 +52,10 @@ public class ProductsController : ControllerBase
     ///     Добавление нового продукта
     /// </summary>
     [HttpPost]
-    public async Task<IActionResult> AddProduct(CreateProductRequest productRequest)
+    public IActionResult AddProduct(CreateProductRequest productRequest, CancellationToken cancellationToken)
     {
         validatorService.Validate(productRequest);
-        await productsService.AddProductAsync(productRequest);
+        productsService.AddProduct(productRequest, cancellationToken);
         return Ok();
     }
 
@@ -80,9 +80,9 @@ public class ProductsController : ControllerBase
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> DeleteProduct(Guid id)
+    public async Task<IActionResult> DeleteProduct(Guid id, CancellationToken cancellationToken)
     {
-        await productsService.DeleteProductAsync(id);
+        await productsService.DeleteProductAsync(id, cancellationToken);
         return Ok();
     }
 }

@@ -1,4 +1,3 @@
-using DeliveryOffice.API.Common.Abstractions;
 using DeliveryOffice.API.Infrastructure;
 using DeliveryOffice.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +21,7 @@ public static class Program
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(DeliveryOfficeDbContext)));
             });
+        builder.Services.AddDataBaseDependencies();
 
         var app = builder.Build();
 

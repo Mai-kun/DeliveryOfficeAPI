@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using DeliveryOffice.Core.Abstractions.Repositories;
 using DeliveryOffice.Core.Abstractions.Services;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.Core.RequestModels;
+using DeliveryOffice.DataAccess.Abstractions;
+using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 using DeliveryOffice.Services.ServiceExceptions.ForProduct;
 using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 
@@ -11,52 +12,63 @@ namespace DeliveryOffice.Services;
 /// <inheritdoc />
 public class ProductsService : IProductsService
 {
-    private readonly IProductRepository productRepository;
     private readonly IMapper mapper;
+    private readonly IProductReaderRepository productReaderRepository;
+    private readonly IProductWriterRepository productWriterRepository;
+    private readonly IUnitOfWork unitOfWork;
 
-    public ProductsService(IProductRepository productRepository, IMapper mapper)
+    public ProductsService(
+        IMapper mapper, IProductReaderRepository productReaderRepository,
+        IProductWriterRepository productWriterRepository, IUnitOfWork unitOfWork
+    )
     {
-        this.productRepository = productRepository;
         this.mapper = mapper;
+        this.productReaderRepository = productReaderRepository;
+        this.productWriterRepository = productWriterRepository;
+        this.unitOfWork = unitOfWork;
     }
 
-    async Task<List<Product>> IProductsService.GetAllProductsAsync(CancellationToken cancellationToken)
+    Task<List<Product>> IProductsService.GetAllProductsAsync(CancellationToken cancellationToken)
     {
-        var result = await productRepository.GetAllAsync(cancellationToken);
-        return result
-               .Where(p => p.IsDeleted == false)
-               .ToList();
+        return productReaderRepository.GetAllAsync(cancellationToken);
     }
 
     async Task<Product> IProductsService.GetProductByIdAsync(Guid productId, CancellationToken cancellationToken)
     {
-        var result = await productRepository.GetByIdAsync(productId, cancellationToken);
-        if (result is null || result.IsDeleted)
+        var result = await productReaderRepository.GetByIdAsync(productId, cancellationToken);
+        if (result is null)
             throw new ProductNotFoundException($"Product with id: {productId} was not found");
 
         return result;
     }
 
-    async Task IProductsService.AddProductAsync(CreateProductRequest productRequest)
+    Task IProductsService.AddProduct(CreateProductRequest productRequest, CancellationToken cancellationToken)
     {
         var product = mapper.Map<Product>(productRequest);
-        await productRepository.AddAsync(product);
+        productWriterRepository.Add(product);
+        return unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     async Task IProductsService.UpdateProductAsync(
         ProductRequest productRequest, CancellationToken cancellationToken
     )
     {
-        var product = await productRepository.GetByIdAsync(productRequest.Id, cancellationToken);
-        if (product is null || product.IsDeleted)
+        var product = await productReaderRepository.GetByIdAsync(productRequest.Id, cancellationToken);
+        if (product is null)
             throw new SupplierNotFoundException($"Product with id: {productRequest.Id} was not found");
 
         var productUpdate = mapper.Map<Product>(productRequest);
-        await productRepository.UpdateAsync(productUpdate);
+        productWriterRepository.Update(productUpdate);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    Task IProductsService.DeleteProductAsync(Guid id)
+    async Task IProductsService.DeleteProductAsync(Guid id, CancellationToken cancellationToken)
     {
-        return productRepository.DeleteAsync(id);
+        var product = await productReaderRepository.GetByIdAsync(id, cancellationToken);
+        if (product is null)
+            throw new SupplierNotFoundException($"Product with id: {id} was not found");
+
+        productWriterRepository.Delete(product);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

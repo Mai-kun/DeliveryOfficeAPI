@@ -52,10 +52,10 @@ public class SuppliersController : ControllerBase
     ///     Добавление нового поставщика
     /// </summary>
     [HttpPost]
-    public async Task<IActionResult> AddSupplier(CreateSupplierRequest supplierRequest)
+    public IActionResult AddSupplier(CreateSupplierRequest supplierRequest, CancellationToken cancellationToken)
     {
         validatorService.Validate(supplierRequest);
-        await suppliersService.AddSupplierAsync(supplierRequest);
+        suppliersService.AddSupplier(supplierRequest, cancellationToken);
         return Ok();
     }
 
@@ -80,9 +80,9 @@ public class SuppliersController : ControllerBase
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> DeleteSupplier(Guid id)
+    public async Task<IActionResult> DeleteSupplier(Guid id, CancellationToken cancellationToken)
     {
-        await suppliersService.DeleteSupplierAsync(id);
+        await suppliersService.DeleteSupplierAsync(id, cancellationToken);
         return Ok();
     }
 }

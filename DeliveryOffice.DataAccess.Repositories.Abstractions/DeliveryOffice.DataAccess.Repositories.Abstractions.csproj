@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DeliveryOffice.API.Common\DeliveryOffice.API.Common.csproj" />
+      <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj" />
+      <ProjectReference Include="..\DeliveryOffice.DataAccess.Abstractions\DeliveryOffice.DataAccess.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

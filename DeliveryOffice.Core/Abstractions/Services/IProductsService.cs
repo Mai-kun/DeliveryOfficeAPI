@@ -21,7 +21,7 @@ public interface IProductsService
     /// <summary>
     ///     Добавляет новый продукт
     /// </summary>
-    Task AddProductAsync(CreateProductRequest productRequest);
+    Task AddProduct(CreateProductRequest productRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующий продукт
@@ -31,5 +31,5 @@ public interface IProductsService
     /// <summary>
     ///     Удаляет продукт
     /// </summary>
-    Task DeleteProductAsync(Guid id);
+    Task DeleteProductAsync(Guid id, CancellationToken cancellationToken);
 }

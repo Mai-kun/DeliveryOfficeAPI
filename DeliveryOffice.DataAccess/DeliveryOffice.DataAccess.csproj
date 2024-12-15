@@ -23,6 +23,7 @@
     <ItemGroup>
         <ProjectReference Include="..\DeliveryOffice.Core.Configurations\DeliveryOffice.Core.Configurations.csproj" />
         <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj" />
+        <ProjectReference Include="..\DeliveryOffice.DataAccess.Abstractions\DeliveryOffice.DataAccess.Abstractions.csproj" />
     </ItemGroup>
     
 </Project>

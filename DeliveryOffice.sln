@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.Services.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.API.Common", "DeliveryOffice.API.Common\DeliveryOffice.API.Common.csproj", "{3E465B60-FF42-48A9-9268-353EC2E3171A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.Abstractions", "DeliveryOffice.DataAccess.Abstractions\DeliveryOffice.DataAccess.Abstractions.csproj", "{5F836CFF-F4AE-44CB-A776-25DA39406791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.Repositories.Abstractions", "DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj", "{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{3E465B60-FF42-48A9-9268-353EC2E3171A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E465B60-FF42-48A9-9268-353EC2E3171A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E465B60-FF42-48A9-9268-353EC2E3171A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F836CFF-F4AE-44CB-A776-25DA39406791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F836CFF-F4AE-44CB-A776-25DA39406791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F836CFF-F4AE-44CB-A776-25DA39406791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F836CFF-F4AE-44CB-A776-25DA39406791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

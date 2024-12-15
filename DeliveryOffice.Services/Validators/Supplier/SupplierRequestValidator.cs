@@ -8,6 +8,8 @@ namespace DeliveryOffice.Services.Validators.Supplier;
 /// </summary>
 public class SupplierRequestValidator : AbstractValidator<SupplierRequest>
 {
+    private const int MaximumLength = 255;
+
     public SupplierRequestValidator()
     {
         RuleFor(supplier => supplier.Id)
@@ -17,8 +19,8 @@ public class SupplierRequestValidator : AbstractValidator<SupplierRequest>
         RuleFor(supplier => supplier.Name)
             .NotEmpty()
             .NotNull()
-            .MaximumLength(255)
-            .WithMessage("Name is required and must not exceed 255 characters.");
+            .MaximumLength(MaximumLength)
+            .WithMessage($"Name is required and must not exceed {MaximumLength} characters.");
 
         RuleFor(supplier => supplier.Address)
             .NotEmpty()

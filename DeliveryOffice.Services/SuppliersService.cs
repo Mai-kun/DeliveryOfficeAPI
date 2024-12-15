@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using DeliveryOffice.Core.Abstractions.Repositories;
 using DeliveryOffice.Core.Abstractions.Services;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.Core.RequestModels;
+using DeliveryOffice.DataAccess.Abstractions;
+using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 
 namespace DeliveryOffice.Services;
@@ -10,58 +11,63 @@ namespace DeliveryOffice.Services;
 /// <inheritdoc cref="ISuppliersService" />
 public class SuppliersService : ISuppliersService
 {
-    private readonly ISupplierRepository suppliersRepository;
     private readonly IMapper mapper;
+    private readonly ISupplierReaderRepository supplierReaderRepository;
+    private readonly ISupplierWriterRepository supplierWriterRepository;
+    private readonly IUnitOfWork unitOfWork;
 
-    public SuppliersService(ISupplierRepository suppliersRepository, IMapper mapper)
+    public SuppliersService(
+        IMapper mapper, ISupplierReaderRepository supplierReaderRepository,
+        ISupplierWriterRepository supplierWriterRepository, IUnitOfWork unitOfWork
+    )
     {
-        this.suppliersRepository = suppliersRepository;
         this.mapper = mapper;
+        this.supplierReaderRepository = supplierReaderRepository;
+        this.supplierWriterRepository = supplierWriterRepository;
+        this.unitOfWork = unitOfWork;
     }
 
     async Task<List<Supplier>> ISuppliersService.GetAllSuppliersAsync(CancellationToken cancellationToken)
     {
-        var result = await suppliersRepository.GetAllWithBillsAsync(cancellationToken);
-        var filteredResult = result.Where(s => s.IsDeleted == false).ToList();
-        foreach (var supplier in filteredResult)
-            supplier.Bills = supplier.Bills
-                .Where(b => b.IsDeleted == false)
-                .ToList();
-
-        return filteredResult;
+        return await supplierReaderRepository.GetAllWithBillsAsync(cancellationToken);
     }
 
     async Task<Supplier> ISuppliersService.GetSupplierByIdAsync(Guid supplierId, CancellationToken cancellationToken)
     {
-        var result = await suppliersRepository.GetByIdWithBillsAsync(supplierId, cancellationToken);
-
-        if (result is null || result.IsDeleted)
+        var result = await supplierReaderRepository.GetByIdWithBillsAsync(supplierId, cancellationToken);
+        if (result is null)
             throw new SupplierNotFoundException($"Supplier with id: {supplierId} was not found");
 
-        result.Bills = result.Bills.Where(b => b.IsDeleted == false).ToList();
         return result;
     }
 
-    async Task ISuppliersService.AddSupplierAsync(CreateSupplierRequest supplierRequest)
+    Task ISuppliersService.AddSupplier(CreateSupplierRequest supplierRequest, CancellationToken cancellationToken)
     {
         var supplier = mapper.Map<Supplier>(supplierRequest);
-        await suppliersRepository.AddAsync(supplier);
+        supplierWriterRepository.Add(supplier);
+        return unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     async Task ISuppliersService.UpdateSupplierAsync(
         SupplierRequest supplierRequest, CancellationToken cancellationToken
     )
     {
-        var supplier = await suppliersRepository.GetByIdWithBillsAsync(supplierRequest.Id, cancellationToken);
-        if (supplier is null || supplier.IsDeleted)
+        var supplier = await supplierReaderRepository.GetByIdWithBillsAsync(supplierRequest.Id, cancellationToken);
+        if (supplier is null)
             throw new SupplierNotFoundException($"Supplier with id: {supplierRequest.Id} was not found");
 
         var supplierUpdate = mapper.Map<Supplier>(supplierRequest);
-        await suppliersRepository.UpdateAsync(supplierUpdate);
+        supplierWriterRepository.Update(supplierUpdate);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    Task ISuppliersService.DeleteSupplierAsync(Guid id)
+    async Task ISuppliersService.DeleteSupplierAsync(Guid id, CancellationToken cancellationToken)
     {
-        return suppliersRepository.DeleteAsync(id);
+        var supplier = await supplierReaderRepository.GetByIdWithBillsAsync(id, cancellationToken);
+        if (supplier is null)
+            throw new SupplierNotFoundException($"Supplier with id: {id} was not found");
+
+        supplierWriterRepository.Delete(supplier);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }
