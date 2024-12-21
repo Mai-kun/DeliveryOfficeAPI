@@ -1,4 +1,4 @@
-﻿using DeliveryOffice.API.Models.RequestModels;
+﻿using DeliveryOffice.Services.Abstractions.Models.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions;
 using DeliveryOffice.Services.Validators.Product;
 using DeliveryOffice.Services.Validators.Supplier;

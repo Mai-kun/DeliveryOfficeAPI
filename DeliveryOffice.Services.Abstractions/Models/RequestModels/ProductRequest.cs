@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.API.Models.RequestModels;
+namespace DeliveryOffice.Services.Abstractions.Models.RequestModels;
 
 /// <summary>
 ///     Модель запроса для объекта <see cref="Product" />

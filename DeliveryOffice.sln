@@ -15,15 +15,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryOffice.DataAccess.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryOffice.Services", "DeliveryOffice.Services\DeliveryOffice.Services.csproj", "{88400DEB-B49F-4F92-ADAA-0660A59ACF84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.Services.Tests", "DeliveryOffice.Services.Tests\DeliveryOffice.Services.Tests.csproj", "{4568753B-9DF4-4DA8-8C6A-498E20FEFC48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryOffice.Services.Tests", "DeliveryOffice.Services.Tests\DeliveryOffice.Services.Tests.csproj", "{4568753B-9DF4-4DA8-8C6A-498E20FEFC48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.API.Common", "DeliveryOffice.API.Common\DeliveryOffice.API.Common.csproj", "{3E465B60-FF42-48A9-9268-353EC2E3171A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryOffice.API.Common", "DeliveryOffice.API.Common\DeliveryOffice.API.Common.csproj", "{3E465B60-FF42-48A9-9268-353EC2E3171A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.Abstractions", "DeliveryOffice.DataAccess.Abstractions\DeliveryOffice.DataAccess.Abstractions.csproj", "{5F836CFF-F4AE-44CB-A776-25DA39406791}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryOffice.DataAccess.Abstractions", "DeliveryOffice.DataAccess.Abstractions\DeliveryOffice.DataAccess.Abstractions.csproj", "{5F836CFF-F4AE-44CB-A776-25DA39406791}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.Repositories.Abstractions", "DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj", "{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryOffice.DataAccess.Repositories.Abstractions", "DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj", "{1FAB2D41-9EB3-4302-8265-9F81BECB05CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.Services.Abstractions", "DeliveryOffice.Services.Abstractions\DeliveryOffice.Services.Abstractions.csproj", "{CC215735-F773-4203-9A7B-CC10F5CC5ECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryOffice.Services.Abstractions", "DeliveryOffice.Services.Abstractions\DeliveryOffice.Services.Abstractions.csproj", "{CC215735-F773-4203-9A7B-CC10F5CC5ECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.Repositories.Tests", "DeliveryOffice.DataAccess.Repositories.Tests\DeliveryOffice.DataAccess.Repositories.Tests.csproj", "{5F551037-65E7-4401-A941-2255875FBECF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryOffice.DataAccess.Tests", "DeliveryOffice.DataAccess.Tests\DeliveryOffice.DataAccess.Tests.csproj", "{05F96CDB-FD9A-4B65-9DBA-8843A7082D14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{CC215735-F773-4203-9A7B-CC10F5CC5ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC215735-F773-4203-9A7B-CC10F5CC5ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC215735-F773-4203-9A7B-CC10F5CC5ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F551037-65E7-4401-A941-2255875FBECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F551037-65E7-4401-A941-2255875FBECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F551037-65E7-4401-A941-2255875FBECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F551037-65E7-4401-A941-2255875FBECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F96CDB-FD9A-4B65-9DBA-8843A7082D14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F96CDB-FD9A-4B65-9DBA-8843A7082D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F96CDB-FD9A-4B65-9DBA-8843A7082D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F96CDB-FD9A-4B65-9DBA-8843A7082D14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
