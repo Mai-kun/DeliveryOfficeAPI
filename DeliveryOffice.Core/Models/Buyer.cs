@@ -13,7 +13,7 @@ public class Buyer : IEntityWithId, IAuditable, ISoftDelete
     /// <summary>
     ///     Имя покупателя
     /// </summary>
-    public required string Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     ///     Список счетов покупателя

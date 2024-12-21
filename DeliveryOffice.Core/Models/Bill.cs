@@ -18,7 +18,7 @@ public class Bill : IEntityWithId, IAuditable, ISoftDelete
     /// <summary>
     ///     Склад, где хранятся товары
     /// </summary>
-    public required string Warehouse { get; set; }
+    public string Warehouse { get; set; }
 
     /// <summary>
     ///     Общая сумма накладной
