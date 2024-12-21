@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DeliveryOffice.DataAccess.Repositories;
 
+/// <inheritdoc />
 public class SupplierReaderRepository : ISupplierReaderRepository
 {
     private readonly IDbReader reader;

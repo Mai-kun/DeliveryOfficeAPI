@@ -6,7 +6,7 @@ using DeliveryOffice.DataAccess.Abstractions;
 namespace DeliveryOffice.DataAccess.Repositories.Abstractions;
 
 /// <summary>
-///     Базовая реализация функционала резоитория для записи в БД
+///     Базовая реализация функционала репозитория для записи в БД
 /// </summary>
 public abstract class BaseWriteDbRepository<T> : IRepositoryWriter<T> where T : class
 {
