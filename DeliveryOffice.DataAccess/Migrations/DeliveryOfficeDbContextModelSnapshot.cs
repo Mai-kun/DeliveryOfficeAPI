@@ -64,8 +64,8 @@ namespace DeliveryOffice.DataAccess.Migrations
                     b.Property<Guid>("SupplierId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("TotalAmount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Warehouse")
                         .IsRequired()
@@ -130,8 +130,8 @@ namespace DeliveryOffice.DataAccess.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

@@ -1,4 +1,5 @@
-﻿using DeliveryOffice.Core.Models;
+﻿using System.Text.Json.Serialization;
+using DeliveryOffice.Core.Models;
 
 namespace DeliveryOffice.Services.Abstractions.Models.RequestModels;
 
@@ -10,12 +11,8 @@ public class BillRequest
     /// <summary>
     /// Идентификатор накладной
     /// </summary>
+    [JsonIgnore]
     public Guid Id { get; set; }
-
-    /// <summary>
-    ///     Дата накладной
-    /// </summary>
-    public DateTimeOffset Date { get; set; }
 
     /// <summary>
     ///     Склад, где хранятся товары

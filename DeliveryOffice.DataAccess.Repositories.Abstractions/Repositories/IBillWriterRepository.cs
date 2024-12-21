@@ -7,4 +7,5 @@ namespace DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 /// </summary>
 public interface IBillWriterRepository : IRepositoryWriter<Bill>
 {
+
 }

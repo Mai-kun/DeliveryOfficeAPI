@@ -18,12 +18,11 @@ public class BillReaderRepository : IBillReaderRepository
     Task<List<Bill>> IBillReaderRepository.GetAllAsync(CancellationToken cancellationToken)
     {
         return reader.Read<Bill>()
-                                 .NotDeleted()
-                                 .IgnoreAutoIncludes()
-                                 .Include(b => b.Supplier)
-                                 .Include(b => b.Buyer)
-                                 .Include(b => b.Products)
-                                 .ToListAsync(cancellationToken);
+                     .NotDeleted()
+                     .Include(b => b.Supplier)
+                     .Include(b => b.Buyer)
+                     .Include(b => b.Products)
+                     .ToListAsync(cancellationToken);
     }
 
     Task<Bill?> IBillReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
@@ -31,7 +30,6 @@ public class BillReaderRepository : IBillReaderRepository
         return reader.Read<Bill>()
                      .ById(id)
                      .NotDeleted()
-                     .IgnoreAutoIncludes()
                      .Include(b => b.Supplier)
                      .Include(b => b.Buyer)
                      .Include(b => b.Products)

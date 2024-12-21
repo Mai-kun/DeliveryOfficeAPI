@@ -19,10 +19,10 @@ public static class Program
         builder.Services.AddDbContext<DeliveryOfficeDbContext>(
             options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(DeliveryOfficeDbContext)));
+                options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(DeliveryOfficeDbContext)),
+                    sqlOptions => sqlOptions.EnableRetryOnFailure());
             });
         builder.Services.AddDataBaseDependencies();
-
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())

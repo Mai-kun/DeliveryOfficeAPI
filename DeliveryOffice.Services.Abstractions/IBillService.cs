@@ -21,7 +21,7 @@ public interface IBillService
     /// <summary>
     ///     Добавляет новый чек
     /// </summary>
-    Task AddBill(CreateBillRequest billRequest, CancellationToken cancellationToken);
+    Task AddBillAsync(CreateBillRequest billRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующий чек

@@ -1,5 +1,6 @@
 ﻿using DeliveryOffice.API.Common;
 using DeliveryOffice.Services.ServiceExceptions;
+using DeliveryOffice.Services.ServiceExceptions.ForBill;
 using DeliveryOffice.Services.ServiceExceptions.ForBuyer;
 using DeliveryOffice.Services.ServiceExceptions.ForProduct;
 using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
@@ -25,6 +26,9 @@ public class ApiExceptionFilter : IExceptionFilter
                 new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
 
             BuyerException exception => new ObjectResult(
+                new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
+
+            BillException exception => new ObjectResult(
                 new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
 
             ModelValidationException exception => new ObjectResult(

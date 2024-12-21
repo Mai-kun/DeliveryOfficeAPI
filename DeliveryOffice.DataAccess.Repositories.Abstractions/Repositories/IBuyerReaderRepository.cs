@@ -13,7 +13,12 @@ public interface IBuyerReaderRepository
     Task<List<Buyer>> GetAllWithBillsAsync(CancellationToken cancellationToken);
 
     /// <summary>
-    ///     Возвращает покупателя по его ID
+    ///     Возвращает покупателя по его ID вместе с его чеками
     /// </summary>
     Task<Buyer?> GetByIdWithBillAsync(Guid id, CancellationToken cancellationToken);
+
+    /// <summary>
+    ///     Возвращает покупателя по его ID
+    /// </summary>
+    Task<Buyer?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 }

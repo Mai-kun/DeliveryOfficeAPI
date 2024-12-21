@@ -35,6 +35,7 @@ public class DeliveryOfficeDbContext : DbContext, IDbWriter, IDbReader, IUnitOfW
     IQueryable<TEntity> IDbReader.Read<TEntity>()
         => base.Set<TEntity>()
                .AsNoTracking()
+               .IgnoreAutoIncludes()
                .AsQueryable();
 
     async Task<int> IUnitOfWork.SaveChangesAsync(CancellationToken cancellationToken)
@@ -47,4 +48,7 @@ public class DeliveryOfficeDbContext : DbContext, IDbWriter, IDbReader, IUnitOfW
 
         return count;
     }
+
+    void IUnitOfWork.Attach<TEntity>(TEntity entity)
+        => Set<TEntity>().Attach(entity);
 }
