@@ -34,11 +34,11 @@ DECLARE @Buyer3 UNIQUEIDENTIFIER = (SELECT Id FROM Buyers ORDER BY Id OFFSET 2 R
 DECLARE @Buyer4 UNIQUEIDENTIFIER = (SELECT Id FROM Buyers ORDER BY Id OFFSET 3 ROWS FETCH NEXT 1 ROWS ONLY);
 INSERT INTO Bills (Id, Date, Warehouse, TotalAmount, IsPaid, BuyerId, SupplierId, CreatedAt, ModifiedAt, IsDeleted)
 VALUES 
-(NEWID(), GETDATE(), 'Warehouse А', 500.00, 1, @Buyer1, @Supplier1, GETDATE(), NULL, 0),
-(NEWID(), GETDATE(), 'Warehouse Б', 100.00, 0, @Buyer2, @Supplier2, GETDATE(), NULL, 0),
-(NEWID(), GETDATE(), 'Warehouse В', 750.00, 1, @Buyer3, @Supplier3, GETDATE(), NULL, 0),
-(NEWID(), GETDATE(), 'Warehouse Г', 300.00, 0, @Buyer4, @Supplier4, GETDATE(), NULL, 0),
-(NEWID(), GETDATE(), 'Warehouse Д', 200.00, 1, @Buyer4, @Supplier5, GETDATE(), NULL, 0);
+(NEWID(), GETDATE(), 'Warehouse A', 500.00, 1, @Buyer1, @Supplier1, GETDATE(), NULL, 0),
+(NEWID(), GETDATE(), 'Warehouse B', 100.00, 0, @Buyer2, @Supplier2, GETDATE(), NULL, 0),
+(NEWID(), GETDATE(), 'Warehouse C', 750.00, 1, @Buyer3, @Supplier3, GETDATE(), NULL, 0),
+(NEWID(), GETDATE(), 'Warehouse D', 300.00, 0, @Buyer4, @Supplier4, GETDATE(), NULL, 0),
+(NEWID(), GETDATE(), 'Warehouse E', 200.00, 1, @Buyer4, @Supplier5, GETDATE(), NULL, 0);
 GO
 DECLARE @Bill1 UNIQUEIDENTIFIER = (SELECT Id FROM Bills ORDER BY Id OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY);
 DECLARE @Bill2 UNIQUEIDENTIFIER = (SELECT Id FROM Bills ORDER BY Id OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY);
