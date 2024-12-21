@@ -15,6 +15,10 @@ public class ProductRequestValidator : AbstractValidator<ProductRequest>
 
     public ProductRequestValidator()
     {
+        RuleFor(x => x.Id)
+            .NotEmpty()
+            .WithMessage("Id is required.");
+
         RuleFor(x => x.Name)
             .NotEmpty()
             .NotNull()
