@@ -29,7 +29,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IBuyerWriterRepository, BuyerWriterRepository>();
         services.AddScoped<IBuyerService, BuyerService>();
 
-        services.AddAutoMapper(typeof(AutoMapperProfile));
+        services.AddAutoMapper(typeof(AutoMapperResponseProfile), typeof(AutoMapperRequestProfile));
         services.AddScoped<IValidatorService, ApiValidatorService>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 

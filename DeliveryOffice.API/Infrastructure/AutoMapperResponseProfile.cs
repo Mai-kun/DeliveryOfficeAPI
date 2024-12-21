@@ -6,22 +6,16 @@ using DeliveryOffice.Services.Abstractions.Models.ResponseModels;
 namespace DeliveryOffice.API.Infrastructure;
 
 /// <inheritdoc />
-public class AutoMapperProfile : Profile
+public class AutoMapperResponseProfile : Profile
 {
-    public AutoMapperProfile()
+    public AutoMapperResponseProfile()
     {
         CreateMap<Supplier, SupplierResponse>()
             .ForMember(dest => dest.Bills, opt => opt.MapFrom(src => src.Bills.Select(b => b.Id)));
-        CreateMap<CreateSupplierRequest, Supplier>().ReverseMap();
-        CreateMap<SupplierRequest, Supplier>().ReverseMap();
 
         CreateMap<Product, ProductResponse>();
-        CreateMap<CreateProductRequest, Product>().ReverseMap();
-        CreateMap<ProductRequest, Product>().ReverseMap();
 
         CreateMap<Buyer, BuyerResponse>()
             .ForMember(dest => dest.Bills, opt => opt.MapFrom(src => src.Bills.Select(b => b.Id)));
-        CreateMap<CreateBuyerRequest, Buyer>().ReverseMap();
-        CreateMap<BuyerRequest, Buyer>().ReverseMap();
     }
 }
