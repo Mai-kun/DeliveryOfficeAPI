@@ -23,11 +23,6 @@ public class DeliveryOfficeDbContext : DbContext, IDbWriter, IDbReader, IUnitOfW
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ConfigurationAnchor).Assembly);
     }
 
-    public DbSet<Bill> Bills { get; init; }
-    public DbSet<Buyer> Buyers { get; init; }
-    public DbSet<Product> Products { get; init; }
-    public DbSet<Supplier> Suppliers { get; init; }
-
     void IDbWriter.Add<TEntity>(TEntity entity)
         => Set<TEntity>().Entry(entity).State = EntityState.Added;
 
@@ -40,6 +35,7 @@ public class DeliveryOfficeDbContext : DbContext, IDbWriter, IDbReader, IUnitOfW
     IQueryable<TEntity> IDbReader.Read<TEntity>()
         => base.Set<TEntity>()
                .AsNoTracking()
+               .IgnoreAutoIncludes()
                .AsQueryable();
 
     async Task<int> IUnitOfWork.SaveChangesAsync(CancellationToken cancellationToken)
@@ -52,4 +48,7 @@ public class DeliveryOfficeDbContext : DbContext, IDbWriter, IDbReader, IUnitOfW
 
         return count;
     }
+
+    void IUnitOfWork.Attach<TEntity>(TEntity entity)
+        => Set<TEntity>().Attach(entity);
 }

@@ -18,12 +18,12 @@ public class Bill : IEntityWithId, IAuditable, ISoftDelete
     /// <summary>
     ///     Склад, где хранятся товары
     /// </summary>
-    public required string Warehouse { get; set; }
+    public string Warehouse { get; set; }
 
     /// <summary>
     ///     Общая сумма накладной
     /// </summary>
-    public decimal TotalAmount { get; set; }
+    public int TotalAmount { get; set; }
 
     /// <summary>
     ///     Признак оплаты накладной

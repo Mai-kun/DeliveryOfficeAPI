@@ -30,7 +30,7 @@ public class Product : IEntityWithId, IAuditable, ISoftDelete
     /// <summary>
     ///     Цена товара
     /// </summary>
-    public decimal Price { get; set; }
+    public int Price { get; set; }
 
     /// <summary>
     ///     Список счетов

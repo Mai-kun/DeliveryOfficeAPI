@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DeliveryOffice.DataAccess.Repositories;
 
+/// <inheritdoc />
 public class SupplierReaderRepository : ISupplierReaderRepository
 {
     private readonly IDbReader reader;
@@ -18,16 +19,15 @@ public class SupplierReaderRepository : ISupplierReaderRepository
     {
         var result = await reader.Read<Supplier>()
                                  .NotDeleted()
-                                 .IgnoreAutoIncludes()
                                  .Include(s => s.Bills)
                                  .ToListAsync(cancellationToken);
 
         foreach (var supplier in result)
         {
             supplier.Bills = supplier.Bills
-                                           .AsQueryable()
-                                           .NotDeleted()
-                                           .ToList();
+                                     .AsQueryable()
+                                     .NotDeleted()
+                                     .ToList();
         }
 
         return result;
@@ -45,5 +45,13 @@ public class SupplierReaderRepository : ISupplierReaderRepository
 
         supplier.Bills = supplier.Bills.AsQueryable().NotDeleted().ToList();
         return supplier;
+    }
+
+    Task<Supplier?> ISupplierReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        return reader.Read<Supplier>()
+                     .ById(id)
+                     .NotDeleted()
+                     .FirstOrDefaultAsync(cancellationToken);
     }
 }

@@ -9,4 +9,6 @@ public interface IUnitOfWork
     ///     Сохраняет все изменения в БД
     /// </summary>
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
+    void Attach<TEntity>(TEntity entity) where TEntity : class;
 }

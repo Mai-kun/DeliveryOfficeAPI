@@ -36,8 +36,8 @@ static internal class SwaggerDocExtensions
         web.UseSwaggerUI(
             options =>
             {
-                options.SwaggerEndpoint($"{nameof(Supplier)}/swagger.json", "Поставщики");
                 options.SwaggerEndpoint($"{nameof(Bill)}/swagger.json", "Чеки");
+                options.SwaggerEndpoint($"{nameof(Supplier)}/swagger.json", "Поставщики");
                 options.SwaggerEndpoint($"{nameof(Product)}/swagger.json", "Продукты");
                 options.SwaggerEndpoint($"{nameof(Buyer)}/swagger.json", "Покупатели");
             });

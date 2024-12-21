@@ -25,7 +25,15 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IProductWriterRepository, ProductWriterRepository>();
         services.AddScoped<IProductsService, ProductsService>();
 
-        services.AddAutoMapper(typeof(AutoMapperProfile));
+        services.AddScoped<IBuyerReaderRepository, BuyerReaderRepository>();
+        services.AddScoped<IBuyerWriterRepository, BuyerWriterRepository>();
+        services.AddScoped<IBuyerService, BuyerService>();
+
+        services.AddScoped<IBillReaderRepository, BillReaderRepository>();
+        services.AddScoped<IBillWriterRepository, BillWriterRepository>();
+        services.AddScoped<IBillService, BillService>();
+
+        services.AddAutoMapper(typeof(AutoMapperResponseProfile), typeof(AutoMapperRequestProfile));
         services.AddScoped<IValidatorService, ApiValidatorService>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 

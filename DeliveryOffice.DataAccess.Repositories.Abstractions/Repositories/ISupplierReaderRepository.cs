@@ -13,7 +13,12 @@ public interface ISupplierReaderRepository
     Task<List<Supplier>> GetAllWithBillsAsync(CancellationToken cancellationToken);
 
     /// <summary>
-    ///     Возвращает поставщика по его ID
+    ///     Возвращает поставщика по его ID вместе с его чеками
     /// </summary>
     Task<Supplier?> GetByIdWithBillsAsync(Guid id, CancellationToken cancellationToken);
+
+    /// <summary>
+    ///     Возвращает поставщика по его ID
+    /// </summary>
+    Task<Supplier?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 }

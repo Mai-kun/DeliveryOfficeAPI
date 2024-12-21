@@ -13,12 +13,12 @@ public class Supplier : IEntityWithId, IAuditable, ISoftDelete
     /// <summary>
     ///     Наименование поставщика (компании)
     /// </summary>
-    public required string Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     ///     Адрес поставщика
     /// </summary>
-    public required string Address { get; set; }
+    public string Address { get; set; }
 
     /// <summary>
     ///     Список счетов поставщика

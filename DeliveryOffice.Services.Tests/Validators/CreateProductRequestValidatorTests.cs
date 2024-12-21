@@ -1,4 +1,4 @@
-﻿using DeliveryOffice.API.Models.RequestModels;
+﻿using DeliveryOffice.Services.Abstractions.Models.RequestModels;
 using DeliveryOffice.Services.Validators.Product;
 using FluentValidation.TestHelper;
 using Xunit;
@@ -10,8 +10,11 @@ namespace DeliveryOffice.Services.Tests.Validators;
 /// </summary>
 public class CreateProductRequestValidatorTests
 {
-    private readonly CreateProductRequestValidator validator = new ();
+    private readonly CreateProductRequestValidator validator = new();
 
+    /// <summary>
+    ///     Получение ошибки при превышении ограничения строки
+    /// </summary>
     [Fact]
     public void ShouldHaveValidationErrorForMaximumLength()
     {
@@ -29,6 +32,9 @@ public class CreateProductRequestValidatorTests
         result.ShouldHaveValidationErrorFor(member => member.Unit);
     }
 
+    /// <summary>
+    ///     Получение ошибки при работе с null
+    /// </summary>
     [Fact]
     public void ShouldHaveValidationErrorForNull()
     {
@@ -46,6 +52,9 @@ public class CreateProductRequestValidatorTests
         result.ShouldHaveValidationErrorFor(member => member.Unit);
     }
 
+    /// <summary>
+    ///     Получение ошибки при пустой строки
+    /// </summary>
     [Fact]
     public void ShouldHaveValidationErrorForEmpty()
     {
@@ -63,6 +72,9 @@ public class CreateProductRequestValidatorTests
         result.ShouldHaveValidationErrorFor(member => member.Unit);
     }
 
+    /// <summary>
+    ///     Получение ошибки на минимальное ограничение строки
+    /// </summary>
     [Fact]
     public void ShouldHaveValidationErrorForMinimumValue()
     {

@@ -105,6 +105,7 @@ resharper_trailing_comma_in_multiline_lists = true
 resharper_trailing_comma_in_singleline_lists = true
 resharper_use_heuristics_for_body_style = true
 resharper_use_indent_from_vs = false
+resharper_wrap_object_and_collection_initializer_style = chop_always
 
 # ReSharper inspection severities
 resharper_arrange_redundant_parentheses_highlighting = hint
