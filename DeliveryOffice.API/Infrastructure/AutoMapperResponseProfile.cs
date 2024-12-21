@@ -17,5 +17,14 @@ public class AutoMapperResponseProfile : Profile
 
         CreateMap<Buyer, BuyerResponse>()
             .ForMember(dest => dest.Bills, opt => opt.MapFrom(src => src.Bills.Select(b => b.Id)));
+
+        CreateMap<Bill, BillResponse>()
+            .ForMember(dest => dest.ProductNames, opt => opt.MapFrom(src => src.Products.Select(p => p.Name)))
+            .ForMember(
+                dest => dest.BuyerName,
+                opt => opt.MapFrom(src => src.Buyer != null ? src.Buyer.Name : "Покупатель не найден"))
+            .ForMember(
+                dest => dest.SupplierName,
+                opt => opt.MapFrom(src => src.Supplier != null ? src.Supplier.Name : "Поставщик не найден"));
     }
 }

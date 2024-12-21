@@ -16,5 +16,8 @@ public class AutoMapperRequestProfile : Profile
 
         CreateMap<CreateBuyerRequest, Buyer>().ReverseMap();
         CreateMap<BuyerRequest, Buyer>().ReverseMap();
+
+        CreateMap<CreateBillRequest, Bill>().ReverseMap();
+        CreateMap<BillRequest, Bill>().ReverseMap();
     }
 }

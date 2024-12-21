@@ -31,11 +31,11 @@ public class BuyerService : IBuyerService
         return buyerReaderRepository.GetAllWithBillsAsync(cancellationToken);
     }
 
-    async Task<Buyer> IBuyerService.GetBuyerByIdWithBillsAsync(Guid productId, CancellationToken cancellationToken)
+    async Task<Buyer> IBuyerService.GetBuyerByIdWithBillsAsync(Guid buyerId, CancellationToken cancellationToken)
     {
-        var result = await buyerReaderRepository.GetByIdWithBillAsync(productId, cancellationToken);
+        var result = await buyerReaderRepository.GetByIdWithBillAsync(buyerId, cancellationToken);
         if (result is null)
-            throw new BuyerNotFoundException($"Buyer with id: {productId} was not found");
+            throw new BuyerNotFoundException($"Buyer with id: {buyerId} was not found");
 
         return result;
     }
