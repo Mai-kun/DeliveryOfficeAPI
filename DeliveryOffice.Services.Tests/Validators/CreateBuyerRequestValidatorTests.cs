@@ -1,16 +1,16 @@
 ﻿using DeliveryOffice.Services.Abstractions.Models.RequestModels;
-using DeliveryOffice.Services.Validators.Product;
+using DeliveryOffice.Services.Validators.Buyer;
 using FluentValidation.TestHelper;
 using Xunit;
 
 namespace DeliveryOffice.Services.Tests.Validators;
 
 /// <summary>
-///     Тесты для <see cref="CreateProductRequestValidator" />
+///     Тесты для <see cref="CreateBuyerRequestValidator" />
 /// </summary>
-public class CreateProductRequestValidatorTests
+public class CreateBuyerRequestValidatorTests
 {
-    private readonly CreateProductRequestValidator validator = new();
+    private readonly CreateBuyerRequestValidator validator = new();
 
     /// <summary>
     ///     Получение ошибки при превышении ограничения строки
@@ -18,10 +18,9 @@ public class CreateProductRequestValidatorTests
     [Fact]
     public void ShouldHaveValidationErrorForMaximumLength()
     {
-        var model = new CreateProductRequest
+        var model = new CreateBuyerRequest
         {
             Name = new string('a', 300),
-            Unit = new string('a', 100),
         };
 
         //Act
@@ -29,7 +28,6 @@ public class CreateProductRequestValidatorTests
 
         //Assert
         result.ShouldHaveValidationErrorFor(member => member.Name);
-        result.ShouldHaveValidationErrorFor(member => member.Unit);
     }
 
     /// <summary>
@@ -38,10 +36,9 @@ public class CreateProductRequestValidatorTests
     [Fact]
     public void ShouldHaveValidationErrorForNull()
     {
-        var model = new CreateProductRequest
+        var model = new CreateBuyerRequest
         {
             Name = null,
-            Unit = null,
         };
 
         //Act
@@ -49,7 +46,6 @@ public class CreateProductRequestValidatorTests
 
         //Assert
         result.ShouldHaveValidationErrorFor(member => member.Name);
-        result.ShouldHaveValidationErrorFor(member => member.Unit);
     }
 
     /// <summary>
@@ -58,10 +54,9 @@ public class CreateProductRequestValidatorTests
     [Fact]
     public void ShouldHaveValidationErrorForEmpty()
     {
-        var model = new CreateProductRequest
+        var model = new CreateBuyerRequest
         {
             Name = string.Empty,
-            Unit = string.Empty,
         };
 
         //Act
@@ -69,27 +64,6 @@ public class CreateProductRequestValidatorTests
 
         //Assert
         result.ShouldHaveValidationErrorFor(member => member.Name);
-        result.ShouldHaveValidationErrorFor(member => member.Unit);
-    }
-
-    /// <summary>
-    ///     Получение ошибки на минимальное ограничение строки
-    /// </summary>
-    [Fact]
-    public void ShouldHaveValidationErrorForMinimumValue()
-    {
-        var model = new CreateProductRequest
-        {
-            Quantity = -100,
-            Price = -50,
-        };
-
-        //Act
-        var result = validator.TestValidate(model);
-
-        //Assert
-        result.ShouldHaveValidationErrorFor(member => member.Quantity);
-        result.ShouldHaveValidationErrorFor(member => member.Price);
     }
 
     /// <summary>
@@ -98,12 +72,9 @@ public class CreateProductRequestValidatorTests
     [Fact]
     public void ShouldHaveNoErrors()
     {
-        var model = new CreateProductRequest
+        var model = new CreateBuyerRequest
         {
             Name = "Platonist",
-            Quantity = 50,
-            Unit = "kg",
-            Price = 25,
         };
 
         //Act
@@ -111,8 +82,5 @@ public class CreateProductRequestValidatorTests
 
         //Assert
         result.ShouldNotHaveValidationErrorFor(member => member.Name);
-        result.ShouldNotHaveValidationErrorFor(member => member.Quantity);
-        result.ShouldNotHaveValidationErrorFor(member => member.Unit);
-        result.ShouldNotHaveValidationErrorFor(member => member.Price);
     }
 }

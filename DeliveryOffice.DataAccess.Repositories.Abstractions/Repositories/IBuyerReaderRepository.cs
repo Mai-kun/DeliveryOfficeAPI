@@ -10,10 +10,10 @@ public interface IBuyerReaderRepository
     /// <summary>
     ///     Возвращает список всех покупателей
     /// </summary>
-    Task<List<Buyer>> GetAllAsync(CancellationToken cancellationToken);
+    Task<List<Buyer>> GetAllWithBillsAsync(CancellationToken cancellationToken);
 
     /// <summary>
     ///     Возвращает покупателя по его ID
     /// </summary>
-    Task<Buyer?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<Buyer?> GetByIdWithBillAsync(Guid id, CancellationToken cancellationToken);
 }

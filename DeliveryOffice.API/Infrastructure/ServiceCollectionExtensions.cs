@@ -27,6 +27,7 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IBuyerReaderRepository, BuyerReaderRepository>();
         services.AddScoped<IBuyerWriterRepository, BuyerWriterRepository>();
+        services.AddScoped<IBuyerService, BuyerService>();
 
         services.AddAutoMapper(typeof(AutoMapperProfile));
         services.AddScoped<IValidatorService, ApiValidatorService>();

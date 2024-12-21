@@ -18,5 +18,10 @@ public class AutoMapperProfile : Profile
         CreateMap<Product, ProductResponse>();
         CreateMap<CreateProductRequest, Product>().ReverseMap();
         CreateMap<ProductRequest, Product>().ReverseMap();
+
+        CreateMap<Buyer, BuyerResponse>()
+            .ForMember(dest => dest.Bills, opt => opt.MapFrom(src => src.Bills.Select(b => b.Id)));
+        CreateMap<CreateBuyerRequest, Buyer>().ReverseMap();
+        CreateMap<BuyerRequest, Buyer>().ReverseMap();
     }
 }

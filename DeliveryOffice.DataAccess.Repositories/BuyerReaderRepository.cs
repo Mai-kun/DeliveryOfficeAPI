@@ -14,7 +14,7 @@ public class BuyerReaderRepository : IBuyerReaderRepository
         this.reader = reader;
     }
 
-    public async Task<List<Buyer>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<Buyer>> GetAllWithBillsAsync(CancellationToken cancellationToken)
     {
         var result = await reader.Read<Buyer>()
                                  .NotDeleted()
@@ -33,7 +33,7 @@ public class BuyerReaderRepository : IBuyerReaderRepository
         return result;
     }
 
-    public async Task<Buyer?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<Buyer?> GetByIdWithBillAsync(Guid id, CancellationToken cancellationToken)
     {
         var buyer = await reader.Read<Buyer>()
                                 .ById(id)
