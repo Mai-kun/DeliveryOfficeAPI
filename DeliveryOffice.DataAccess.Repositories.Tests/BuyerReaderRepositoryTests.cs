@@ -1,18 +1,18 @@
-using DeliveryOffice.Core.Models;
+﻿using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
+using DeliveryOffice.DataAccess.Tests;
 using FluentAssertions;
 using Xunit;
-using DeliveryOffice.DataAccess.Tests;
 
 namespace DeliveryOffice.DataAccess.Repositories.Tests;
 
-public class SupplierReaderRepositoryTests : BaseAppContextTest
+public class BuyerReaderRepositoryTests : BaseAppContextTest
 {
-    private readonly ISupplierReaderRepository repository;
+    private readonly IBuyerReaderRepository repository;
 
-    public SupplierReaderRepositoryTests()
+    public BuyerReaderRepositoryTests()
     {
-        repository = new SupplierReaderRepository(Context);
+        repository = new BuyerReaderRepository(Context);
     }
 
     [Fact]
@@ -29,25 +29,25 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
     public async Task GetAllWithBillsShouldReturnValuesWithBills()
     {
         // Arrange
-        var supplier1 = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>(
-            s =>
+        var buyer1 = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>(
+            b =>
             {
-                s.Bills = new List<Bill>
+                b.Bills = new List<Bill>
                 {
                     Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Bill>(),
                 };
             });
-        var supplier2 = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>(s => s.IsDeleted = true);
-        var supplier3 = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>(
-            s =>
+        var buyer2 = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>(b => b.IsDeleted = true);
+        var buyer3 = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>(
+            b =>
             {
-                s.Bills = new List<Bill>
+                b.Bills = new List<Bill>
                 {
                     Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Bill>(bill => bill.IsDeleted = true),
                 };
             });
 
-        await Context.AddRangeAsync(supplier1, supplier2, supplier3);
+        await Context.AddRangeAsync(buyer1, buyer2, buyer3);
         await Context.SaveChangesAsync(Token);
 
         // Act
@@ -56,28 +56,28 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
         // Assert
         result.Should().NotBeEmpty()
               .And.HaveCount(2)
-              .And.ContainSingle(s => s.Id == supplier1.Id && s.Bills.Count == 1)
-              .And.ContainSingle(s => s.Id == supplier3.Id && s.Bills.Count == 0);
+              .And.ContainSingle(b => b.Id == buyer1.Id && b.Bills.Count == 1)
+              .And.ContainSingle(b => b.Id == buyer3.Id && b.Bills.Count == 0);
     }
 
     [Fact]
-    public async Task GetByIdWithBillsShouldReturnNull()
+    public async Task GetByIdWithBillShouldReturnNull()
     {
         // Arrange
         var id = Guid.NewGuid();
-        var supplier = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>(
-            s =>
+        var buyer = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>(
+            b =>
             {
-                s.Id = id;
-                s.IsDeleted = true;
+                b.Id = id;
+                b.IsDeleted = true;
             });
 
-        await Context.AddAsync(supplier);
+        await Context.AddAsync(buyer);
         await Context.SaveChangesAsync(Token);
 
         // Act
-        var result1 = await repository.GetByIdWithBillsAsync(Guid.NewGuid(), Token);
-        var result2 = await repository.GetByIdWithBillsAsync(id, Token);
+        var result1 = await repository.GetByIdWithBillAsync(Guid.NewGuid(), Token);
+        var result2 = await repository.GetByIdWithBillAsync(id, Token);
 
         // Assert
         result1.Should().BeNull();
@@ -85,13 +85,13 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
     }
 
     [Fact]
-    public async Task GetByIdWithBillsShouldReturnValueWithBills()
+    public async Task GetByIdWithBillShouldReturnValueWithBills()
     {
         // Arrange
-        var supplier = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>(
-            s =>
+        var buyer = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>(
+            b =>
             {
-                s.Bills = new List<Bill>
+                b.Bills = new List<Bill>
                 {
                     Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Bill>(),
                     Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Bill>(bill => bill.IsDeleted = true),
@@ -99,14 +99,14 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
                 };
             });
 
-        await Context.AddAsync(supplier);
+        await Context.AddAsync(buyer);
         await Context.SaveChangesAsync(Token);
 
         // Act
-        var result = await repository.GetByIdWithBillsAsync(supplier.Id, Token);
+        var result = await repository.GetByIdWithBillAsync(buyer.Id, Token);
 
         // Assert
-        result.Should().NotBeNull().And.BeEquivalentTo(supplier, options => options.Excluding(s => s.Bills));
+        result.Should().NotBeNull().And.BeEquivalentTo(buyer, options => options.Excluding(b => b.Bills));
         result!.Bills.Should().NotBeNull().And.HaveCount(2);
     }
 
@@ -115,14 +115,14 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
     {
         // Arrange
         var id = Guid.NewGuid();
-        var supplier = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>(
-            s =>
+        var buyer = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>(
+            b =>
             {
-                s.Id = id;
-                s.IsDeleted = true;
+                b.Id = id;
+                b.IsDeleted = true;
             });
 
-        await Context.AddAsync(supplier);
+        await Context.AddAsync(buyer);
         await Context.SaveChangesAsync(Token);
 
         // Act
@@ -138,15 +138,15 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
     public async Task GetByIdShouldReturnValue()
     {
         // Arrange
-        var supplier = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>();
+        var buyer = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>();
 
-        await Context.AddAsync(supplier);
+        await Context.AddAsync(buyer);
         await Context.SaveChangesAsync(Token);
 
         // Act
-        var result = await repository.GetByIdAsync(supplier.Id, Token);
+        var result = await repository.GetByIdAsync(buyer.Id, Token);
 
         // Assert
-        result.Should().NotBeNull().And.BeEquivalentTo(supplier);
+        result.Should().NotBeNull().And.BeEquivalentTo(buyer);
     }
 }
