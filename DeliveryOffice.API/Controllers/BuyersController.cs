@@ -52,7 +52,7 @@ public class BuyersController : ControllerBase
     ///     Добавление нового покупателя
     /// </summary>
     [HttpPost]
-    public IActionResult AddBuyer(CreateBuyerRequest buyerRequest, CancellationToken cancellationToken)
+    public IActionResult AddBuyer(BuyerRequest buyerRequest, CancellationToken cancellationToken)
     {
         validatorService.Validate(buyerRequest);
         buyerService.AddBuyer(buyerRequest, cancellationToken);

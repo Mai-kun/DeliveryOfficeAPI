@@ -1,7 +1,6 @@
-﻿namespace DeliveryOffice.Services.Tests
+﻿namespace DeliveryOffice.Services.Tests;
+
+public class ProductsServiceTests
 {
-    public class ProductsServiceTests
-    {
-        // TODO ProductsServiceTests
-    }
+    // TODO ProductsServiceTests
 }

@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions
     public static void AddDependence(this IServiceCollection services)
     {
         services.AddScoped<ISupplierReaderRepository, SupplierReaderRepository>();
-        services.AddScoped<ISupplierWriterRepository, SupplierWriteRepository>();
+        services.AddScoped<ISupplierWriterRepository, SupplierWriterRepository>();
         services.AddScoped<ISuppliersService, SuppliersService>();
 
         services.AddScoped<IProductReaderRepository, ProductReaderRepository>();

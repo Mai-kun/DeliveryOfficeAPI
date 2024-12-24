@@ -42,7 +42,7 @@ public class ProductsService : IProductsService
         return result;
     }
 
-    Task IProductsService.AddProduct(CreateProductRequest productRequest, CancellationToken cancellationToken)
+    Task IProductsService.AddProduct(ProductRequest productRequest, CancellationToken cancellationToken)
     {
         var product = mapper.Map<Product>(productRequest);
         productWriterRepository.Add(product);

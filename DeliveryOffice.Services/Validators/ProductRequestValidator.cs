@@ -1,20 +1,24 @@
 ﻿using DeliveryOffice.Services.Abstractions.Models.RequestModels;
 using FluentValidation;
 
-namespace DeliveryOffice.Services.Validators.Product;
+namespace DeliveryOffice.Services.Validators;
 
 /// <summary>
-///     Содержит правила валидации для модели <see cref="CreateProductRequest" />
+///     Содержит правила валидации для модели <see cref="ProductRequest" />
 /// </summary>
-public class CreateProductRequestValidator : AbstractValidator<CreateProductRequest>
+public class ProductRequestValidator : AbstractValidator<ProductRequest>
 {
     private const int NameMaximumLength = 255;
     private const int UnitMaximumLength = 50;
     private const int QuantityMinimumValue = 0;
     private const int PriceMinimumValue = 0;
 
-    public CreateProductRequestValidator()
+    public ProductRequestValidator()
     {
+        RuleFor(x => x.Id)
+            .NotEmpty()
+            .WithMessage("Id is required.");
+
         RuleFor(x => x.Name)
             .NotEmpty()
             .NotNull()

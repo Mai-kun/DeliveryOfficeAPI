@@ -6,9 +6,9 @@ using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 
 namespace DeliveryOffice.DataAccess.Repositories;
 
-public class SupplierWriteRepository : BaseWriteDbRepository<Supplier>, ISupplierWriterRepository
+public class SupplierWriterRepository : BaseWriteDbRepository<Supplier>, ISupplierWriterRepository
 {
-    public SupplierWriteRepository(IDbWriter writer, IDateTimeProvider dateTimeProvider)
+    public SupplierWriterRepository(IDbWriter writer, IDateTimeProvider dateTimeProvider)
         : base(writer, dateTimeProvider)
     {
     }
