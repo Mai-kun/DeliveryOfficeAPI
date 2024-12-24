@@ -1,3 +1,57 @@
+```mermaid
+erDiagram
+    Bills {
+        guid Id PK
+        datetimeoffset Date
+        string Warehouse
+        int TotalAmount
+        boolean IsPaid
+        guid BuyerId FK
+        guid SupplierId FK
+        datetimeoffset CreatedAt
+        datetimeoffset ModifiedAt
+        boolean IsDeleted
+    }
+
+    Products {
+        guid Id PK
+        string Name
+        int Quantity
+        string Unit
+        int Price
+        datetimeoffset CreatedAt
+        datetimeoffset ModifiedAt
+        boolean IsDeleted
+    }
+
+    BillProduct {
+      guid BillsId PK
+      guid ProductsId PK
+    }
+
+    Buyers {
+        guid Id PK
+        string Name
+        datetimeoffset CreatedAt
+        datetimeoffset ModifiedAt
+        boolean IsDeleted
+    }
+
+    Suppliers {
+        guid Id PK
+        string Name
+        string Address
+        datetimeoffset CreatedAt
+        datetimeoffset ModifiedAt
+        boolean IsDeleted
+    }
+
+    Buyers ||--o{ Bills : ""
+    Suppliers ||--o{ Bills : ""
+    Bills ||--o{ BillProduct : ""
+    Products ||--o{ BillProduct : ""
+```
+
 ```SQL
 INSERT INTO Suppliers (Id, Name, Address, CreatedAt, ModifiedAt, IsDeleted)
 VALUES 
