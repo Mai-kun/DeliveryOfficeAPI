@@ -75,7 +75,6 @@ Delivery Office API — это RESTful API, разработанное на ASP.
 ### 1. Клонирование репозитория
 ```bash
 git clone https://github.com/Mai-kun/DeliveryOfficeAPI.git
-cd delivery-office-api
 ```
 
 ### 2. Выполните миграции для создания базы данных:
