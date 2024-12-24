@@ -21,7 +21,7 @@ public interface IProductsService
     /// <summary>
     ///     Добавляет новый продукт
     /// </summary>
-    Task AddProduct(CreateProductRequest productRequest, CancellationToken cancellationToken);
+    Task AddProduct(ProductRequest productRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующий продукт

@@ -8,13 +8,10 @@ public class AutoMapperRequestProfile : Profile
 {
     public AutoMapperRequestProfile()
     {
-        CreateMap<CreateSupplierRequest, Supplier>().ReverseMap();
         CreateMap<SupplierRequest, Supplier>().ReverseMap();
 
-        CreateMap<CreateProductRequest, Product>().ReverseMap();
         CreateMap<ProductRequest, Product>().ReverseMap();
 
-        CreateMap<CreateBuyerRequest, Buyer>().ReverseMap();
         CreateMap<BuyerRequest, Buyer>().ReverseMap();
 
         CreateMap<CreateBillRequest, Bill>()

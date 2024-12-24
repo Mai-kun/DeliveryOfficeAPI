@@ -52,7 +52,7 @@ public class ProductsController : ControllerBase
     ///     Добавление нового продукта
     /// </summary>
     [HttpPost]
-    public IActionResult AddProduct(CreateProductRequest productRequest, CancellationToken cancellationToken)
+    public IActionResult AddProduct(ProductRequest productRequest, CancellationToken cancellationToken)
     {
         validatorService.Validate(productRequest);
         productsService.AddProduct(productRequest, cancellationToken);

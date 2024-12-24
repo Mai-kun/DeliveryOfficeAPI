@@ -1,17 +1,18 @@
 ﻿using DeliveryOffice.Services.Abstractions.Models.RequestModels;
 using FluentValidation;
 
-namespace DeliveryOffice.Services.Validators.Buyer;
+namespace DeliveryOffice.Services.Validators;
 
-/// <summary>
-///     Содержит правила валидации для модели <see cref="CreateBuyerRequest" />
-/// </summary>
-public class CreateBuyerRequestValidator : AbstractValidator<CreateBuyerRequest>
+public class BuyerRequestValidator : AbstractValidator<BuyerRequest>
 {
     private const int MaximumLength = 255;
 
-    public CreateBuyerRequestValidator()
+    public BuyerRequestValidator()
     {
+        RuleFor(x => x.Id)
+            .NotEmpty()
+            .WithMessage("Id is required.");
+
         RuleFor(x => x.Name)
             .NotEmpty()
             .NotNull()

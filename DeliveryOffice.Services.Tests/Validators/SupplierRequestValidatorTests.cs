@@ -1,16 +1,16 @@
-﻿using DeliveryOffice.Services.Abstractions.Models.RequestModels;
-using DeliveryOffice.Services.Validators.Buyer;
+using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Validators;
 using FluentValidation.TestHelper;
 using Xunit;
 
 namespace DeliveryOffice.Services.Tests.Validators;
 
 /// <summary>
-///     Тесты для <see cref="CreateBuyerRequestValidator" />
+///     Тесты для <see cref="CreateSupplierRequestValidator" />
 /// </summary>
-public class CreateBuyerRequestValidatorTests
+public class SupplierRequestValidatorTests
 {
-    private readonly CreateBuyerRequestValidator validator = new();
+    private readonly SupplierRequestValidator validator = new();
 
     /// <summary>
     ///     Получение ошибки при превышении ограничения строки
@@ -18,16 +18,15 @@ public class CreateBuyerRequestValidatorTests
     [Fact]
     public void ShouldHaveValidationErrorForMaximumLength()
     {
-        var model = new CreateBuyerRequest
-        {
-            Name = new string('a', 300),
-        };
+        // Arrange
+        var model = new SupplierRequest { Name = new string('*', 300), };
 
         //Act
         var result = validator.TestValidate(model);
 
         //Assert
         result.ShouldHaveValidationErrorFor(member => member.Name);
+        result.ShouldHaveValidationErrorFor(member => member.Address);
     }
 
     /// <summary>
@@ -36,16 +35,15 @@ public class CreateBuyerRequestValidatorTests
     [Fact]
     public void ShouldHaveValidationErrorForNull()
     {
-        var model = new CreateBuyerRequest
-        {
-            Name = null,
-        };
+        // Arrange
+        var model = new SupplierRequest { Name = null, Address = null, };
 
         //Act
         var result = validator.TestValidate(model);
 
         //Assert
         result.ShouldHaveValidationErrorFor(member => member.Name);
+        result.ShouldHaveValidationErrorFor(member => member.Address);
     }
 
     /// <summary>
@@ -54,16 +52,15 @@ public class CreateBuyerRequestValidatorTests
     [Fact]
     public void ShouldHaveValidationErrorForEmpty()
     {
-        var model = new CreateBuyerRequest
-        {
-            Name = string.Empty,
-        };
+        // Arrange
+        var model = new SupplierRequest { Name = string.Empty, Address = string.Empty, };
 
         //Act
         var result = validator.TestValidate(model);
 
         //Assert
         result.ShouldHaveValidationErrorFor(member => member.Name);
+        result.ShouldHaveValidationErrorFor(member => member.Address);
     }
 
     /// <summary>
@@ -72,15 +69,14 @@ public class CreateBuyerRequestValidatorTests
     [Fact]
     public void ShouldHaveNoErrors()
     {
-        var model = new CreateBuyerRequest
-        {
-            Name = "Platonist",
-        };
+        // Arrange
+        var model = new SupplierRequest { Name = "name", Address = "address", };
 
         //Act
         var result = validator.TestValidate(model);
 
         //Assert
         result.ShouldNotHaveValidationErrorFor(member => member.Name);
+        result.ShouldNotHaveValidationErrorFor(member => member.Address);
     }
 }

@@ -83,7 +83,7 @@ resharper_braces_for_ifelse = not_required
 resharper_csharp_align_multiline_expression = false
 resharper_csharp_align_multiline_for_stmt = false
 resharper_csharp_wrap_after_declaration_lpar = true
-resharper_csharp_wrap_after_invocation_lpar = true
+resharper_csharp_wrap_after_invocation_lpar = false
 resharper_csharp_wrap_before_declaration_rpar = true
 resharper_default_value_when_type_evident = default_expression
 resharper_default_value_when_type_not_evident = default_expression
@@ -100,11 +100,14 @@ resharper_instance_members_qualify_declared_in = base_class
 resharper_keep_existing_enum_arrangement = true
 resharper_method_or_operator_body = block_body
 resharper_no_indent_inside_if_element_longer_than = 2147483647
+resharper_parentheses_redundancy_style = remove
 resharper_show_autodetect_configure_formatting_tip = false
 resharper_trailing_comma_in_multiline_lists = true
 resharper_trailing_comma_in_singleline_lists = true
 resharper_use_heuristics_for_body_style = true
 resharper_use_indent_from_vs = false
+resharper_wrap_after_invocation_lpar = false
+resharper_wrap_chained_binary_expressions = chop_if_long
 resharper_wrap_object_and_collection_initializer_style = chop_always
 
 # ReSharper inspection severities

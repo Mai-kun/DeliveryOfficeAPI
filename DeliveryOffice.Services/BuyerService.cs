@@ -40,7 +40,7 @@ public class BuyerService : IBuyerService
         return result;
     }
 
-    Task IBuyerService.AddBuyer(CreateBuyerRequest buyerRequest, CancellationToken cancellationToken)
+    Task IBuyerService.AddBuyer(BuyerRequest buyerRequest, CancellationToken cancellationToken)
     {
         var buyer = mapper.Map<Buyer>(buyerRequest);
         buyerWriterRepository.Add(buyer);

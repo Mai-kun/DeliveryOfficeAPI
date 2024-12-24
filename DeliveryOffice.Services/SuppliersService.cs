@@ -41,7 +41,9 @@ public class SuppliersService : ISuppliersService
         return result;
     }
 
-    Task ISuppliersService.AddSupplier(CreateSupplierRequest supplierRequest, CancellationToken cancellationToken)
+    Task ISuppliersService.AddSupplier(
+        SupplierRequest supplierRequest, CancellationToken cancellationToken
+    )
     {
         var supplier = mapper.Map<Supplier>(supplierRequest);
         supplierWriterRepository.Add(supplier);

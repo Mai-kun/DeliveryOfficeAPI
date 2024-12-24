@@ -21,7 +21,7 @@ public interface ISuppliersService
     /// <summary>
     ///     Добавляет нового поставщика
     /// </summary>
-    Task AddSupplier(CreateSupplierRequest supplierModel, CancellationToken cancellationToken);
+    Task AddSupplier(SupplierRequest supplierModel, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующего поставщика

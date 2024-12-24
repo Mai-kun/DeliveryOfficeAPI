@@ -52,7 +52,7 @@ public class SuppliersController : ControllerBase
     ///     Добавление нового поставщика
     /// </summary>
     [HttpPost]
-    public IActionResult AddSupplier(CreateSupplierRequest supplierRequest, CancellationToken cancellationToken)
+    public IActionResult AddSupplier(SupplierRequest supplierRequest, CancellationToken cancellationToken)
     {
         validatorService.Validate(supplierRequest);
         suppliersService.AddSupplier(supplierRequest, cancellationToken);
