@@ -41,7 +41,7 @@ public class ApiExceptionFilter : IExceptionFilter
             _ => new ObjectResult(
                 new ErrorResponse<string>
                 {
-                    Message = context.Exception.Message, StatusCode = StatusCodes.Status400BadRequest,
+                    Message = context.Exception.Message, StatusCode = StatusCodes.Status500InternalServerError,
                 }),
         };
 

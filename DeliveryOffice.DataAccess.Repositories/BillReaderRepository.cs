@@ -25,9 +25,9 @@ public class BillReaderRepository : IBillReaderRepository
                      .ToListAsync(cancellationToken);
     }
 
-    Task<Bill?> IBillReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    async Task<Bill?> IBillReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return reader.Read<Bill>()
+        return await reader.Read<Bill>()
                      .ById(id)
                      .NotDeleted()
                      .Include(b => b.Supplier)

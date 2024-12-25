@@ -13,40 +13,49 @@ public abstract class SharedServiceFixture : BaseAppContextTest
     public IBuyerService BuyerService { get; }
     public IBillService BillService { get; }
 
-    public Mock<IUnitOfWork> UnitOfWorkMock { get; }
-
     protected SharedServiceFixture()
     {
-        UnitOfWorkMock = new Mock<IUnitOfWork>();
+        var supplierReaderRepository = new SupplierReaderRepository(Context);
+        var supplierWriterRepository = new SupplierWriterRepository(Context, DateTimeProvider);
+
+        var productReaderRepository = new ProductReaderRepository(Context);
+        var productWriterRepository = new ProductWriterRepository(Context, DateTimeProvider);
+
+        var buyerReaderRepository = new BuyerReaderRepository(Context);
+        var buyerWriterRepository = new BuyerWriterRepository(Context, DateTimeProvider);
+
+        var billReaderRepository = new BillReaderRepository(Context);
+        var billWriterRepository = new BillWriterRepository(Context, DateTimeProvider);
+
         SuppliersService = new SuppliersService(
             Mapper,
-            new SupplierReaderRepository(Context),
-            new SupplierWriterRepository(Context, DateTimeProvider),
-            UnitOfWorkMock.Object
+            supplierReaderRepository,
+            supplierWriterRepository,
+            UnitOfWork
         );
 
         ProductsService = new ProductsService(
             Mapper,
-            new ProductReaderRepository(Context),
-            new ProductWriterRepository(Context, DateTimeProvider),
-            UnitOfWorkMock.Object
+            productReaderRepository,
+            productWriterRepository,
+            UnitOfWork
         );
 
         BuyerService = new BuyerService(
             Mapper,
-            new BuyerReaderRepository(Context),
-            new BuyerWriterRepository(Context, DateTimeProvider),
-            UnitOfWorkMock.Object
+            buyerReaderRepository,
+            buyerWriterRepository,
+            UnitOfWork
         );
 
         BillService = new BillService(
             Mapper,
-            new BillReaderRepository(Context),
-            new BillWriterRepository(Context, DateTimeProvider),
-            UnitOfWorkMock.Object,
-            new SupplierReaderRepository(Context),
-            new BuyerReaderRepository(Context),
-            new ProductReaderRepository(Context)
+            billReaderRepository,
+            billWriterRepository,
+            UnitOfWork,
+            supplierReaderRepository,
+            buyerReaderRepository,
+            productReaderRepository
         );
     }
 }

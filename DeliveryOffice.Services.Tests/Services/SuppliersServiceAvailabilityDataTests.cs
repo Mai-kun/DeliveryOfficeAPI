@@ -3,10 +3,11 @@ using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Tests;
 using DeliveryOffice.Services.Abstractions.Models.RequestModels;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Priority;
 
-namespace DeliveryOffice.Services.Tests;
+namespace DeliveryOffice.Services.Tests.Services;
 
 [TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
 [DefaultPriority(0)]
@@ -34,10 +35,14 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
         // Act
         await fixture.SuppliersService.AddSupplier(request1, CancellationToken.None);
         await fixture.SuppliersService.AddSupplier(request2, CancellationToken.None);
-        var result = await fixture.UnitOfWork.SaveChangesAsync(CancellationToken.None);
 
         // Assert
-        result.Should().Be(2);
+        var suppliers = await fixture.Reader.Read<Supplier>().ToListAsync();
+        suppliers.Should().HaveCount(2);
+        suppliers.Select(b => b.Id).Should().Contain(new[]
+        {
+            entityId1, entityId2,
+        });
     }
 
     [Fact]
@@ -48,11 +53,9 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
 
         // Act
         await fixture.SuppliersService.UpdateSupplierAsync(updateRequest, CancellationToken.None);
-        var result = await fixture.UnitOfWork.SaveChangesAsync(CancellationToken.None);
 
         // Assert
-        result.Should().Be(1);
-        var updatedSupplier = await fixture.Context.Set<Supplier>().FindAsync(entityId1);
+        var updatedSupplier = await fixture.Reader.Read<Supplier>().FirstOrDefaultAsync(s => s.Id == entityId1);
         updatedSupplier.Should().NotBeNull()
                        .And.BeEquivalentTo(updateRequest);
     }
@@ -73,11 +76,10 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
     public async Task GetSupplierByIdAsyncShouldReturnValue()
     {
         // Act
-        var result = await fixture.SuppliersService.GetAllSuppliersAsync(CancellationToken.None);
-        var supplier = result.FirstOrDefault();
+        var result = await fixture.SuppliersService.GetSupplierByIdAsync(entityId1, CancellationToken.None);
 
         // Assert
-        supplier.Should().NotBeNull();
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -86,9 +88,13 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
     {
         // Act
         await fixture.SuppliersService.DeleteSupplierAsync(entityId2, CancellationToken.None);
-        var result = await fixture.UnitOfWork.SaveChangesAsync(CancellationToken.None);
 
         // Assert
-        result.Should().Be(1);
+        var result = await fixture.Reader.Read<Supplier>().FirstOrDefaultAsync(s => s.Id == entityId2);
+        result.Should().BeEquivalentTo(new
+        {
+            Id = entityId2,
+            IsDeleted = true,
+        });
     }
 }
