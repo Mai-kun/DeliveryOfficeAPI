@@ -55,7 +55,7 @@ public class ProductsService : IProductsService
     {
         var product = await productReaderRepository.GetByIdAsync(productRequest.Id, cancellationToken);
         if (product is null)
-            throw new SupplierNotFoundException($"Product with id: {productRequest.Id} was not found");
+            throw new ProductNotFoundException($"Product with id: {productRequest.Id} was not found");
 
         var productUpdate = mapper.Map<Product>(productRequest);
         productWriterRepository.Update(productUpdate);
@@ -66,7 +66,7 @@ public class ProductsService : IProductsService
     {
         var product = await productReaderRepository.GetByIdAsync(id, cancellationToken);
         if (product is null)
-            throw new SupplierNotFoundException($"Product with id: {id} was not found");
+            throw new ProductNotFoundException($"Product with id: {id} was not found");
 
         productWriterRepository.Delete(product);
         await unitOfWork.SaveChangesAsync(cancellationToken);

@@ -61,9 +61,6 @@ public class BillService : IBillService
         if (supplier is null)
             throw new SupplierNotFoundException($"Supplier with id: {billRequest.SupplierId} was not found");
 
-        var bill = mapper.Map<Bill>(billRequest);
-        billWriterRepository.Add(bill);
-
         var products = await productReaderRepository.GetAllAsync(cancellationToken);
         var filteredProducts = products
                                .Where(p => billRequest.Products.Contains(p.Id))
@@ -73,6 +70,9 @@ public class BillService : IBillService
         if (missingProductIds.Any())
             throw new ProductNotFoundException(
                 $"Products with ids {string.Join(", ", missingProductIds)} were not found");
+
+        var bill = mapper.Map<Bill>(billRequest);
+        billWriterRepository.Add(bill);
 
         foreach (var product in filteredProducts)
         {

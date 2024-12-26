@@ -48,9 +48,9 @@ public class BuyerReaderRepository : IBuyerReaderRepository
         return buyer;
     }
 
-    Task<Buyer?> IBuyerReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    async Task<Buyer?> IBuyerReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return reader.Read<Buyer>()
+        return await reader.Read<Buyer>()
                      .ById(id)
                      .NotDeleted()
                      .FirstOrDefaultAsync(cancellationToken);

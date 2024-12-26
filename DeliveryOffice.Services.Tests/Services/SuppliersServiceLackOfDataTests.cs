@@ -5,7 +5,7 @@ using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 using FluentAssertions;
 using Xunit;
 
-namespace DeliveryOffice.Services.Tests;
+namespace DeliveryOffice.Services.Tests.Services;
 
 public class SuppliersServiceLackOfDataTests : IClassFixture<SharedServiceLackOfDataFixture>
 {

@@ -21,7 +21,7 @@ public interface IBuyerService
     /// <summary>
     ///     Добавляет новый <see cref="Buyer"/>
     /// </summary>
-    Task AddBuyer(BuyerRequest productRequest, CancellationToken cancellationToken);
+    Task AddBuyerAsync(BuyerRequest productRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующий <see cref="Buyer"/>

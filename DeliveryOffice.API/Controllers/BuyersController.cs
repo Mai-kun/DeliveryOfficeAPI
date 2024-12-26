@@ -55,7 +55,7 @@ public class BuyersController : ControllerBase
     public IActionResult AddBuyer(BuyerRequest buyerRequest, CancellationToken cancellationToken)
     {
         validatorService.Validate(buyerRequest);
-        buyerService.AddBuyer(buyerRequest, cancellationToken);
+        buyerService.AddBuyerAsync(buyerRequest, cancellationToken);
         return Ok();
     }
 

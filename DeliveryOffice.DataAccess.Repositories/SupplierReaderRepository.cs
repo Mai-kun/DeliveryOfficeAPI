@@ -18,6 +18,7 @@ public class SupplierReaderRepository : ISupplierReaderRepository
     async Task<List<Supplier>> ISupplierReaderRepository.GetAllWithBillsAsync(CancellationToken cancellationToken)
     {
         var result = await reader.Read<Supplier>()
+                                 .AsNoTracking()
                                  .NotDeleted()
                                  .Include(s => s.Bills)
                                  .ToListAsync(cancellationToken);
@@ -47,9 +48,9 @@ public class SupplierReaderRepository : ISupplierReaderRepository
         return supplier;
     }
 
-    Task<Supplier?> ISupplierReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    async Task<Supplier?> ISupplierReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return reader.Read<Supplier>()
+        return await reader.Read<Supplier>()
                      .ById(id)
                      .NotDeleted()
                      .FirstOrDefaultAsync(cancellationToken);

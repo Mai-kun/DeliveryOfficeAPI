@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using DeliveryOffice.API.Common;
 using DeliveryOffice.API.Common.Abstractions;
+using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Abstractions;
 using DeliveryOffice.Services;
+using DeliveryOffice.Services.Abstractions.Models.RequestModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace DeliveryOffice.DataAccess.Tests;
@@ -17,6 +19,8 @@ public abstract class BaseAppContextTest : IDisposable
 
     public IUnitOfWork UnitOfWork => Context;
 
+    public IDbReader Reader => Context;
+
     public IDateTimeProvider DateTimeProvider { get; }
 
     public IMapper Mapper { get; }
@@ -30,8 +34,11 @@ public abstract class BaseAppContextTest : IDisposable
         Context = new DeliveryOfficeDbContext(options);
         cancellationTokenSource = new CancellationTokenSource();
 
-        Mapper = new MapperConfiguration(cfg => cfg.AddProfile(typeof(AutoMapperRequestProfile)))
-            .CreateMapper();
+        Mapper = new MapperConfiguration(cfg =>
+        {
+            cfg.CreateMap<ProductRequest, Product>().ReverseMap();
+            cfg.AddProfile(typeof(AutoMapperRequestProfile));
+        }).CreateMapper();
 
         DateTimeProvider = new DateTimeProvider();
     }
