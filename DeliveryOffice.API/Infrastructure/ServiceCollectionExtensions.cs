@@ -27,11 +27,11 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IBuyerReaderRepository, BuyerReaderRepository>();
         services.AddScoped<IBuyerWriterRepository, BuyerWriterRepository>();
-        services.AddScoped<IBuyerService, BuyerService>();
+        services.AddScoped<IBuyerService, BuyersService>();
 
         services.AddScoped<IBillReaderRepository, BillReaderRepository>();
         services.AddScoped<IBillWriterRepository, BillWriterRepository>();
-        services.AddScoped<IBillService, BillService>();
+        services.AddScoped<IBillService, BillsService>();
 
         services.AddAutoMapper(typeof(AutoMapperResponseProfile), typeof(AutoMapperRequestProfile));
         services.AddScoped<IValidatorService, ApiValidatorService>();

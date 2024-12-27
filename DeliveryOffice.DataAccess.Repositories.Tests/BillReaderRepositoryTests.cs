@@ -1,12 +1,15 @@
-﻿using DeliveryOffice.Core.Models;
+﻿using Ahatornn.TestGenerator;
+using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 using DeliveryOffice.DataAccess.Tests;
 using FluentAssertions;
-using FluentAssertions.Equivalency;
 using Xunit;
 
 namespace DeliveryOffice.DataAccess.Repositories.Tests;
 
+/// <summary>
+///     Тесты для <see cref="BillReaderRepository" />
+/// </summary>
 public class BillReaderRepositoryTests : BaseAppContextTest
 {
     private readonly IBillReaderRepository repository;
@@ -16,6 +19,9 @@ public class BillReaderRepositoryTests : BaseAppContextTest
         repository = new BillReaderRepository(Context);
     }
 
+    /// <summary>
+    ///     Возвращает пустой список, если в базе данных нет данных
+    /// </summary>
     [Fact]
     public async Task GetAllShouldReturnEmpty()
     {
@@ -26,23 +32,26 @@ public class BillReaderRepositoryTests : BaseAppContextTest
         result.Should().BeEmpty();
     }
 
+    /// <summary>
+    ///     Возвращает список счетов, если в базе данных есть данные
+    /// </summary>
     [Fact]
     public async Task GetAllShouldReturnValues()
     {
         // Arrange
-        var bill1 = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Bill>(
+        var bill1 = TestEntityProvider.Shared.Create<Bill>(
             b =>
             {
-                b.Supplier = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>();
-                b.Buyer = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>();
+                b.Supplier = TestEntityProvider.Shared.Create<Supplier>();
+                b.Buyer = TestEntityProvider.Shared.Create<Buyer>();
                 b.Products = new List<Product>
                 {
-                    Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Product>(),
-                    Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Product>(p => p.IsDeleted = true),
-                    Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Product>(),
+                    TestEntityProvider.Shared.Create<Product>(),
+                    TestEntityProvider.Shared.Create<Product>(p => p.IsDeleted = true),
+                    TestEntityProvider.Shared.Create<Product>(),
                 };
             });
-        var bill2 = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Bill>(b => b.IsDeleted = true);
+        var bill2 = TestEntityProvider.Shared.Create<Bill>(b => b.IsDeleted = true);
 
         await Context.AddRangeAsync(bill1, bill2);
         await Context.SaveChangesAsync(Token);
@@ -59,12 +68,15 @@ public class BillReaderRepositoryTests : BaseAppContextTest
                                       b.Buyer!.Id == bill1.Buyer!.Id);
     }
 
+    /// <summary>
+    ///     Возвращает null, если счет не найден или удален
+    /// </summary>
     [Fact]
     public async Task GetByIdShouldReturnNull()
     {
         // Arrange
         var id = Guid.NewGuid();
-        var bill = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Bill>(
+        var bill = TestEntityProvider.Shared.Create<Bill>(
             b =>
             {
                 b.Id = id;
@@ -83,20 +95,23 @@ public class BillReaderRepositoryTests : BaseAppContextTest
         result2.Should().BeNull();
     }
 
+    /// <summary>
+    ///     Возвращает счет, если он существует и не удален
+    /// </summary>
     [Fact]
     public async Task GetByIdShouldReturnValue()
     {
         // Arrange
-        var bill = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Bill>(
+        var bill = TestEntityProvider.Shared.Create<Bill>(
             b =>
             {
-                b.Supplier = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Supplier>();
-                b.Buyer = Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Buyer>();
+                b.Supplier = TestEntityProvider.Shared.Create<Supplier>();
+                b.Buyer = TestEntityProvider.Shared.Create<Buyer>();
                 b.Products = new List<Product>
                 {
-                    Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Product>(),
-                    Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Product>(p => p.IsDeleted = true),
-                    Ahatornn.TestGenerator.TestEntityProvider.Shared.Create<Product>(),
+                    TestEntityProvider.Shared.Create<Product>(),
+                    TestEntityProvider.Shared.Create<Product>(p => p.IsDeleted = true),
+                    TestEntityProvider.Shared.Create<Product>(),
                 };
             });
 

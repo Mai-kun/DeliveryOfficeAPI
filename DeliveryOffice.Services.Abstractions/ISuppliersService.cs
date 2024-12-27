@@ -1,5 +1,5 @@
 ﻿using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 
 namespace DeliveryOffice.Services.Abstractions;
 
@@ -21,7 +21,7 @@ public interface ISuppliersService
     /// <summary>
     ///     Добавляет нового поставщика
     /// </summary>
-    Task AddSupplier(SupplierRequest supplierModel, CancellationToken cancellationToken);
+    Task AddSupplier(CreateSupplierRequest supplierModel, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующего поставщика

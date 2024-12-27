@@ -1,8 +1,11 @@
-﻿using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+﻿using DeliveryOffice.Services.Abstractions.RequestModels;
 using FluentValidation;
 
-namespace DeliveryOffice.Services.Validators;
+namespace DeliveryOffice.Services.Validators.Buyer;
 
+/// <summary>
+///     Содержит правила валидации для модели <see cref="BuyerRequest" />
+/// </summary>
 public class BuyerRequestValidator : AbstractValidator<BuyerRequest>
 {
     private const int MaximumLength = 255;

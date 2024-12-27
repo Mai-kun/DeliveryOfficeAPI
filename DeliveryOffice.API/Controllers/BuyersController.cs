@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using DeliveryOffice.API.Infrastructure;
+using DeliveryOffice.API.ResponseModels;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.Services.Abstractions;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
-using DeliveryOffice.Services.Abstractions.Models.ResponseModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryOffice.API.Controllers;
@@ -52,7 +52,7 @@ public class BuyersController : ControllerBase
     ///     Добавление нового покупателя
     /// </summary>
     [HttpPost]
-    public IActionResult AddBuyer(BuyerRequest buyerRequest, CancellationToken cancellationToken)
+    public IActionResult AddBuyer(CreateBuyerRequest buyerRequest, CancellationToken cancellationToken)
     {
         validatorService.Validate(buyerRequest);
         buyerService.AddBuyerAsync(buyerRequest, cancellationToken);

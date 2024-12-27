@@ -1,5 +1,5 @@
 ﻿using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 
 namespace DeliveryOffice.Services.Abstractions;
 

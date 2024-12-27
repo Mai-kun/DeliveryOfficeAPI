@@ -1,16 +1,25 @@
-﻿using DeliveryOffice.DataAccess.Abstractions;
+﻿using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Repositories;
 using DeliveryOffice.Services;
 using DeliveryOffice.Services.Abstractions;
-using Moq;
 
 namespace DeliveryOffice.DataAccess.Tests;
 
+/// <summary>
+///     Базовый класс фикстуры
+/// </summary>
 public abstract class SharedServiceFixture : BaseAppContextTest
 {
+    /// <inheritdoc cref="ISuppliersService"/>
     public ISuppliersService SuppliersService { get; }
+
+    /// <inheritdoc cref="IProductsService"/>
     public IProductsService ProductsService { get; }
+
+    /// <inheritdoc cref="IBuyerService"/>
     public IBuyerService BuyerService { get; }
+
+    /// <inheritdoc cref="IBillService"/>
     public IBillService BillService { get; }
 
     protected SharedServiceFixture()
@@ -41,14 +50,14 @@ public abstract class SharedServiceFixture : BaseAppContextTest
             UnitOfWork
         );
 
-        BuyerService = new BuyerService(
+        BuyerService = new BuyersService(
             Mapper,
             buyerReaderRepository,
             buyerWriterRepository,
             UnitOfWork
         );
 
-        BillService = new BillService(
+        BillService = new BillsService(
             Mapper,
             billReaderRepository,
             billWriterRepository,

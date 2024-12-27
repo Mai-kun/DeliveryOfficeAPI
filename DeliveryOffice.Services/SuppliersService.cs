@@ -3,7 +3,7 @@ using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Abstractions;
 using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 using DeliveryOffice.Services.Abstractions;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 
 namespace DeliveryOffice.Services;
@@ -42,7 +42,7 @@ public class SuppliersService : ISuppliersService
     }
 
     Task ISuppliersService.AddSupplier(
-        SupplierRequest supplierRequest, CancellationToken cancellationToken
+        CreateSupplierRequest supplierRequest, CancellationToken cancellationToken
     )
     {
         var supplier = mapper.Map<Supplier>(supplierRequest);

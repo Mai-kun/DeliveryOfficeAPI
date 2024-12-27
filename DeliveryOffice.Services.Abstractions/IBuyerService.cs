@@ -1,5 +1,5 @@
 ﻿using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 
 namespace DeliveryOffice.Services.Abstractions;
 
@@ -21,7 +21,7 @@ public interface IBuyerService
     /// <summary>
     ///     Добавляет новый <see cref="Buyer"/>
     /// </summary>
-    Task AddBuyerAsync(BuyerRequest productRequest, CancellationToken cancellationToken);
+    Task AddBuyerAsync(CreateBuyerRequest productRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующий <see cref="Buyer"/>

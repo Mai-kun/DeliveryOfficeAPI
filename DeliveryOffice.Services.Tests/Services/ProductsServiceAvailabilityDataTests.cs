@@ -1,7 +1,7 @@
 ﻿using Ahatornn.TestGenerator;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Tests;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -9,6 +9,9 @@ using Xunit.Priority;
 
 namespace DeliveryOffice.Services.Tests.Services;
 
+/// <summary>
+///     Тесты для <see cref="ProductsService" /> при работе с данными
+/// </summary>
 [TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
 [DefaultPriority(0)]
 public class ProductsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvailabilityDataFixture>
@@ -24,13 +27,16 @@ public class ProductsServiceAvailabilityDataTests : IClassFixture<SharedServiceA
         entityId2 = new Guid("2b652c96-13fc-4d37-b28d-bd2ad63f58ef");
     }
 
+    /// <summary>
+    ///     Работает добавление продукта
+    /// </summary>
     [Fact]
     [Priority(-100)]
     public async Task AddProductShouldWork()
     {
         // Arrange
-        var request1 = TestEntityProvider.Shared.Create<ProductRequest>(s => s.Id = entityId1);
-        var request2 = TestEntityProvider.Shared.Create<ProductRequest>(s => s.Id = entityId2);
+        var request1 = TestEntityProvider.Shared.Create<CreateProductRequest>(s => s.Id = entityId1);
+        var request2 = TestEntityProvider.Shared.Create<CreateProductRequest>(s => s.Id = entityId2);
 
         // Act
         await fixture.ProductsService.AddProduct(request1, CancellationToken.None);
@@ -45,6 +51,9 @@ public class ProductsServiceAvailabilityDataTests : IClassFixture<SharedServiceA
         });
     }
 
+    /// <summary>
+    ///     Работает обновление продукта
+    /// </summary>
     [Fact]
     public async Task UpdateProductShouldWork()
     {
@@ -57,9 +66,12 @@ public class ProductsServiceAvailabilityDataTests : IClassFixture<SharedServiceA
         // Assert
         var updatedProduct = await fixture.Reader.Read<Product>().FirstOrDefaultAsync(s => s.Id == entityId1);
         updatedProduct.Should().NotBeNull()
-                       .And.BeEquivalentTo(updateRequest);
+                      .And.BeEquivalentTo(updateRequest);
     }
 
+    /// <summary>
+    ///     Возвращает список всех продуктов
+    /// </summary>
     [Fact]
     public async Task GetAllProductsAsyncShouldReturnValue()
     {
@@ -72,6 +84,9 @@ public class ProductsServiceAvailabilityDataTests : IClassFixture<SharedServiceA
               .And.HaveCount(2);
     }
 
+    /// <summary>
+    ///     Возвращает продукт по идентификатору
+    /// </summary>
     [Fact]
     public async Task GetProductByIdAsyncShouldReturnValue()
     {
@@ -82,6 +97,9 @@ public class ProductsServiceAvailabilityDataTests : IClassFixture<SharedServiceA
         result.Should().NotBeNull();
     }
 
+    /// <summary>
+    ///     Работает удаление продукта
+    /// </summary>
     [Fact]
     [Priority(100)]
     public async Task DeleteProductAsyncShouldWork()

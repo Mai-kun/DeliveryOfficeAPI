@@ -33,7 +33,7 @@ public class Bill : IEntityWithId, IAuditable, ISoftDelete
     /// <summary>
     ///     Список товаров в накладной
     /// </summary>
-    public List<Product> Products { get; set; } = new List<Product>();
+    public List<Product> Products { get; set; } = new();
 
     /// <summary>
     ///     Идентификатор покупателя

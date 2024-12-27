@@ -6,6 +6,9 @@ using Xunit;
 
 namespace DeliveryOffice.DataAccess.Repositories.Tests;
 
+/// <summary>
+///     Тесты для <see cref="ProductReaderRepository" />
+/// </summary>
 public class ProductReaderRepositoryTests : BaseAppContextTest
 {
     private readonly IProductReaderRepository repository;
@@ -15,6 +18,9 @@ public class ProductReaderRepositoryTests : BaseAppContextTest
         repository = new ProductReaderRepository(Context);
     }
 
+    /// <summary>
+    ///     Возвращает пустой список, если в базе данных нет данных
+    /// </summary>
     [Fact]
     public async Task GetAllShouldReturnEmpty()
     {
@@ -25,6 +31,9 @@ public class ProductReaderRepositoryTests : BaseAppContextTest
         result.Should().BeEmpty();
     }
 
+    /// <summary>
+    ///     Возвращает список продуктов, если в базе данных есть данные
+    /// </summary>
     [Fact]
     public async Task GetAllShouldReturnValues()
     {
@@ -45,6 +54,9 @@ public class ProductReaderRepositoryTests : BaseAppContextTest
               .And.ContainSingle(p => p.Id == product3.Id);
     }
 
+    /// <summary>
+    ///     Возвращает null, если продукт с указанным id не найден
+    /// </summary>
     [Fact]
     public async Task GetByIdShouldReturnNull()
     {
@@ -68,6 +80,9 @@ public class ProductReaderRepositoryTests : BaseAppContextTest
         result2.Should().BeNull();
     }
 
+    /// <summary>
+    ///     Возвращает продукт, если продукт с указанным id найден
+    /// </summary>
     [Fact]
     public async Task GetByIdShouldReturnValue()
     {

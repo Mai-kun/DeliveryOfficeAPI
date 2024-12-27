@@ -1,11 +1,9 @@
-﻿using DeliveryOffice.Core.Models;
-
-namespace DeliveryOffice.Services.Abstractions.Models.ResponseModels;
+﻿namespace DeliveryOffice.Services.Abstractions.RequestModels;
 
 /// <summary>
-///     Модель ответа для объекта <see cref="Product" />
+///     Модель запроса для объекта <see cref="ProductRequest" />
 /// </summary>
-public class ProductResponse
+public class ProductRequest
 {
     /// <summary>
     ///     Идентификатор продукта

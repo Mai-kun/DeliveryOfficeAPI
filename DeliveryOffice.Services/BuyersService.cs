@@ -3,19 +3,19 @@ using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Abstractions;
 using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 using DeliveryOffice.Services.Abstractions;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions.ForBuyer;
 
 namespace DeliveryOffice.Services;
 
-public class BuyerService : IBuyerService
+public class BuyersService : IBuyerService
 {
     private readonly IMapper mapper;
     private readonly IBuyerReaderRepository buyerReaderRepository;
     private readonly IBuyerWriterRepository buyerWriterRepository;
     private readonly IUnitOfWork unitOfWork;
 
-    public BuyerService(
+    public BuyersService(
         IMapper mapper, IBuyerReaderRepository buyerReaderRepository,
         IBuyerWriterRepository buyerWriterRepository, IUnitOfWork unitOfWork
     )
@@ -40,7 +40,7 @@ public class BuyerService : IBuyerService
         return result;
     }
 
-    Task IBuyerService.AddBuyerAsync(BuyerRequest buyerRequest, CancellationToken cancellationToken)
+    Task IBuyerService.AddBuyerAsync(CreateBuyerRequest buyerRequest, CancellationToken cancellationToken)
     {
         var buyer = mapper.Map<Buyer>(buyerRequest);
         buyerWriterRepository.Add(buyer);

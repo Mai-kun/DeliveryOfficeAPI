@@ -6,6 +6,7 @@ using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 
 namespace DeliveryOffice.DataAccess.Repositories;
 
+/// <inheritdoc cref="ISupplierWriterRepository" />
 public class SupplierWriterRepository : BaseWriteDbRepository<Supplier>, ISupplierWriterRepository
 {
     public SupplierWriterRepository(IDbWriter writer, IDateTimeProvider dateTimeProvider)

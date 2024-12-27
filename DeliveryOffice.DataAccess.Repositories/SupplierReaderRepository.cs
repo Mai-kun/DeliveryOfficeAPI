@@ -24,12 +24,10 @@ public class SupplierReaderRepository : ISupplierReaderRepository
                                  .ToListAsync(cancellationToken);
 
         foreach (var supplier in result)
-        {
             supplier.Bills = supplier.Bills
                                      .AsQueryable()
                                      .NotDeleted()
                                      .ToList();
-        }
 
         return result;
     }
@@ -51,8 +49,8 @@ public class SupplierReaderRepository : ISupplierReaderRepository
     async Task<Supplier?> ISupplierReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await reader.Read<Supplier>()
-                     .ById(id)
-                     .NotDeleted()
-                     .FirstOrDefaultAsync(cancellationToken);
+                           .ById(id)
+                           .NotDeleted()
+                           .FirstOrDefaultAsync(cancellationToken);
     }
 }

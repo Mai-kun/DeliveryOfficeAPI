@@ -1,20 +1,16 @@
 ﻿using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.Services.Abstractions.Models.ResponseModels;
+namespace DeliveryOffice.API.ResponseModels;
 
 /// <summary>
 ///     Модель ответа для объекта <see cref="Buyer" />
 /// </summary>
 public class BuyerResponse
 {
-    /// <summary>
-    ///     Идентификатор покупателя
-    /// </summary>
+    /// <inheritdoc cref="Buyer.Id" />
     public Guid Id { get; set; }
 
-    /// <summary>
-    ///     Имя покупателя
-    /// </summary>
+    /// <inheritdoc cref="Buyer.Name" />
     public string Name { get; set; }
 
     /// <summary>

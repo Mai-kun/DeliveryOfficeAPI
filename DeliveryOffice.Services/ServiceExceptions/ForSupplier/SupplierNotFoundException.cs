@@ -8,6 +8,7 @@ namespace DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 /// </summary>
 public class SupplierNotFoundException : SupplierException
 {
+    /// <inheritdoc />
     public override int StatusCode => StatusCodes.Status404NotFound;
 
     public SupplierNotFoundException(string message) : base(message)

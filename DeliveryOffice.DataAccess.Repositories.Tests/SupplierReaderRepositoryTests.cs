@@ -6,6 +6,9 @@ using DeliveryOffice.DataAccess.Tests;
 
 namespace DeliveryOffice.DataAccess.Repositories.Tests;
 
+/// <summary>
+///     Тесты для <see cref="SupplierReaderRepository" />
+/// </summary>
 public class SupplierReaderRepositoryTests : BaseAppContextTest
 {
     private readonly ISupplierReaderRepository repository;
@@ -15,6 +18,9 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
         repository = new SupplierReaderRepository(Context);
     }
 
+    /// <summary>
+    ///     Возвращает пустой список, если в базе данных нет данных
+    /// </summary>
     [Fact]
     public async Task GetAllWithBillsShouldReturnEmpty()
     {
@@ -25,6 +31,9 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
         result.Should().BeEmpty();
     }
 
+    /// <summary>
+    ///     Возвращает список поставщиков со счетами, если в базе данных есть данные
+    /// </summary>
     [Fact]
     public async Task GetAllWithBillsShouldReturnValuesWithBills()
     {
@@ -60,6 +69,9 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
               .And.ContainSingle(s => s.Id == supplier3.Id && s.Bills.Count == 0);
     }
 
+    /// <summary>
+    ///     Возвращает null, если поставщик с указанным id не найден
+    /// </summary>
     [Fact]
     public async Task GetByIdWithBillsShouldReturnNull()
     {
@@ -84,6 +96,9 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
         result2.Should().BeNull();
     }
 
+    /// <summary>
+    ///     Возвращает поставщика со счетами, если поставщик с указанным id найден
+    /// </summary>
     [Fact]
     public async Task GetByIdWithBillsShouldReturnValueWithBills()
     {
@@ -110,6 +125,9 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
         result!.Bills.Should().NotBeNull().And.HaveCount(2);
     }
 
+    /// <summary>
+    ///     Возвращает null, если поставщик с указанным id не найден
+    /// </summary>
     [Fact]
     public async Task GetByIdShouldReturnNull()
     {
@@ -134,6 +152,9 @@ public class SupplierReaderRepositoryTests : BaseAppContextTest
         result2.Should().BeNull();
     }
 
+    /// <summary>
+    ///     Возвращает поставщика, если поставщик с указанным id найден
+    /// </summary>
     [Fact]
     public async Task GetByIdShouldReturnValue()
     {

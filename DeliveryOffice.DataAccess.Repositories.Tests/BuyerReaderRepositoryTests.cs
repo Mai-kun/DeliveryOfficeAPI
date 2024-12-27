@@ -6,6 +6,9 @@ using Xunit;
 
 namespace DeliveryOffice.DataAccess.Repositories.Tests;
 
+/// <summary>
+///     Тесты для <see cref="BuyerReaderRepository" />
+/// </summary>
 public class BuyerReaderRepositoryTests : BaseAppContextTest
 {
     private readonly IBuyerReaderRepository repository;
@@ -15,6 +18,9 @@ public class BuyerReaderRepositoryTests : BaseAppContextTest
         repository = new BuyerReaderRepository(Context);
     }
 
+    /// <summary>
+    ///     Возвращает пустой список, если в базе данных нет данных
+    /// </summary>
     [Fact]
     public async Task GetAllWithBillsShouldReturnEmpty()
     {
@@ -25,6 +31,9 @@ public class BuyerReaderRepositoryTests : BaseAppContextTest
         result.Should().BeEmpty();
     }
 
+    /// <summary>
+    ///     Возвращает список покупателей со счетами, если в базе данных есть данные
+    /// </summary>
     [Fact]
     public async Task GetAllWithBillsShouldReturnValuesWithBills()
     {
@@ -60,6 +69,9 @@ public class BuyerReaderRepositoryTests : BaseAppContextTest
               .And.ContainSingle(b => b.Id == buyer3.Id && b.Bills.Count == 0);
     }
 
+    /// <summary>
+    ///     Возвращает null, если покупатель не найден или удален
+    /// </summary>
     [Fact]
     public async Task GetByIdWithBillShouldReturnNull()
     {
@@ -84,6 +96,9 @@ public class BuyerReaderRepositoryTests : BaseAppContextTest
         result2.Should().BeNull();
     }
 
+    /// <summary>
+    ///     Возвращает покупателя со счетами, если он существует и не удален
+    /// </summary>
     [Fact]
     public async Task GetByIdWithBillShouldReturnValueWithBills()
     {
@@ -110,6 +125,9 @@ public class BuyerReaderRepositoryTests : BaseAppContextTest
         result!.Bills.Should().NotBeNull().And.HaveCount(2);
     }
 
+    /// <summary>
+    ///     Возвращает null, если покупатель не найден или удален
+    /// </summary>
     [Fact]
     public async Task GetByIdShouldReturnNull()
     {
@@ -134,6 +152,9 @@ public class BuyerReaderRepositoryTests : BaseAppContextTest
         result2.Should().BeNull();
     }
 
+    /// <summary>
+    ///     Возвращает покупателя, если он существует и не удален
+    /// </summary>
     [Fact]
     public async Task GetByIdShouldReturnValue()
     {

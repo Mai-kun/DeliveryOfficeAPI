@@ -1,7 +1,7 @@
 ﻿using Ahatornn.TestGenerator;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Tests;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -9,6 +9,9 @@ using Xunit.Priority;
 
 namespace DeliveryOffice.Services.Tests.Services;
 
+/// <summary>
+///     Тесты для <see cref="SuppliersService" /> при работе с данными
+/// </summary>
 [TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
 [DefaultPriority(0)]
 public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedServiceAvailabilityDataFixture>
@@ -24,13 +27,16 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
         entityId2 = new Guid("2b652c96-13fc-4d37-b28d-bd2ad63f58ef");
     }
 
+    /// <summary>
+    ///     Работает добавление поставщика
+    /// </summary>
     [Fact]
     [Priority(-100)]
     public async Task AddSupplierShouldWork()
     {
         // Arrange
-        var request1 = TestEntityProvider.Shared.Create<SupplierRequest>(s => s.Id = entityId1);
-        var request2 = TestEntityProvider.Shared.Create<SupplierRequest>(s => s.Id = entityId2);
+        var request1 = TestEntityProvider.Shared.Create<CreateSupplierRequest>(s => s.Id = entityId1);
+        var request2 = TestEntityProvider.Shared.Create<CreateSupplierRequest>(s => s.Id = entityId2);
 
         // Act
         await fixture.SuppliersService.AddSupplier(request1, CancellationToken.None);
@@ -45,6 +51,9 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
         });
     }
 
+    /// <summary>
+    ///     Работает обновление поставщика
+    /// </summary>
     [Fact]
     public async Task UpdateSupplierShouldWork()
     {
@@ -60,6 +69,9 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
                        .And.BeEquivalentTo(updateRequest);
     }
 
+    /// <summary>
+    ///     Возвращает список всех поставщиков
+    /// </summary>
     [Fact]
     public async Task GetAllSuppliersAsyncShouldReturnValue()
     {
@@ -72,6 +84,9 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
               .And.HaveCount(2);
     }
 
+    /// <summary>
+    ///     Возвращает поставщика по идентификатору
+    /// </summary>
     [Fact]
     public async Task GetSupplierByIdAsyncShouldReturnValue()
     {
@@ -82,6 +97,9 @@ public class SuppliersServiceAvailabilityDataTests : IClassFixture<SharedService
         result.Should().NotBeNull();
     }
 
+    /// <summary>
+    ///     Работает удаление поставщика
+    /// </summary>
     [Fact]
     [Priority(100)]
     public async Task DeleteSupplierAsyncShouldWork()
