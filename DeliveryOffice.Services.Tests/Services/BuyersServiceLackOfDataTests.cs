@@ -1,6 +1,6 @@
 ﻿using Ahatornn.TestGenerator;
 using DeliveryOffice.DataAccess.Tests;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions.ForBuyer;
 using FluentAssertions;
 using Xunit;

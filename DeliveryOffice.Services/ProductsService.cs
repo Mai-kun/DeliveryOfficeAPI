@@ -3,7 +3,7 @@ using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Abstractions;
 using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 using DeliveryOffice.Services.Abstractions;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions.ForProduct;
 using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 
@@ -42,7 +42,7 @@ public class ProductsService : IProductsService
         return result;
     }
 
-    Task IProductsService.AddProduct(ProductRequest productRequest, CancellationToken cancellationToken)
+    Task IProductsService.AddProduct(CreateProductRequest productRequest, CancellationToken cancellationToken)
     {
         var product = mapper.Map<Product>(productRequest);
         productWriterRepository.Add(product);

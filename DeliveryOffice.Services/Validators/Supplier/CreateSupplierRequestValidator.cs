@@ -1,21 +1,17 @@
-﻿using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+﻿using DeliveryOffice.Services.Abstractions.RequestModels;
 using FluentValidation;
 
-namespace DeliveryOffice.Services.Validators;
+namespace DeliveryOffice.Services.Validators.Supplier;
 
 /// <summary>
-///     Содержит правила валидации для модели <see cref="SupplierRequest" />
+///     Содержит правила валидации для модели <see cref="CreateSupplierRequest" />
 /// </summary>
-public class SupplierRequestValidator : AbstractValidator<SupplierRequest>
+public class CreateSupplierRequestValidator : AbstractValidator<CreateSupplierRequest>
 {
     private const int MaximumLength = 255;
 
-    public SupplierRequestValidator()
+    public CreateSupplierRequestValidator()
     {
-        RuleFor(supplier => supplier.Id)
-            .NotEmpty()
-            .WithMessage("Id is required.");
-
         RuleFor(supplier => supplier.Name)
             .NotEmpty()
             .NotNull()

@@ -1,15 +1,14 @@
 ﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.Services.Abstractions.Models.RequestModels;
+namespace DeliveryOffice.Services.Abstractions.RequestModels;
 
 /// <summary>
-///     Модель запроса для объекта <see cref="Bill" />
+///     Модель запроса для объекта <see cref="BillRequest" />
 /// </summary>
 public class BillRequest
 {
     /// <summary>
-    /// Идентификатор накладной
+    ///     Идентификатор накладной
     /// </summary>
     [JsonIgnore]
     public Guid Id { get; set; }

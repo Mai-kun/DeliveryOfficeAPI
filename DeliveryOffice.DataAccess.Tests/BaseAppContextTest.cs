@@ -4,7 +4,7 @@ using DeliveryOffice.API.Common.Abstractions;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Abstractions;
 using DeliveryOffice.Services;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace DeliveryOffice.DataAccess.Tests;

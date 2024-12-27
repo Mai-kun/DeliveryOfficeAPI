@@ -1,6 +1,6 @@
 ﻿using DeliveryOffice.Core.Models;
 
-namespace DeliveryOffice.Services.Abstractions.Models.ResponseModels;
+namespace DeliveryOffice.API.ResponseModels;
 
 /// <summary>
 ///     Модель ответа для объекта <see cref="Buyer" />

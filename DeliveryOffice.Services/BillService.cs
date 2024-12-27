@@ -3,7 +3,7 @@ using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Abstractions;
 using DeliveryOffice.DataAccess.Repositories.Abstractions.Repositories;
 using DeliveryOffice.Services.Abstractions;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions.ForBill;
 using DeliveryOffice.Services.ServiceExceptions.ForBuyer;
 using DeliveryOffice.Services.ServiceExceptions.ForProduct;

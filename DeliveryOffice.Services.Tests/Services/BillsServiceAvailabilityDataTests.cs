@@ -1,7 +1,7 @@
 ﻿using Ahatornn.TestGenerator;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Tests;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using DeliveryOffice.Services.ServiceExceptions.ForBuyer;
 using DeliveryOffice.Services.ServiceExceptions.ForProduct;
 using DeliveryOffice.Services.ServiceExceptions.ForSupplier;

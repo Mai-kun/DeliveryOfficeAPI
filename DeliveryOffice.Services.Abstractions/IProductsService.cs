@@ -1,5 +1,5 @@
 ﻿using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 
 namespace DeliveryOffice.Services.Abstractions;
 
@@ -21,7 +21,7 @@ public interface IProductsService
     /// <summary>
     ///     Добавляет новый продукт
     /// </summary>
-    Task AddProduct(ProductRequest productRequest, CancellationToken cancellationToken);
+    Task AddProduct(CreateProductRequest productRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет существующий продукт

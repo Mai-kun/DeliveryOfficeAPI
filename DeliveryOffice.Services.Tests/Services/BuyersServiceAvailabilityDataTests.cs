@@ -1,7 +1,7 @@
 ﻿using Ahatornn.TestGenerator;
 using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Tests;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
+using DeliveryOffice.Services.Abstractions.RequestModels;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -29,8 +29,8 @@ public class BuyersServiceAvailabilityDataTests : IClassFixture<SharedServiceAva
     public async Task AddBuyerAsyncShouldWork()
     {
         // Arrange
-        var request1 = TestEntityProvider.Shared.Create<BuyerRequest>(s => s.Id = entityId1);
-        var request2 = TestEntityProvider.Shared.Create<BuyerRequest>(s => s.Id = entityId2);
+        var request1 = TestEntityProvider.Shared.Create<CreateBuyerRequest>(s => s.Id = entityId1);
+        var request2 = TestEntityProvider.Shared.Create<CreateBuyerRequest>(s => s.Id = entityId2);
 
         // Act
         await fixture.BuyerService.AddBuyerAsync(request1, CancellationToken.None);

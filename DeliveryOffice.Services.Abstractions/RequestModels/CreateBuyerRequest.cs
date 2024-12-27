@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Core.Models;
+using DeliveryOffice.Services.Abstractions.RequestModels.Interfaces;
 
-namespace DeliveryOffice.Services.Abstractions.Models.RequestModels;
+namespace DeliveryOffice.Services.Abstractions.RequestModels;
 
 /// <summary>
-///     Модель запроса для объекта <see cref="Buyer" />
+///     Модель запроса для объекта <see cref="CreateBuyerRequest" />
 /// </summary>
-public class BuyerRequest
+public class CreateBuyerRequest
 {
     /// <summary>
     /// Идентификатор покупателя

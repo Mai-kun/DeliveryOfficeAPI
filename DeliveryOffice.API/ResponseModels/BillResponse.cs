@@ -1,17 +1,10 @@
-﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Core.Models;
+﻿namespace DeliveryOffice.API.ResponseModels;
 
-namespace DeliveryOffice.Services.Abstractions.Models.RequestModels;
-
-/// <summary>
-///     Модель запроса создания для объекта <see cref="Bill" />
-/// </summary>
-public class CreateBillRequest
+public class BillResponse
 {
     /// <summary>
-    /// Идентификатор накладной
+    ///     Идентификатор
     /// </summary>
-    [JsonIgnore]
     public Guid Id { get; set; }
 
     /// <summary>
@@ -35,17 +28,17 @@ public class CreateBillRequest
     public bool IsPaid { get; set; }
 
     /// <summary>
-    ///     Идентификаторы товаров
+    ///     Названия товаров в накладной
     /// </summary>
-    public List<Guid> Products { get; set; }
+    public List<string> ProductNames { get; set; }
 
     /// <summary>
-    ///     Идентификатор покупателя
+    ///     Имя покупателя
     /// </summary>
-    public Guid BuyerId { get; set; }
+    public string BuyerName { get; set; }
 
     /// <summary>
-    ///     Идентификатор поставщика
+    ///     Имя поставщика
     /// </summary>
-    public Guid SupplierId { get; set; }
+    public string SupplierName { get; set; }
 }

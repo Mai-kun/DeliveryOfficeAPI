@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
+using DeliveryOffice.API.ResponseModels;
 using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Abstractions.Models.RequestModels;
-using DeliveryOffice.Services.Abstractions.Models.ResponseModels;
 
 namespace DeliveryOffice.API.Infrastructure;
 
