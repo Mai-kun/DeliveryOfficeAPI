@@ -8,6 +8,7 @@ namespace DeliveryOffice.Services.ServiceExceptions.ForBill;
 /// </summary>
 public class BillNotFoundException : BillException
 {
+    /// <inheritdoc />
     public override int StatusCode => StatusCodes.Status404NotFound;
 
     public BillNotFoundException(string message) : base(message)

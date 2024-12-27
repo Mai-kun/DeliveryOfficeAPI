@@ -1,5 +1,4 @@
 ﻿using DeliveryOffice.Services.Abstractions.RequestModels;
-using DeliveryOffice.Services.Abstractions.RequestModels.Interfaces;
 using FluentValidation;
 
 namespace DeliveryOffice.Services.Validators.Supplier;

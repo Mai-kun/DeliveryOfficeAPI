@@ -8,6 +8,7 @@ namespace DeliveryOffice.Services.ServiceExceptions.ForProduct;
 /// </summary>
 public class ProductNotFoundException : ProductException
 {
+    /// <inheritdoc />
     public override int StatusCode => StatusCodes.Status404NotFound;
 
     public ProductNotFoundException(string message) : base(message)

@@ -12,7 +12,7 @@ using DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 namespace DeliveryOffice.Services;
 
 /// <inheritdoc />
-public class BillService : IBillService
+public class BillsService : IBillService
 {
     private readonly IBillReaderRepository billReaderRepository;
     private readonly IBillWriterRepository billWriterRepository;
@@ -22,7 +22,7 @@ public class BillService : IBillService
     private readonly IUnitOfWork unitOfWork;
     private readonly IMapper mapper;
 
-    public BillService(
+    public BillsService(
         IMapper mapper, IBillReaderRepository billReaderRepository, IBillWriterRepository billWriterRepository,
         IUnitOfWork unitOfWork, ISupplierReaderRepository supplierReaderRepository,
         IBuyerReaderRepository buyerReaderRepository, IProductReaderRepository productReaderRepository

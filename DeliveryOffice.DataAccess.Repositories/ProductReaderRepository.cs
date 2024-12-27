@@ -25,8 +25,8 @@ public class ProductReaderRepository : IProductReaderRepository
     async Task<Product?> IProductReaderRepository.GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await reader.Read<Product>()
-                     .ById(id)
-                     .NotDeleted()
-                     .FirstOrDefaultAsync(cancellationToken);
+                           .ById(id)
+                           .NotDeleted()
+                           .FirstOrDefaultAsync(cancellationToken);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Services.Abstractions.RequestModels.Interfaces;
 
 namespace DeliveryOffice.Services.Abstractions.RequestModels;
 
@@ -9,7 +8,7 @@ namespace DeliveryOffice.Services.Abstractions.RequestModels;
 public class CreateBuyerRequest
 {
     /// <summary>
-    /// Идентификатор покупателя
+    ///     Идентификатор покупателя
     /// </summary>
     [JsonIgnore]
     public Guid Id { get; set; }

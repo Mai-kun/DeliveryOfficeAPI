@@ -9,6 +9,9 @@ using Xunit.Priority;
 
 namespace DeliveryOffice.Services.Tests.Services;
 
+/// <summary>
+///     Тесты для <see cref="BuyersService" /> при работе с данными
+/// </summary>
 [TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
 [DefaultPriority(0)]
 public class BuyersServiceAvailabilityDataTests : IClassFixture<SharedServiceAvailabilityDataFixture>
@@ -24,6 +27,9 @@ public class BuyersServiceAvailabilityDataTests : IClassFixture<SharedServiceAva
         entityId2 = new Guid("2b652c96-13fc-4d37-b28d-bd2ad63f58ef");
     }
 
+    /// <summary>
+    ///     Работает добавление покупателя
+    /// </summary>
     [Fact]
     [Priority(-100)]
     public async Task AddBuyerAsyncShouldWork()
@@ -45,6 +51,9 @@ public class BuyersServiceAvailabilityDataTests : IClassFixture<SharedServiceAva
         });
     }
 
+    /// <summary>
+    ///     Работает обновление покупателя
+    /// </summary>
     [Fact]
     public async Task UpdateBuyerAsyncShouldWork()
     {
@@ -60,6 +69,9 @@ public class BuyersServiceAvailabilityDataTests : IClassFixture<SharedServiceAva
                     .And.BeEquivalentTo(updateRequest);
     }
 
+    /// <summary>
+    ///     Возвращает список всех покупателей
+    /// </summary>
     [Fact]
     public async Task GetAllBuyersAsyncShouldReturnValue()
     {
@@ -72,6 +84,9 @@ public class BuyersServiceAvailabilityDataTests : IClassFixture<SharedServiceAva
               .And.HaveCount(2);
     }
 
+    /// <summary>
+    ///     Возвращает покупателя по ID
+    /// </summary>
     [Fact]
     public async Task GetBuyerByIdAsyncShouldReturnValue()
     {
@@ -82,6 +97,9 @@ public class BuyersServiceAvailabilityDataTests : IClassFixture<SharedServiceAva
         result.Should().NotBeNull();
     }
 
+    /// <summary>
+    ///     Работает удаление покупателя
+    /// </summary>
     [Fact]
     [Priority(100)]
     public async Task DeleteBuyerAsyncShouldWork()

@@ -1,6 +1,4 @@
-﻿using DeliveryOffice.Services.Abstractions.RequestModels.Interfaces;
-
-namespace DeliveryOffice.Services.Abstractions.RequestModels;
+﻿namespace DeliveryOffice.Services.Abstractions.RequestModels;
 
 /// <summary>
 ///     Модель запроса для объекта <see cref="SupplierRequest" />

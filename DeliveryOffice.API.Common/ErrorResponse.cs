@@ -1,7 +1,7 @@
 ﻿namespace DeliveryOffice.API.Common;
 
 /// <summary>
-///     Класс для представления ошибки в ответе
+///     Объект ошибки для ответа
 /// </summary>
 public class ErrorResponse<T>
 {

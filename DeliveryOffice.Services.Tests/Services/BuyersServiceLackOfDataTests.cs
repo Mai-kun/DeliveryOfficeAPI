@@ -7,6 +7,9 @@ using Xunit;
 
 namespace DeliveryOffice.Services.Tests.Services;
 
+/// <summary>
+///     Тесты для <see cref="BuyersService" /> без данных
+/// </summary>
 public class BuyersServiceLackOfDataTests : IClassFixture<SharedServiceLackOfDataFixture>
 {
     private readonly SharedServiceLackOfDataFixture fixture;
@@ -16,6 +19,9 @@ public class BuyersServiceLackOfDataTests : IClassFixture<SharedServiceLackOfDat
         this.fixture = fixture;
     }
 
+    /// <summary>
+    ///     Возвращает пустой список покупателей
+    /// </summary>
     [Fact]
     public async Task GetAllBuyersAsyncShouldReturnEmpty()
     {
@@ -27,6 +33,9 @@ public class BuyersServiceLackOfDataTests : IClassFixture<SharedServiceLackOfDat
               .And.BeEmpty();
     }
 
+    /// <summary>
+    ///     Выбрасывает исключение BuyerNotFoundException при запросе несуществующего покупателя
+    /// </summary>
     [Fact]
     public async Task GetBuyerByIdAsyncShouldThrowSupplierNotFoundException()
     {
@@ -37,6 +46,9 @@ public class BuyersServiceLackOfDataTests : IClassFixture<SharedServiceLackOfDat
         await act.Should().ThrowAsync<BuyerNotFoundException>();
     }
 
+    /// <summary>
+    ///     Выбрасывает исключение BuyerNotFoundException при обновлении несуществующего покупателя
+    /// </summary>
     [Fact]
     public async Task UpdateSupplierShouldThrowSupplierNotFoundException()
     {
@@ -50,6 +62,9 @@ public class BuyersServiceLackOfDataTests : IClassFixture<SharedServiceLackOfDat
         await act.Should().ThrowAsync<BuyerNotFoundException>();
     }
 
+    /// <summary>
+    ///     Выбрасывает исключение BuyerNotFoundException при удалении несуществующего покупателя
+    /// </summary>
     [Fact]
     public async Task DeleteSupplierAsyncShouldThrowSupplierNotFoundException()
     {

@@ -12,6 +12,9 @@ using Xunit.Priority;
 
 namespace DeliveryOffice.Services.Tests.Services;
 
+/// <summary>
+///     Тесты для <see cref="BillsService" /> при работе c данными
+/// </summary>
 [TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
 [DefaultPriority(0)]
 public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvailabilityDataFixture>
@@ -33,6 +36,9 @@ public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvai
         productId = new Guid("538dede9-6eb4-4bdb-ad08-8225d36a11ab");
     }
 
+    /// <summary>
+    ///     Проверка добавления счета
+    /// </summary>
     [Fact]
     [Priority(-100)]
     public async Task AddBillAsyncShouldWork()
@@ -78,6 +84,9 @@ public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvai
         });
     }
 
+    /// <summary>
+    ///     Проверка на исключение SupplierNotFoundException при добавлении счета
+    /// </summary>
     [Fact]
     public async Task AddBillAsyncShouldThrowSupplierNotFoundException()
     {
@@ -96,6 +105,9 @@ public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvai
         await act.Should().ThrowAsync<SupplierNotFoundException>();
     }
 
+    /// <summary>
+    ///     Проверка на исключение BuyerNotFoundException при добавлении счета
+    /// </summary>
     [Fact]
     public async Task AddBillAsyncShouldThrowBuyerNotFoundException()
     {
@@ -114,6 +126,9 @@ public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvai
         await act.Should().ThrowAsync<BuyerNotFoundException>();
     }
 
+    /// <summary>
+    ///     Проверка на исключение ProductNotFoundException при добавлении счета
+    /// </summary>
     [Fact]
     public async Task AddBillAsyncShouldThrowProductNotFoundException()
     {
@@ -132,6 +147,9 @@ public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvai
         await act.Should().ThrowAsync<ProductNotFoundException>();
     }
 
+    /// <summary>
+    ///     Проверка обновления счета
+    /// </summary>
     [Fact]
     public async Task UpdateBillAsyncShouldWork()
     {
@@ -144,6 +162,9 @@ public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvai
                    .And.BeEquivalentTo(updateRequest);
     }
 
+    /// <summary>
+    ///     Проверка получения всех счетов
+    /// </summary>
     [Fact]
     public async Task GetAllBillsAsyncAsyncShouldReturnValue()
     {
@@ -154,6 +175,9 @@ public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvai
               .And.HaveCount(2);
     }
 
+    /// <summary>
+    ///     Проверка получения счета по id
+    /// </summary>
     [Fact]
     public async Task GetBillByIdAsyncShouldReturnValue()
     {
@@ -167,6 +191,9 @@ public class BillsServiceAvailabilityDataTests : IClassFixture<SharedServiceAvai
               });
     }
 
+    /// <summary>
+    ///     Проверка удаления счета
+    /// </summary>
     [Fact]
     [Priority(100)]
     public async Task DeleteBillAsyncShouldWork()

@@ -8,6 +8,9 @@ namespace DeliveryOffice.Services.ServiceExceptions.ForBuyer;
 /// </summary>
 public class BuyerException : Exception
 {
+    /// <summary>
+    ///     Статус код ошибки
+    /// </summary>
     public virtual int StatusCode => StatusCodes.Status400BadRequest;
 
     protected BuyerException(string? message) : base(message)

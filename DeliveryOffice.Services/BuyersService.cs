@@ -8,14 +8,14 @@ using DeliveryOffice.Services.ServiceExceptions.ForBuyer;
 
 namespace DeliveryOffice.Services;
 
-public class BuyerService : IBuyerService
+public class BuyersService : IBuyerService
 {
     private readonly IMapper mapper;
     private readonly IBuyerReaderRepository buyerReaderRepository;
     private readonly IBuyerWriterRepository buyerWriterRepository;
     private readonly IUnitOfWork unitOfWork;
 
-    public BuyerService(
+    public BuyersService(
         IMapper mapper, IBuyerReaderRepository buyerReaderRepository,
         IBuyerWriterRepository buyerWriterRepository, IUnitOfWork unitOfWork
     )

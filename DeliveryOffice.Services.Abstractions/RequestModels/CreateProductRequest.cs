@@ -1,6 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Core.Models;
-using DeliveryOffice.Services.Abstractions.RequestModels.Interfaces;
 
 namespace DeliveryOffice.Services.Abstractions.RequestModels;
 

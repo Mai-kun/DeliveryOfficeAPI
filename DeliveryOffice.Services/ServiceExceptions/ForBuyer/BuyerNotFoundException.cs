@@ -8,6 +8,7 @@ namespace DeliveryOffice.Services.ServiceExceptions.ForBuyer;
 /// </summary>
 public class BuyerNotFoundException : BuyerException
 {
+    /// <inheritdoc />
     public override int StatusCode => StatusCodes.Status404NotFound;
 
     public BuyerNotFoundException(string message) : base(message)

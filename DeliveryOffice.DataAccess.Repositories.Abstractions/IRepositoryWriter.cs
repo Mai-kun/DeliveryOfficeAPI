@@ -3,7 +3,7 @@
 namespace DeliveryOffice.DataAccess.Repositories.Abstractions;
 
 /// <summary>
-///     Интерфейс создания и модификации записей в хранилище
+///     Предоставляет фукнционал для создания и модификации записей в хранилище
 /// </summary>
 public interface IRepositoryWriter<in TEntity> where TEntity : class
 {

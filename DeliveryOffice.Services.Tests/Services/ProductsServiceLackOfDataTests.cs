@@ -7,6 +7,9 @@ using Xunit;
 
 namespace DeliveryOffice.Services.Tests.Services;
 
+/// <summary>
+///     Тесты для <see cref="ProductsService" /> без данных
+/// </summary>
 public class ProductsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfDataFixture>
 {
     private readonly SharedServiceLackOfDataFixture fixture;
@@ -16,6 +19,9 @@ public class ProductsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfD
         this.fixture = fixture;
     }
 
+    /// <summary>
+    ///     Возвращает пустой список продуктов
+    /// </summary>
     [Fact]
     public async Task GetAllProductsAsyncShouldReturnEmpty()
     {
@@ -27,6 +33,9 @@ public class ProductsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfD
               .And.BeEmpty();
     }
 
+    /// <summary>
+    ///     Выбрасывает исключение ProductNotFoundException при запросе несуществующего продукта
+    /// </summary>
     [Fact]
     public async Task GetProductByIdAsyncShouldThrowSupplierNotFoundException()
     {
@@ -37,6 +46,9 @@ public class ProductsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfD
         await act.Should().ThrowAsync<ProductNotFoundException>();
     }
 
+    /// <summary>
+    ///     Выбрасывает исключение ProductNotFoundException при обновлении несуществующего продукта
+    /// </summary>
     [Fact]
     public async Task UpdateProductShouldThrowProductNotFoundException()
     {
@@ -50,6 +62,9 @@ public class ProductsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfD
         await act.Should().ThrowAsync<ProductNotFoundException>();
     }
 
+    /// <summary>
+    ///     Выбрасывает исключение ProductNotFoundException при удалении несуществующего продукта
+    /// </summary>
     [Fact]
     public async Task DeleteProductAsyncShouldThrowProductNotFoundException()
     {

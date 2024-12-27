@@ -8,6 +8,9 @@ namespace DeliveryOffice.Services.ServiceExceptions.ForSupplier;
 /// </summary>
 public class SupplierException : Exception
 {
+    /// <summary>
+    ///     Статус код ошибки
+    /// </summary>
     public virtual int StatusCode => StatusCodes.Status400BadRequest;
 
     protected SupplierException(string? message) : base(message)

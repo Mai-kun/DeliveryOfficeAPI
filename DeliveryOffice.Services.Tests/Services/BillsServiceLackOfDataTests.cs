@@ -7,6 +7,9 @@ using Xunit;
 
 namespace DeliveryOffice.Services.Tests.Services;
 
+/// <summary>
+///     Тесты для <see cref="BillsService" /> без данных
+/// </summary>
 public class BillsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfDataFixture>
 {
     private readonly SharedServiceLackOfDataFixture fixture;
@@ -16,6 +19,9 @@ public class BillsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfData
         this.fixture = fixture;
     }
 
+    /// <summary>
+    ///     Возвращает пустой список счетов
+    /// </summary>
     [Fact]
     public async Task GetAllBillsAsyncShouldReturnEmpty()
     {
@@ -27,6 +33,9 @@ public class BillsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfData
               .And.BeEmpty();
     }
 
+    /// <summary>
+    ///     Выбрасывает BillNotFoundException при GetBillByIdAsync
+    /// </summary>
     [Fact]
     public async Task GetBillByIdAsyncShouldThrowBillNotFoundException()
     {
@@ -37,6 +46,9 @@ public class BillsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfData
         await act.Should().ThrowAsync<BillNotFoundException>();
     }
 
+    /// <summary>
+    ///     Выбрасывает BillNotFoundException при UpdateBillAsync
+    /// </summary>
     [Fact]
     public async Task UpdateBillShouldThrowBillNotFoundException()
     {
@@ -50,6 +62,9 @@ public class BillsServiceLackOfDataTests : IClassFixture<SharedServiceLackOfData
         await act.Should().ThrowAsync<BillNotFoundException>();
     }
 
+    /// <summary>
+    ///     Выбрасывает BillNotFoundException при DeleteBillAsync
+    /// </summary>
     [Fact]
     public async Task DeleteBillAsyncShouldThrowBillNotFoundException()
     {

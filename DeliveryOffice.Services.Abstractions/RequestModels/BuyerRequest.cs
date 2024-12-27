@@ -1,7 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using DeliveryOffice.Services.Abstractions.RequestModels.Interfaces;
-
-namespace DeliveryOffice.Services.Abstractions.RequestModels;
+﻿namespace DeliveryOffice.Services.Abstractions.RequestModels;
 
 /// <summary>
 ///     Модель запроса для объекта <see cref="BuyerRequest" />

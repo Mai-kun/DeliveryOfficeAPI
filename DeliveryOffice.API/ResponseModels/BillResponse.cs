@@ -1,30 +1,25 @@
-﻿namespace DeliveryOffice.API.ResponseModels;
+﻿using DeliveryOffice.Core.Models;
 
+namespace DeliveryOffice.API.ResponseModels;
+
+/// <summary>
+///     Модель ответа для объекта <see cref="Bill" />
+/// </summary>
 public class BillResponse
 {
-    /// <summary>
-    ///     Идентификатор
-    /// </summary>
+    /// <inheritdoc cref="Bill.Id" />
     public Guid Id { get; set; }
 
-    /// <summary>
-    ///     Дата накладной
-    /// </summary>
+    /// <inheritdoc cref="Bill.Date" />
     public DateTimeOffset Date { get; set; }
 
-    /// <summary>
-    ///     Склад, где хранятся товары
-    /// </summary>
+    /// <inheritdoc cref="Bill.Warehouse" />
     public string Warehouse { get; set; }
 
-    /// <summary>
-    ///     Общая сумма накладной
-    /// </summary>
+    /// <inheritdoc cref="Bill.TotalAmount" />
     public decimal TotalAmount { get; set; }
 
-    /// <summary>
-    ///     Признак оплаты накладной
-    /// </summary>
+    /// <inheritdoc cref="Bill.IsPaid" />
     public bool IsPaid { get; set; }
 
     /// <summary>
