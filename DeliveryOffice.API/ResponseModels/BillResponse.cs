@@ -7,19 +7,24 @@ namespace DeliveryOffice.API.ResponseModels;
 /// </summary>
 public class BillResponse
 {
-    /// <inheritdoc cref="Bill.Id" />
+    /// <summary>
+    ///     Идентификатор накладной
+    /// </summary>
     public Guid Id { get; set; }
 
-    /// <inheritdoc cref="Bill.Date" />
-    public DateTimeOffset Date { get; set; }
-
-    /// <inheritdoc cref="Bill.Warehouse" />
+    /// <summary>
+    ///     Склад, где хранятся товары
+    /// </summary>
     public string Warehouse { get; set; }
 
-    /// <inheritdoc cref="Bill.TotalAmount" />
+    /// <summary>
+    ///     Общая сумма накладной
+    /// </summary>
     public decimal TotalAmount { get; set; }
 
-    /// <inheritdoc cref="Bill.IsPaid" />
+    /// <summary>
+    ///     Признак оплаты накладной
+    /// </summary>
     public bool IsPaid { get; set; }
 
     /// <summary>

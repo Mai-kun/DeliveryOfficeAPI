@@ -7,10 +7,14 @@ namespace DeliveryOffice.API.ResponseModels;
 /// </summary>
 public class BuyerResponse
 {
-    /// <inheritdoc cref="Buyer.Id" />
+    /// <summary>
+    ///     Идентификатор покупателя
+    /// </summary>
     public Guid Id { get; set; }
 
-    /// <inheritdoc cref="Buyer.Name" />
+    /// <summary>
+    ///     Имя покупателя
+    /// </summary>
     public string Name { get; set; }
 
     /// <summary>

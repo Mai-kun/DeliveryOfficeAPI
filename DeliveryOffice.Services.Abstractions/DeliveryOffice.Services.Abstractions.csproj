@@ -4,6 +4,8 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <DocumentationFile>DeliveryOfficeAPI\DeliveryOffice.API\obj\Debug\net7.0\DeliveryOffice.Services.Abstractions.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

@@ -4,18 +4,20 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <DocumentationFile>obj\Debug\net7.0\DeliveryOffice.Service.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj"/>
-    <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj"/>
-    <ProjectReference Include="..\DeliveryOffice.Services.Abstractions\DeliveryOffice.Services.Abstractions.csproj"/>
+    <ProjectReference Include="..\DeliveryOffice.Core\DeliveryOffice.Core.csproj" />
+    <ProjectReference Include="..\DeliveryOffice.DataAccess.Repositories.Abstractions\DeliveryOffice.DataAccess.Repositories.Abstractions.csproj" />
+    <ProjectReference Include="..\DeliveryOffice.Services.Abstractions\DeliveryOffice.Services.Abstractions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1"/>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
-    <PackageReference Include="FluentValidation" Version="11.11.0"/>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
   </ItemGroup>
 
 </Project>

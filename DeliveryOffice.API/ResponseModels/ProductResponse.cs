@@ -7,18 +7,28 @@ namespace DeliveryOffice.API.ResponseModels;
 /// </summary>
 public class ProductResponse
 {
-    /// <inheritdoc cref="Product.Id" />
+    /// <summary>
+    ///     Идентификатор продукта
+    /// </summary>
     public Guid Id { get; set; }
 
-    /// <inheritdoc cref="Product.Name" />
+    /// <summary>
+    ///     Наименование товара
+    /// </summary>
     public string Name { get; set; }
 
-    /// <inheritdoc cref="Product.Quantity" />
+    /// <summary>
+    ///     Количество товара
+    /// </summary>
     public int Quantity { get; set; }
 
-    /// <inheritdoc cref="Product.Unit" />
+    /// <summary>
+    ///     Единица измерения товара
+    /// </summary>
     public string Unit { get; set; }
 
-    /// <inheritdoc cref="Product.Price" />
+    /// <summary>
+    ///     Цена товара
+    /// </summary>
     public decimal Price { get; set; }
 }

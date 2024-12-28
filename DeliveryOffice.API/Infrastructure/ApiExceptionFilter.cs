@@ -19,13 +19,25 @@ public class ApiExceptionFilter : IExceptionFilter
     {
         context.Result = context.Exception switch
         {
+            SupplierNotFoundException exception => new NotFoundObjectResult(
+                new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
+
             SupplierException exception => new ObjectResult(
+                new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
+
+            ProductNotFoundException exception => new NotFoundObjectResult(
                 new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
 
             ProductException exception => new ObjectResult(
                 new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
 
+            BuyerNotFoundException exception => new NotFoundObjectResult(
+                new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
+
             BuyerException exception => new ObjectResult(
+                new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
+
+            BillNotFoundException exception => new NotFoundObjectResult(
                 new ErrorResponse<string> { Message = context.Exception.Message, StatusCode = exception.StatusCode, }),
 
             BillException exception => new ObjectResult(
@@ -41,7 +53,8 @@ public class ApiExceptionFilter : IExceptionFilter
             _ => new ObjectResult(
                 new ErrorResponse<string>
                 {
-                    Message = context.Exception.Message, StatusCode = StatusCodes.Status500InternalServerError,
+                    Message = context.Exception.Message,
+                    StatusCode = StatusCodes.Status500InternalServerError,
                 }),
         };
 

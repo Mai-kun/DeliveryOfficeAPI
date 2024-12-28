@@ -7,13 +7,19 @@ namespace DeliveryOffice.API.ResponseModels;
 /// </summary>
 public class SupplierResponse
 {
-    /// <inheritdoc cref="Supplier.Id" />
+    /// <summary>
+    ///     Идентификатор поставщика
+    /// </summary>
     public Guid Id { get; set; }
 
-    /// <inheritdoc cref="Supplier.Name" />
+    /// <summary>
+    ///     Имя поставщика
+    /// </summary>
     public string Name { get; set; }
 
-    /// <inheritdoc cref="Supplier.Address" />
+    /// <summary>
+    ///     Адрес поставщика
+    /// </summary>
     public string Address { get; set; }
 
     /// <summary>

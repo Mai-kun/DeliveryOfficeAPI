@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DeliveryOffice.API.Common;
 using DeliveryOffice.API.Infrastructure;
 using DeliveryOffice.API.ResponseModels;
 using DeliveryOffice.Core.Models;
@@ -41,6 +42,7 @@ public class BillsController : ControllerBase
     /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(BillResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse<string>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetBillById(Guid id, CancellationToken cancellationToken)
     {
         var bill = await billService.GetBillByIdAsync(id, cancellationToken);
@@ -52,6 +54,7 @@ public class BillsController : ControllerBase
     ///     Добавление нового чека
     /// </summary>
     [HttpPost]
+    [ProducesResponseType(typeof(ErrorResponse<string>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AddBill(CreateBillRequest billRequest, CancellationToken cancellationToken)
     {
         validatorService.Validate(billRequest);
@@ -64,6 +67,7 @@ public class BillsController : ControllerBase
     /// </summary>
     [HttpPut("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse<string>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateBill(
         [FromRoute] Guid id,
         [FromBody] BillRequest billRequest, CancellationToken cancellationToken
@@ -80,6 +84,8 @@ public class BillsController : ControllerBase
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse<string>), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteBill(Guid id, CancellationToken cancellationToken)
     {
         await billService.DeleteBillAsync(id, cancellationToken);

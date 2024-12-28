@@ -1,5 +1,4 @@
 ﻿using DeliveryOffice.Core.Configurations;
-using DeliveryOffice.Core.Models;
 using DeliveryOffice.DataAccess.Abstractions;
 using Microsoft.EntityFrameworkCore;
 

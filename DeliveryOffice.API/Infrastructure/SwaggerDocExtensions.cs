@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using DeliveryOffice.Core.Models;
 using Microsoft.OpenApi.Models;
 
@@ -20,6 +21,9 @@ static internal class SwaggerDocExtensions
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
+
+                var xmlPathModel = @"obj\Debug\net7.0\DeliveryOffice.Services.Abstractions.xml";
+                options.IncludeXmlComments(xmlPathModel);
 
                 options.SwaggerDoc($"{nameof(Supplier)}", new OpenApiInfo { Title = "Поставщики", Version = "v1", });
                 options.SwaggerDoc($"{nameof(Bill)}", new OpenApiInfo { Title = "Чеки", Version = "v1", });
